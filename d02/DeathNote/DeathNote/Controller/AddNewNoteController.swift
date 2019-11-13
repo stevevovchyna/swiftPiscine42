@@ -19,7 +19,7 @@ class AddNewNoteConroller : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        overrideUserInterfaceStyle = .dark
         newNameInput.addTarget(self, action: #selector(fieldDidChange(_:)), for: .editingChanged)
         doneButton.isEnabled = false
         
@@ -27,8 +27,6 @@ class AddNewNoteConroller : UIViewController {
         
         descriptionInput.layer.borderColor = UIColor.black.cgColor
         descriptionInput.layer.borderWidth = 1.0
-        descriptionInput.layer.cornerRadius = 5
-        newNameInput.layer.borderColor = UIColor.black.cgColor
     }
     
     @IBOutlet weak var newNameInput: UITextField!
@@ -42,9 +40,6 @@ class AddNewNoteConroller : UIViewController {
     
     
     @IBAction func dataCollected(_ sender: UIBarButtonItem) {
-        print(newNameInput.text!)
-        print(datePicker.date)
-        print(descriptionInput.text!)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM, yyyy"
         let date = dateFormatter.string(from: datePicker.date)

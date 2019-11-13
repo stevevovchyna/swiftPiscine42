@@ -15,7 +15,7 @@ class ViewController: UITableViewController, SaveNewNoteDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+//        overrideUserInterfaceStyle = .dark
     }
     
     //MARK: - table view methods
