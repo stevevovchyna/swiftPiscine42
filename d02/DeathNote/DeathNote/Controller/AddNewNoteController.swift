@@ -19,11 +19,16 @@ class AddNewNoteConroller : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        newNameInput.addTarget(self, action: #selector(fieldDidChange(_:)), for: .editingChanged)
+        doneButton.isEnabled = false
+        
         datePicker.minimumDate = Date.init(timeIntervalSinceNow: 0)
         
         descriptionInput.layer.borderColor = UIColor.black.cgColor
         descriptionInput.layer.borderWidth = 1.0
         descriptionInput.layer.cornerRadius = 5
+        newNameInput.layer.borderColor = UIColor.black.cgColor
     }
     
     @IBOutlet weak var newNameInput: UITextField!
@@ -32,12 +37,16 @@ class AddNewNoteConroller : UIViewController {
     
     @IBOutlet weak var descriptionInput: UITextView!
     
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    
+    
+    
     @IBAction func dataCollected(_ sender: UIBarButtonItem) {
         print(newNameInput.text!)
         print(datePicker.date)
         print(descriptionInput.text!)
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MM, yyyy"
+        dateFormatter.dateFormat = "dd MMM, yyyy"
         let date = dateFormatter.string(from: datePicker.date)
         let name = newNameInput?.text ?? "Bob"
         let description = descriptionInput?.text ?? "No description"
@@ -47,5 +56,13 @@ class AddNewNoteConroller : UIViewController {
     }
 
     @IBOutlet weak var getBack: UINavigationItem!
+    
+    @objc func fieldDidChange(_ newNameField: UITextField) {
+        if newNameInput.text!.isEmpty {
+            doneButton.isEnabled = false
+        } else {
+            doneButton.isEnabled = true
+        }
+    }
     
 }

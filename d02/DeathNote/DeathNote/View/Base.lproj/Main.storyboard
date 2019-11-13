@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Deb-X4-2Lo">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,7 +13,7 @@
             <objects>
                 <tableViewController id="hEl-xf-XdW" customClass="ViewController" customModule="DeathNote" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Plx-1p-dnV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -85,18 +85,18 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tja-bI-A8z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="321.73913043478262" y="136.60714285714286"/>
+            <point key="canvasLocation" x="217" y="137"/>
         </scene>
         <!--Add New Note Conroller-->
         <scene sceneID="tkX-x9-yHS">
             <objects>
                 <viewController id="VKa-uX-r4h" customClass="AddNewNoteConroller" customModule="DeathNote" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VzU-Iu-TL1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZq-Cs-0Em">
-                                <rect key="frame" x="0.0" y="390" width="414" height="346"/>
+                                <rect key="frame" x="0.0" y="475" width="414" height="387"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="OSa-7U-bnk">
                                         <rect key="frame" x="0.0" y="-392" width="414" height="738"/>
@@ -106,7 +106,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rxj-cy-mFe">
-                                <rect key="frame" x="0.0" y="44" width="414" height="346"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="387"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Name your victim..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L0n-gJ-DVu">
                                         <rect key="frame" x="20" y="8" width="374" height="27"/>
@@ -114,9 +114,9 @@
                                         <textInputTraits key="textInputTraits" textContentType="name"/>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Fs3-Q1-7oe">
-                                        <rect key="frame" x="0.0" y="135" width="414" height="211"/>
+                                        <rect key="frame" x="0.0" y="135" width="414" height="252"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="EmU-Mp-QtN">
@@ -170,6 +170,7 @@
                     <connections>
                         <outlet property="datePicker" destination="EmU-Mp-QtN" id="Rfu-Ku-QAa"/>
                         <outlet property="descriptionInput" destination="Fs3-Q1-7oe" id="Eel-pk-w9w"/>
+                        <outlet property="doneButton" destination="ucC-CA-8vN" id="bBJ-ra-x7f"/>
                         <outlet property="getBack" destination="pjX-Vh-w3v" id="9oT-kg-idX"/>
                         <outlet property="newNameInput" destination="L0n-gJ-DVu" id="rUD-6V-9Oq"/>
                     </connections>
@@ -183,7 +184,7 @@
             <objects>
                 <navigationController id="Deb-X4-2Lo" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="E6Q-fE-ih9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

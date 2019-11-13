@@ -51,6 +51,5 @@ class ViewController: UITableViewController, SaveNewNoteDelegate {
         }
     }
 
-
 }
 
