@@ -13,6 +13,8 @@
 		109FB499237BD8BB007511BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 109FB497237BD8BB007511BA /* Main.storyboard */; };
 		109FB49B237BD8BD007511BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 109FB49A237BD8BD007511BA /* Assets.xcassets */; };
 		109FB49E237BD8BD007511BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 109FB49C237BD8BD007511BA /* LaunchScreen.storyboard */; };
+		109FB4A6237BE5A0007511BA /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109FB4A5237BE5A0007511BA /* MyCollectionViewCell.swift */; };
+		109FB4D4237C18C4007511BA /* ShowPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109FB4D3237C18C4007511BA /* ShowPictureViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		109FB49A237BD8BD007511BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		109FB49D237BD8BD007511BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		109FB49F237BD8BD007511BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		109FB4A5237BE5A0007511BA /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
+		109FB4D3237C18C4007511BA /* ShowPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPictureViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,9 +64,11 @@
 				109FB493237BD8BB007511BA /* SceneDelegate.swift */,
 				109FB495237BD8BB007511BA /* ViewController.swift */,
 				109FB497237BD8BB007511BA /* Main.storyboard */,
+				109FB4A5237BE5A0007511BA /* MyCollectionViewCell.swift */,
 				109FB49A237BD8BD007511BA /* Assets.xcassets */,
 				109FB49C237BD8BD007511BA /* LaunchScreen.storyboard */,
 				109FB49F237BD8BD007511BA /* Info.plist */,
+				109FB4D3237C18C4007511BA /* ShowPictureViewController.swift */,
 			);
 			path = APM;
 			sourceTree = "<group>";
@@ -140,6 +146,8 @@
 			files = (
 				109FB496237BD8BB007511BA /* ViewController.swift in Sources */,
 				109FB492237BD8BB007511BA /* AppDelegate.swift in Sources */,
+				109FB4A6237BE5A0007511BA /* MyCollectionViewCell.swift in Sources */,
+				109FB4D4237C18C4007511BA /* ShowPictureViewController.swift in Sources */,
 				109FB494237BD8BB007511BA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,6 +295,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 68V7NHY2R5;
 				INFOPLIST_FILE = APM/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -305,6 +314,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 68V7NHY2R5;
 				INFOPLIST_FILE = APM/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
