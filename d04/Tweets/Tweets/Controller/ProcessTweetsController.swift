@@ -51,7 +51,7 @@ class ProcessTweetsController {
                 } else {
                     viewController.token = json["access_token"] as? String
                     viewController.processTweetsController = ProcessTweetsController(delegate: viewController, token: viewController.token!)
-                    viewController.processTweetsController?.searchTweets(searchQuery: "swift")
+                    viewController.processTweetsController?.searchTweets(searchQuery: viewController.searchQuery)
                 }
             }
         }.resume()
@@ -87,10 +87,14 @@ class ProcessTweetsController {
                 }
                 self.foundTweets.removeAll()
                 for tweet in responseTweets! {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "E MMM dd HH:mm:ss Z yyyy"
+                    let newDate = dateFormatter.date(from: tweet["created_at"] as! String)
+                    dateFormatter.dateFormat = "dd MMM, yyyy h:mm:ss"
+                    let date = dateFormatter.string(from: newDate!)
                     let user = tweet["user"] as AnyObject
                     let name = user["name"] as! String
                     let text = tweet["text"] as! String
-                    let date = tweet["created_at"] as! String
                     let newTweet = Tweet(name: name, text: text, date: date)
                     self.foundTweets.append(newTweet)
                 }
@@ -101,6 +105,4 @@ class ProcessTweetsController {
         }.resume()
     }
     
-
-
 }
