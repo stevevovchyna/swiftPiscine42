@@ -12,6 +12,7 @@ import MapKit
 class SecondViewController: UIViewController {
   
     @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var selector: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,19 @@ class SecondViewController: UIViewController {
         focusMapView(lat: 48.896607, lon: 2.318501)
     }
 
+    @IBAction func changeMapView(_ sender: UISegmentedControl) {
+        switch selector.selectedSegmentIndex {
+        case 0:
+            map.mapType = .standard
+        case 1:
+            map.mapType = .satellite
+        case 2:
+            map.mapType = .hybrid
+        default:
+            return
+        }
+    }
+    
     func addPin(latitude: Double, longitude: Double, title: String, subtitle : String) {
         let point = MKPointAnnotation()
         point.title = title
