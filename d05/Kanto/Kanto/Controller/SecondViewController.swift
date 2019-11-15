@@ -11,10 +11,12 @@ import MapKit
 import CoreLocation
 
 class SecondViewController: UIViewController, CLLocationManagerDelegate {
-    
+        
     let locationManager = CLLocationManager()
     var currentLatitude : Double?
     var currentLongitude : Double?
+    var places : [Place]?
+    var selectedPlace : Place?
   
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var selector: UISegmentedControl!
@@ -27,14 +29,23 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         map.showsUserLocation = false
+        if let availablePlaces = places {
+            for place in availablePlaces {
+                addPin(latitude: place.latitude, longitude: place.longitude, title: place.name)
+            }
+        }
 
-        // Do any additional setup after loading the view.
-        addPin(latitude: 48.896607, longitude: 2.318501, title: "Ecole 42", subtitle: "There's no place like home")
-        focusMapView(lat: 48.896607, lon: 2.318501)
+        if let place = selectedPlace {
+            addPin(latitude: place.latitude, longitude: place.longitude, title: place.name)
+            focusMapView(lat: place.latitude, lon: place.longitude)
+        }
     }
-
-    @objc func stopLocating() {
-        map.showsUserLocation = false
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let place = selectedPlace {
+            addPin(latitude: place.latitude, longitude: place.longitude, title: place.name)
+            focusMapView(lat: place.latitude, lon: place.longitude)
+        }
     }
     
     @IBAction func changeMapView(_ sender: UISegmentedControl) {
@@ -49,6 +60,7 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
             return
         }
     }
+    
     @IBAction func getUserLocation(_ sender: UIButton) {
         
         map.showsUserLocation = true
@@ -59,27 +71,23 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[locations.count - 1]
         if location.horizontalAccuracy > 0 {
-            
-            currentLatitude = Double(location.coordinate.latitude)
-            currentLongitude = Double(location.coordinate.longitude)
-            
+            self.currentLatitude = Double(location.coordinate.latitude)
+            self.currentLongitude = Double(location.coordinate.longitude)
         }
     }
     
-    func addPin(latitude: Double, longitude: Double, title: String, subtitle : String) {
+    func addPin(latitude: Double, longitude: Double, title: String) {
         let point = MKPointAnnotation()
         point.title = title
-        point.subtitle = subtitle
         point.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        map.addAnnotation(point)
+        self.map.addAnnotation(point)
     }
     
     func focusMapView(lat : Double, lon : Double) {
         let mapCenter = CLLocationCoordinate2DMake(lat, lon)
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         let region = MKCoordinateRegion(center: mapCenter, span: span)
-        map.region = region
+        self.map.region = region
     }
-    
 }
 
