@@ -16,20 +16,20 @@ protocol APITwitterDelegate {
 class ProcessTweetsController {
     
     var delegate : APITwitterDelegate?
-    var token : String = ""
+    var authToken : String = ""
     var foundTweets : [Tweet] = []
     
     init(delegate: APITwitterDelegate?, token: String) {
         self.delegate = delegate
-        self.token = token
+        self.authToken = token
     }
     
-    static func oAuthTwitter(with viewController: ViewController) {
-        let apiKey = "xDh7xsxMn1FMNCVv44hfOncSy"
+    static func oAuthTwitter(with VC: ViewController) {
+        let APIKey = "xDh7xsxMn1FMNCVv44hfOncSy"
         let secretAPIKey = "qkTIi69yI07KQzJ3Gc54TR7WB3Y5poFVGSzO9sls7j8unKOgbX"
         let authString = "https://api.twitter.com/oauth2/token"
         let url = URL(string: authString)
-        let bearer = ((apiKey + ":" + secretAPIKey).data(using: String.Encoding.utf8))!.base64EncodedString(options: NSData.Base64EncodingOptions())
+        let bearer = ((APIKey + ":" + secretAPIKey).data(using: String.Encoding.utf8))!.base64EncodedString(options: NSData.Base64EncodingOptions())
         
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
@@ -45,13 +45,13 @@ class ProcessTweetsController {
                 if json["access_token"] as? String == nil {
                     DispatchQueue.main.sync {
                         let userInfo: [String : Any] = [ NSLocalizedDescriptionKey :  NSLocalizedString("Authentication", value: "Failed to Authenticate", comment: "") ]
-                        viewController.tweetError(error: NSError(domain: "https://api.twitter.com/1.1/search/tweets.json", code: 401, userInfo: userInfo))
+                        VC.tweetError(error: NSError(domain: "https://api.twitter.com/1.1/search/tweets.json", code: 401, userInfo: userInfo))
                         }
                     return
                 } else {
-                    viewController.token = json["access_token"] as? String
-                    viewController.processTweetsController = ProcessTweetsController(delegate: viewController, token: viewController.token!)
-                    viewController.processTweetsController?.searchTweets(searchQuery: viewController.searchQuery)
+                    VC.APIToken = json["access_token"] as? String
+                    VC.processTweetsController = ProcessTweetsController(delegate: VC, token: VC.APIToken!)
+                    VC.processTweetsController?.searchTweets(searchQuery: VC.searchQuery)
                 }
             }
         }.resume()
@@ -63,7 +63,7 @@ class ProcessTweetsController {
         let url = URL(string: urlString)
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
-        request.setValue("Bearer " + self.token, forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer " + self.authToken, forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data, error == nil else {
@@ -85,7 +85,9 @@ class ProcessTweetsController {
                         return
                     }
                 }
+                
                 self.foundTweets.removeAll()
+                
                 for tweet in responseTweets! {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "E MMM dd HH:mm:ss Z yyyy"
@@ -104,5 +106,4 @@ class ProcessTweetsController {
             }
         }.resume()
     }
-    
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UITableViewController, APITwitterDelegate, UITextFieldDelegate {
     
-    var token : String?
+    var APIToken : String?
     var processTweetsController : ProcessTweetsController?
     var foundTweets : [Tweet] = []
     var searchQuery = "school 42"
