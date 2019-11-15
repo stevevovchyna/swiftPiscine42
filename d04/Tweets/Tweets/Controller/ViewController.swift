@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ViewController: UITableViewController, APITwitterDelegate {
+class ViewController: UITableViewController, APITwitterDelegate, UITextFieldDelegate {
     
     var token : String?
     var processTweetsController : ProcessTweetsController?
     var foundTweets : [Tweet] = []
-    var searchQuery = "swift"
-    
+    var searchQuery = "school 42"
+       
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,8 @@ class ViewController: UITableViewController, APITwitterDelegate {
     override func viewWillAppear(_ animated: Bool) {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 500.0
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
    
@@ -34,7 +36,9 @@ class ViewController: UITableViewController, APITwitterDelegate {
         cell.tweetTextLabel.text = foundTweets[indexPath.row].text
         cell.tweetTextLabel.numberOfLines = 0
         cell.nameLabel.text = foundTweets[indexPath.row].name
+        cell.nameLabel.numberOfLines = 0
         cell.dateLabel.text = foundTweets[indexPath.row].date
+        cell.dateLabel.numberOfLines = 0
         return cell
     }
 
@@ -46,8 +50,16 @@ class ViewController: UITableViewController, APITwitterDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    
+    //MARK:- search methods
 
+    @IBOutlet weak var searchTextLabel: UITextField!
+    @IBAction func whatev(_ sender: UITextField) {
+        searchQuery = searchTextLabel.text!
+        searchTextLabel.resignFirstResponder()
+        searchTextLabel.text! = ""
+        ProcessTweetsController.oAuthTwitter(with: self)
+    }
+    
     
     //MARK:- Protocol methods
     

@@ -90,7 +90,7 @@ class ProcessTweetsController {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "E MMM dd HH:mm:ss Z yyyy"
                     let newDate = dateFormatter.date(from: tweet["created_at"] as! String)
-                    dateFormatter.dateFormat = "dd MMM, yyyy h:mm:ss"
+                    dateFormatter.dateFormat = "dd/mm/yyyy h:mm:ss"
                     let date = dateFormatter.string(from: newDate!)
                     let user = tweet["user"] as AnyObject
                     let name = user["name"] as! String
