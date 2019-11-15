@@ -10,7 +10,7 @@ import UIKit
 
 class ListViewController: UITableViewController {
     
-    var places : [Place] = [Place(name: "42", latitude: 48.896607, longitude: 2.318501), Place(name: "New-York", latitude: 40.741895, longitude: -73.989308), Place(name: "Kyiv", latitude: 50.4500336, longitude: 30.5241361), Place(name: "Stonehenge", latitude: 51.1788293, longitude: -1.826183)]
+    var places : [Place] = [Place(name: "42", latitude: 48.896607, longitude: 2.318501, subtitle: "School 42"), Place(name: "New-York", latitude: 40.741895, longitude: -73.989308, subtitle: "Best city ever"), Place(name: "Kyiv", latitude: 50.4500336, longitude: 30.5241361, subtitle: "The best city ever"), Place(name: "Stonehenge", latitude: 51.1788293, longitude: -1.826183, subtitle: "Mysterious one")]
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 
 class SecondViewController: UIViewController, CLLocationManagerDelegate {
-        
+    
     let locationManager = CLLocationManager()
     var currentLatitude : Double?
     var currentLongitude : Double?
@@ -31,19 +31,14 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
         map.showsUserLocation = false
         if let availablePlaces = places {
             for place in availablePlaces {
-                addPin(latitude: place.latitude, longitude: place.longitude, title: place.name)
+                addPin(place: place)
             }
-        }
-
-        if let place = selectedPlace {
-            addPin(latitude: place.latitude, longitude: place.longitude, title: place.name)
-            focusMapView(lat: place.latitude, lon: place.longitude)
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         if let place = selectedPlace {
-            addPin(latitude: place.latitude, longitude: place.longitude, title: place.name)
+            addPin(place: place)
             focusMapView(lat: place.latitude, lon: place.longitude)
         }
     }
@@ -61,6 +56,22 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation is MKPointAnnotation else { return nil }
+
+        let identifier = "Annotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView!.canShowCallout = true
+        } else {
+            annotationView!.annotation = annotation
+        }
+
+        return annotationView
+    }
+    
     @IBAction func getUserLocation(_ sender: UIButton) {
         
         map.showsUserLocation = true
@@ -76,10 +87,11 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    func addPin(latitude: Double, longitude: Double, title: String) {
+    func addPin(place: Place) {
         let point = MKPointAnnotation()
-        point.title = title
-        point.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        point.title = place.name
+        point.coordinate = CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude)
+        point.subtitle = place.subtitle
         self.map.addAnnotation(point)
     }
     
