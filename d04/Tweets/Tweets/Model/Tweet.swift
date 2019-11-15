@@ -9,7 +9,10 @@
 import Foundation
 
 struct Tweet : CustomStringConvertible {
-    var description: String
+    var description: String {
+        return "\(name): \(text)"
+    }
     let name : String
     let text : String
+    let date : String
 }

@@ -10,38 +10,28 @@ import UIKit
 
 class ViewController: UIViewController, APITwitterDelegate {
     
-    var twitterAPIID = ""
-
+    var token : String?
+    var processTweetsController : ProcessTweetsController?
+    var foundTweets : [Tweet] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let string = "https://api.twitter.com/1.1/search/tweets.json?q=apple"
-        let url = NSURL(string: string)
-        let request = NSMutableURLRequest(url: url! as URL)
-        request.setValue(twitterAPIID, forHTTPHeaderField: "oauth_consumer_key")
-        request.httpMethod = "GET"
-        let session = URLSession.shared
-        let task = session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
-            if let error = error {
-                print("error: \(error)")
-            } else {
-                if let response = response as? HTTPURLResponse {
-                    print("statusCode: \(response.statusCode)")
-                }
-                if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    print("data: \(dataString)")
-                }
-            }
-        }
-        task.resume()
+        ProcessTweetsController.oAuthTwitter(with: self)
+        
     }
 
     func processTweets(tweets : [Tweet]) {
-        
+        print(tweets)
     }
     
     func tweetError(error: NSError) {
-        
+        let alert = UIAlertController(title: error.userInfo["value"] as? String, message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+            NSLog("The \"OK\" alert occured.")
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 
 }
