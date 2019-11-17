@@ -30,7 +30,9 @@
                             <outlet property="delegate" destination="PUp-zs-EuE" id="boF-V7-tNH"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="List" image="list.bullet" catalog="system" landscapeImage="list.bullet" id="zjn-c0-qX9"/>
+                    <tabBarItem key="tabBarItem" title="List" image="list.bullet" catalog="system" landscapeImage="list.bullet" selectedImage="list.bullet" id="zjn-c0-qX9">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dtz-Dn-qPV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -44,9 +46,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BSg-i5-vPd">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BSg-i5-vPd">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fZN-QP-fcA">
                                 <rect key="frame" x="98" y="767" width="218" height="32"/>
@@ -60,9 +61,11 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HBb-xu-fXk">
-                                <rect key="frame" x="324" y="773" width="21" height="19"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <state key="normal" image="location.fill" catalog="system"/>
+                                <rect key="frame" x="324" y="765" width="30" height="33"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="⨀">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="getUserLocation:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="j5P-dB-Bhh"/>
                                 </connections>
@@ -71,13 +74,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="fZN-QP-fcA" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="3U5-LD-rQq"/>
-                            <constraint firstItem="HBb-xu-fXk" firstAttribute="leading" secondItem="fZN-QP-fcA" secondAttribute="trailing" constant="8" id="EBf-ac-Qcd"/>
-                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="HBb-xu-fXk" secondAttribute="bottom" constant="21" id="WgT-Aw-LLj"/>
+                            <constraint firstItem="BSg-i5-vPd" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="H3H-oP-Fab"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="HBb-xu-fXk" secondAttribute="bottom" constant="15" id="HaQ-0z-WNJ"/>
+                            <constraint firstItem="BSg-i5-vPd" firstAttribute="bottom" secondItem="O1u-W8-tvY" secondAttribute="bottom" id="aUL-LP-JVF"/>
+                            <constraint firstItem="BSg-i5-vPd" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="f30-2n-tuS"/>
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="fZN-QP-fcA" secondAttribute="bottom" constant="15" id="iVc-UU-dkV"/>
+                            <constraint firstItem="HBb-xu-fXk" firstAttribute="leading" secondItem="fZN-QP-fcA" secondAttribute="trailing" constant="8" id="pCF-io-CxH"/>
+                            <constraint firstItem="BSg-i5-vPd" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="z0J-md-WIZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" landscapeImage="map" selectedImage="map" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" landscapeImage="map" selectedImage="map" catalog="system" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="map" destination="BSg-i5-vPd" id="0gc-wp-1rv"/>
                         <outlet property="selector" destination="fZN-QP-fcA" id="QjF-ZM-TlJ"/>
@@ -108,7 +115,7 @@
     </scenes>
     <resources>
         <image name="list.bullet" catalog="system" width="64" height="44"/>
-        <image name="location.fill" catalog="system" width="64" height="56"/>
         <image name="map" catalog="system" width="64" height="56"/>
+        <image name="map" width="64" height="56"/>
     </resources>
 </document>

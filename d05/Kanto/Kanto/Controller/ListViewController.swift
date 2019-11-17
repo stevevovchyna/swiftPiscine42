@@ -35,6 +35,7 @@ class ListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let mapTab = tabBarController?.viewControllers![1] as! SecondViewController
+        mapTab.fromList = true
         mapTab.selectedPlace = places[indexPath.row]
         tabBarController?.selectedIndex = 1
     }

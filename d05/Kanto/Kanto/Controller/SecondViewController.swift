@@ -17,6 +17,7 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
     var currentLongitude : Double?
     var places : [Place]?
     var selectedPlace : Place?
+    var fromList : Bool = false
   
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var selector: UISegmentedControl!
@@ -37,9 +38,10 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if let place = selectedPlace {
-            addPin(place: place)
+        if let place = selectedPlace, fromList {
+//            addPin(place: place)
             focusMapView(lat: place.latitude, lon: place.longitude)
+            fromList = false
         }
     }
     
