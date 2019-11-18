@@ -30,9 +30,7 @@
                             <outlet property="delegate" destination="PUp-zs-EuE" id="boF-V7-tNH"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="List" image="list.bullet" catalog="system" landscapeImage="list.bullet" selectedImage="list.bullet" id="zjn-c0-qX9">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="List" image="list.bullet" catalog="system" landscapeImage="list.bullet" selectedImage="list.bullet" id="zjn-c0-qX9"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dtz-Dn-qPV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -84,7 +82,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="map" landscapeImage="map" selectedImage="map" catalog="system" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" landscapeImage="map" selectedImage="map" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="map" destination="BSg-i5-vPd" id="0gc-wp-1rv"/>
                         <outlet property="selector" destination="fZN-QP-fcA" id="QjF-ZM-TlJ"/>
@@ -116,6 +114,5 @@
     <resources>
         <image name="list.bullet" catalog="system" width="64" height="44"/>
         <image name="map" catalog="system" width="64" height="56"/>
-        <image name="map" width="64" height="56"/>
     </resources>
 </document>

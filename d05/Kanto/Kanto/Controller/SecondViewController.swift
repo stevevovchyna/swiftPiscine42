@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class SecondViewController: UIViewController, CLLocationManagerDelegate {
+class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     let locationManager = CLLocationManager()
     var currentLatitude : Double?
@@ -39,7 +39,6 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         if let place = selectedPlace, fromList {
-//            addPin(place: place)
             focusMapView(lat: place.latitude, lon: place.longitude)
             fromList = false
         }
@@ -56,22 +55,6 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
         default:
             return
         }
-    }
-    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard annotation is MKPointAnnotation else { return nil }
-
-        let identifier = "Annotation"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-
-        if annotationView == nil {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView!.canShowCallout = true
-        } else {
-            annotationView!.annotation = annotation
-        }
-
-        return annotationView
     }
     
     @IBAction func getUserLocation(_ sender: UIButton) {
