@@ -62,7 +62,7 @@
                                 <rect key="frame" x="324" y="765" width="30" height="33"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="⨀">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="getUserLocation:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="j5P-dB-Bhh"/>
@@ -71,14 +71,14 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="fZN-QP-fcA" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="3U5-LD-rQq"/>
-                            <constraint firstItem="BSg-i5-vPd" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="H3H-oP-Fab"/>
-                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="HBb-xu-fXk" secondAttribute="bottom" constant="15" id="HaQ-0z-WNJ"/>
-                            <constraint firstItem="BSg-i5-vPd" firstAttribute="bottom" secondItem="O1u-W8-tvY" secondAttribute="bottom" id="aUL-LP-JVF"/>
-                            <constraint firstItem="BSg-i5-vPd" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="f30-2n-tuS"/>
-                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="fZN-QP-fcA" secondAttribute="bottom" constant="15" id="iVc-UU-dkV"/>
-                            <constraint firstItem="HBb-xu-fXk" firstAttribute="leading" secondItem="fZN-QP-fcA" secondAttribute="trailing" constant="8" id="pCF-io-CxH"/>
-                            <constraint firstItem="BSg-i5-vPd" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="z0J-md-WIZ"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="HBb-xu-fXk" secondAttribute="bottom" constant="15" id="91L-k6-5BQ"/>
+                            <constraint firstAttribute="trailing" secondItem="BSg-i5-vPd" secondAttribute="trailing" id="JR1-QG-en0"/>
+                            <constraint firstItem="fZN-QP-fcA" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="Oxx-sK-4tE"/>
+                            <constraint firstItem="BSg-i5-vPd" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="Sbp-8y-NzX"/>
+                            <constraint firstItem="BSg-i5-vPd" firstAttribute="bottom" secondItem="O1u-W8-tvY" secondAttribute="bottom" id="Yi5-vs-h19"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="fZN-QP-fcA" secondAttribute="bottom" constant="15" id="esc-xV-Znj"/>
+                            <constraint firstItem="HBb-xu-fXk" firstAttribute="leading" secondItem="fZN-QP-fcA" secondAttribute="trailing" constant="8" id="lpS-cP-93B"/>
+                            <constraint firstItem="BSg-i5-vPd" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="nXz-I3-QPj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
@@ -90,7 +90,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1229" y="378"/>
+            <point key="canvasLocation" x="1227.536231884058" y="376.33928571428572"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
