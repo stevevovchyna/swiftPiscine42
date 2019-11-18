@@ -24,7 +24,6 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         map.delegate = self
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
@@ -73,10 +72,27 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
     }
     
     @IBAction func getUserLocation(_ sender: UIButton) {
-        
-        map.showsUserLocation = true
-        focusMapView(lat: currentLatitude ?? 30.0, lon: currentLongitude ?? 40.0)
-
+        switch CLLocationManager.authorizationStatus(){
+        case .authorizedWhenInUse:
+            map.showsUserLocation = true
+            focusMapView(lat: currentLatitude ?? 30.0, lon: currentLongitude ?? 50.0)
+            break
+        case .authorizedAlways:
+            map.showsUserLocation = true
+            focusMapView(lat: currentLatitude ?? 30.0, lon: currentLongitude ?? 50.0)
+            break
+        case .denied:
+            showLocationUnavailableAlert()
+            break
+        case .restricted:
+            showLocationUnavailableAlert()
+            break
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+            break
+        default:
+            break
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -93,5 +109,15 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         let region = MKCoordinateRegion(center: mapCenter, span: span)
         self.map.region = region
     }
+    
+    func showLocationUnavailableAlert() {
+        let alert = UIAlertController(title: "Alert", message: "Please provide the app access to your location", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Go to Settings", style: UIAlertAction.Style.default, handler: { (alert: UIAlertAction!) in
+            let url = NSURL(string:UIApplication.openSettingsURLString)! as URL
+            UIApplication.shared.open(url)
+        }))
+        alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }
-
