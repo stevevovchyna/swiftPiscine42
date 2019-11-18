@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import MapKit
 
 class ListViewController: UITableViewController {
     
-    var places : [Place] = [Place(name: "42", latitude: 48.896607, longitude: 2.318501, subtitle: "School 42"), Place(name: "New-York", latitude: 40.741895, longitude: -73.989308, subtitle: "Best city ever"), Place(name: "Kyiv", latitude: 50.4500336, longitude: 30.5241361, subtitle: "The best city ever"), Place(name: "Stonehenge", latitude: 51.1788293, longitude: -1.826183, subtitle: "Mysterious one")]
+    var places : [Place] = [Place(title: "42", subtitle: "School 42", coordinate: CLLocationCoordinate2D(latitude: 48.896607, longitude: 2.318501), pinColor: .black), Place(title: "New-York", subtitle: "Best city ever", coordinate: CLLocationCoordinate2D(latitude: 40.741895, longitude: -73.989308), pinColor: .blue), Place(title: "Kyiv", subtitle: "The best city ever", coordinate: CLLocationCoordinate2D(latitude: 50.4500336, longitude: 30.5241361), pinColor: .green), Place(title: "Stonehenge", subtitle: "Mysterious one", coordinate: CLLocationCoordinate2D(latitude: 51.1788293, longitude: -1.826183), pinColor: .cyan)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class ListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "placeCell", for: indexPath)
 
-        cell.textLabel?.text = places[indexPath.row].name
+        cell.textLabel?.text = places[indexPath.row].title
 
         return cell
     }

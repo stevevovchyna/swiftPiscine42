@@ -25,23 +25,38 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        map.delegate = self
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         map.showsUserLocation = false
         if let availablePlaces = places {
-            for place in availablePlaces {
-                addPin(place: place)
-            }
+            map.addAnnotations(availablePlaces)
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         if let place = selectedPlace, fromList {
-            focusMapView(lat: place.latitude, lon: place.longitude)
+            focusMapView(lat: place.coordinate.latitude, lon: place.coordinate.longitude)
             fromList = false
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let customAnnotation = annotation as? Place else {
+            return nil
+        }
+        var annotationView = MKMarkerAnnotationView()
+        if let dequedView = mapView.dequeueReusableAnnotationView( withIdentifier: "") as? MKMarkerAnnotationView {
+            annotationView = dequedView
+        } else {
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "")
+        }
+        mapView.userLocation.title = ""
+        annotationView.markerTintColor = customAnnotation.pinColor
+        annotationView.canShowCallout = true
+        return annotationView
     }
     
     @IBAction func changeMapView(_ sender: UISegmentedControl) {
@@ -70,14 +85,6 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
             self.currentLatitude = Double(location.coordinate.latitude)
             self.currentLongitude = Double(location.coordinate.longitude)
         }
-    }
-    
-    func addPin(place: Place) {
-        let point = MKPointAnnotation()
-        point.title = place.name
-        point.coordinate = CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude)
-        point.subtitle = place.subtitle
-        self.map.addAnnotation(point)
     }
     
     func focusMapView(lat : Double, lon : Double) {

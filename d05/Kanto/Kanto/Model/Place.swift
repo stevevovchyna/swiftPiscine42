@@ -7,10 +7,20 @@
 //
 
 import Foundation
+import MapKit
 
-struct Place {
-    var name : String
-    var latitude : Double
-    var longitude : Double
-    var subtitle : String
+class Place: NSObject, MKAnnotation {
+    var coordinate: CLLocationCoordinate2D
+    var title : String?
+    var subtitle : String?
+    var pinColor : UIColor?
+    
+    init(title: String?, subtitle: String?, coordinate: CLLocationCoordinate2D, pinColor: UIColor?) {
+        
+        self.title = title
+        self.subtitle = subtitle
+        self.coordinate = coordinate
+        self.pinColor = pinColor
+        
+    }
 }
