@@ -18,17 +18,14 @@
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="iaf-zg-3sF" appends="YES" id="FdJ-9r-YOp"/>
+                            <outletCollection property="gestureRecognizers" destination="6Td-il-nYS" appends="YES" id="149-o1-8LW"/>
                         </connections>
                     </view>
-                    <connections>
-                        <outlet property="gestureRecognizer" destination="iaf-zg-3sF" id="RD2-Dv-gth"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="iaf-zg-3sF">
+                <tapGestureRecognizer id="6Td-il-nYS">
                     <connections>
-                        <action selector="tapHandler:" destination="BYZ-38-t0r" id="ABy-df-O0x"/>
+                        <action selector="touchRecognizer:" destination="BYZ-38-t0r" id="33b-EV-AUJ"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

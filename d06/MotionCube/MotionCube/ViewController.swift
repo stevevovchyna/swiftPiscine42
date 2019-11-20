@@ -8,94 +8,140 @@
 
 import UIKit
 
-class Draw : UIView {
+class Figure: UIView {
+    var type : String?
+    let possibleShapes = ["circle", "square"]
+    var figureSize: CGFloat = 100.0
     
-    let shapes = ["rectangle", "circle"]
-    let colors : [UIColor] = [.red, .orange, .yellow, .green, .blue, .cyan, .black]
-    let size : CGFloat = 100.0
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = UIColor.clear
-    }
-
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        backgroundColor = UIColor.clear
+        fatalError("init() was not implemented")
     }
-
-    override func draw(_ rect: CGRect) {
-        let color = colors.randomElement()!
-        let shape = shapes.randomElement()!
-        let size : CGFloat = 100.0
-
-        switch shape {
-        case "rectangle":
-            addSquare(rect: rect, color: color, size: size)
-        case "circle":
-            addCircle(rect: rect, color: color)
-        default:
-            return
+    
+    init(location: CGPoint) {
+        let frame = CGRect(x: location.x - (figureSize / 2), y: location.y, width: figureSize, height: figureSize)
+        self.type = possibleShapes.randomElement()!
+        super.init(frame: frame)
+        if self.type == "circle" {
+            self.layer.cornerRadius = figureSize / 2
+            self.layer.masksToBounds = true
+//            self.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         }
+        self.backgroundColor = .getRandomColor()
     }
-    
-    private func addCircle(rect : CGRect, color : UIColor) {
-        let desiredLineWidth : CGFloat = 4
-        let hw : CGFloat = desiredLineWidth / 2
+}
 
-        let circlePath = UIBezierPath(ovalIn: rect.insetBy(dx: hw, dy: hw))
-
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = circlePath.cgPath
-        shapeLayer.fillColor = color.cgColor
-        shapeLayer.strokeColor = color.cgColor
-        shapeLayer.lineWidth = desiredLineWidth
-        layer.addSublayer(shapeLayer)
-    }
-    
-    private func addSquare(rect : CGRect, color : UIColor, size : CGFloat) {
-        let p1 = self.bounds.origin
-        let p2 = CGPoint(x: p1.x + size, y: p1.y)
-        let p3 = CGPoint(x: p2.x, y: p2.y + size)
-        let p4 = CGPoint(x: p1.x, y: p1.y + size)
-
-        // create the path
-        let path = UIBezierPath()
-        path.move(to: p1)
-        path.addLine(to: p2)
-        path.addLine(to: p3)
-        path.addLine(to: p4)
-        path.close()
-
-        // fill the path
-        color.set()
-        path.fill()
+extension UIColor {
+    static func getRandomColor() -> UIColor {
+        return UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1.0)
     }
 }
 
 
 class ViewController: UIViewController {
-
-    @IBOutlet var gestureRecognizer: UITapGestureRecognizer!
+    
+    var animator = UIDynamicAnimator()
+    let gravityBehavior = UIGravityBehavior()
+    var elasticityBehavior = UIDynamicItemBehavior(items: [])
+    var collisionBehavior = UICollisionBehavior(items: [])
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
- 
+        animator = UIDynamicAnimator(referenceView: view)
         
+        animator.addBehavior(gravityBehavior)
+        animator.addBehavior(collisionBehavior)
+        animator.addBehavior(elasticityBehavior)
         
+        elasticityBehavior.elasticity = 0.1
+        gravityBehavior.gravityDirection = CGVector(dx: 0, dy: 0.7)
+        collisionBehavior.translatesReferenceBoundsIntoBoundary = true
+    }
+
+    @IBAction func touchRecognizer(_ sender: UITapGestureRecognizer) {
+        let location = sender.location(in: view)
+        let figure = Figure(location: location)
+        
+        let move = UIPanGestureRecognizer(target: self, action: #selector(movementHandler(recognizer:)))
+        let zoom = UIPinchGestureRecognizer(target: self, action: #selector(zoomHandler(recognizer:)))
+        let rotate = UIRotationGestureRecognizer(target: self, action: #selector(rotationHandler(recognizer:)))
+        
+        view.addSubview(figure)
+        
+        gravityBehavior.addItem(figure)
+        collisionBehavior.addItem(figure)
+        elasticityBehavior.addItem(figure)
+        
+        figure.addGestureRecognizer(move)
+        figure.addGestureRecognizer(zoom)
+        figure.addGestureRecognizer(rotate)
     }
     
-    @IBAction func tapHandler(_ sender: UITapGestureRecognizer) {
-        addShape()
+    @objc private func movementHandler(recognizer: UIPanGestureRecognizer) {
+        guard let figure = recognizer.view else { return }
+        switch recognizer.state {
+            case .began:
+                gravityBehavior.removeItem(figure)
+                collisionBehavior.removeItem(figure)
+                elasticityBehavior.removeItem(figure)
+            case .changed:
+                figure.center = recognizer.location(in: figure.superview)
+                animator.updateItem(usingCurrentState: figure)
+            case .ended:
+                gravityBehavior.addItem(figure)
+                collisionBehavior.addItem(figure)
+                elasticityBehavior.addItem(figure)
+        default:
+            break
+        }
     }
     
-    func addShape() {
-        let x = gestureRecognizer.location(in: self.view).x - 50.0
-        let y = gestureRecognizer.location(in: self.view).y - 50.0
-        let frame = CGRect(origin: CGPoint(x: x, y: y), size: CGSize(width: 100.0, height: 100.0))
-        let shape = Draw(frame: frame)
-        self.view.addSubview(shape)
+    @objc private func zoomHandler(recognizer: UIPinchGestureRecognizer) {
+        guard let figure = recognizer.view else { return }
+        switch recognizer.state {
+        case .began:
+            gravityBehavior.removeItem(figure)
+            collisionBehavior.removeItem(figure)
+            elasticityBehavior.removeItem(figure)
+        case .changed:
+            guard figure.layer.bounds.size.width + 20 < self.view.frame.width,
+                    figure.layer.bounds.size.height + 20 < self.view.frame.height else { return }
+            figure.layer.bounds.size.height *= recognizer.scale
+            figure.layer.bounds.size.width *= recognizer.scale
+            guard let shape = figure as? Figure else {
+                return
+            }
+            if shape.type == "circle" {
+                shape.layer.cornerRadius *= recognizer.scale
+            }
+            recognizer.scale = 1
+        case .ended:
+            gravityBehavior.addItem(figure)
+            collisionBehavior.addItem(figure)
+            elasticityBehavior.addItem(figure)
+        default:
+            break
+        }
     }
     
+    @objc private func rotationHandler(recognizer: UIRotationGestureRecognizer) {
+        guard let figure = recognizer.view else { return }
+        switch recognizer.state {
+        case .began:
+            gravityBehavior.removeItem(figure)
+            collisionBehavior.removeItem(figure)
+            elasticityBehavior.removeItem(figure)
+        case .changed:
+            figure.transform = figure.transform.rotated(by: recognizer.rotation)
+            animator.updateItem(usingCurrentState: figure)
+            recognizer.rotation = 0
+        case .ended:
+            gravityBehavior.addItem(figure)
+            collisionBehavior.addItem(figure)
+            elasticityBehavior.addItem(figure)
+        default:
+            break
+        }
+    }
 }
 
