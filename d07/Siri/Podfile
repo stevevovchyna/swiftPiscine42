@@ -6,5 +6,6 @@ target 'Siri' do
 
   # Pods for Siri
   pod 'sapcai', '~> 4.0'
+  pod 'DarkSkyKit'
 
 end

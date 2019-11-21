@@ -1,24 +1,29 @@
 PODS:
   - Alamofire (4.9.1)
+  - DarkSkyKit (0.0.6):
+    - Alamofire (~> 4.0)
   - ObjectMapper (3.5.1)
   - sapcai (4.0.0):
     - Alamofire
     - ObjectMapper
 
 DEPENDENCIES:
+  - DarkSkyKit
   - sapcai (~> 4.0)
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - DarkSkyKit
     - ObjectMapper
     - sapcai
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  DarkSkyKit: ae500687161b11e1f352cdf261ff620fe3837cf5
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
   sapcai: 4fb897913d393826aea926e9b36c03a6cbfaf62d
 
-PODFILE CHECKSUM: 6ecd906624819e518c8bb713fff18f831f7bfc73
+PODFILE CHECKSUM: a9250690bbe1c6475adb4c215358d8f05ff03d81
 
 COCOAPODS: 1.8.4
