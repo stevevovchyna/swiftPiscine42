@@ -46,6 +46,8 @@ extension UIColor {
 
 class ViewController: UIViewController {
     
+    var motionManager = CMMotionManager()
+    
     var animator = UIDynamicAnimator()
     let gravityBehavior = UIGravityBehavior()
     var elasticityBehavior = UIDynamicItemBehavior(items: [])
@@ -53,6 +55,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         animator = UIDynamicAnimator(referenceView: view)
         
         animator.addBehavior(gravityBehavior)
@@ -62,6 +65,14 @@ class ViewController: UIViewController {
         elasticityBehavior.elasticity = 0.5
         gravityBehavior.gravityDirection = CGVector(dx: 0, dy: 0.7)
         collisionBehavior.translatesReferenceBoundsIntoBoundary = true
+        
+        
+        if motionManager.isAccelerometerAvailable {
+            motionManager.accelerometerUpdateInterval = 0.1
+            motionManager.startAccelerometerUpdates(to: OperationQueue.main) { (data, error) in
+                self.gravityBehavior.gravityDirection = CGVector(dx: (data?.acceleration.x)!, dy: -1 * (data?.acceleration.y)!)
+            }
+        }
     }
 
     @IBAction func touchRecognizer(_ sender: UITapGestureRecognizer) {
