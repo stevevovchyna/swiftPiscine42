@@ -13,6 +13,7 @@
 		108F17B82386B57A0037B97E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 108F17B72386B57A0037B97E /* Assets.xcassets */; };
 		108F17BB2386B57A0037B97E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 108F17B92386B57A0037B97E /* LaunchScreen.storyboard */; };
 		108F17C32386B66A0037B97E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108F17C22386B66A0037B97E /* FirstViewController.swift */; };
+		6E8C774B5537B86B52877073 /* Pods_Siri.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20456F0599E676A7704A203B /* Pods_Siri.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,9 @@
 		108F17BA2386B57A0037B97E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		108F17BC2386B57A0037B97E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		108F17C22386B66A0037B97E /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		20456F0599E676A7704A203B /* Pods_Siri.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Siri.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		80AC1AAB0C0DBDE1AAE2D177 /* Pods-Siri.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siri.debug.xcconfig"; path = "Target Support Files/Pods-Siri/Pods-Siri.debug.xcconfig"; sourceTree = "<group>"; };
+		A02072472D5C110CA0543454 /* Pods-Siri.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siri.release.xcconfig"; path = "Target Support Files/Pods-Siri/Pods-Siri.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E8C774B5537B86B52877073 /* Pods_Siri.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				108F17AD2386B5770037B97E /* Siri */,
 				108F17AC2386B5770037B97E /* Products */,
+				174D095FCC73FAF591AE3D7B /* Pods */,
+				865C9829162E87AD6A305219 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +74,24 @@
 			path = Siri;
 			sourceTree = "<group>";
 		};
+		174D095FCC73FAF591AE3D7B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				80AC1AAB0C0DBDE1AAE2D177 /* Pods-Siri.debug.xcconfig */,
+				A02072472D5C110CA0543454 /* Pods-Siri.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		865C9829162E87AD6A305219 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20456F0599E676A7704A203B /* Pods_Siri.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 108F17BF2386B57A0037B97E /* Build configuration list for PBXNativeTarget "Siri" */;
 			buildPhases = (
+				4835BB0AFF830EC5A9AE2783 /* [CP] Check Pods Manifest.lock */,
 				108F17A72386B5770037B97E /* Sources */,
 				108F17A82386B5770037B97E /* Frameworks */,
 				108F17A92386B5770037B97E /* Resources */,
+				1FAE6DB8CA0AC1AC7FDBE45E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1FAE6DB8CA0AC1AC7FDBE45E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Siri/Pods-Siri-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Siri/Pods-Siri-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Siri/Pods-Siri-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4835BB0AFF830EC5A9AE2783 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Siri-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		108F17A72386B5770037B97E /* Sources */ = {
@@ -282,6 +351,7 @@
 		};
 		108F17C02386B57A0037B97E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80AC1AAB0C0DBDE1AAE2D177 /* Pods-Siri.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +370,7 @@
 		};
 		108F17C12386B57A0037B97E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A02072472D5C110CA0543454 /* Pods-Siri.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
