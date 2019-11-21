@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreMotion
 
 class Figure: UIView {
     var type : String?
@@ -24,9 +25,16 @@ class Figure: UIView {
         if self.type == "circle" {
             self.layer.cornerRadius = figureSize / 2
             self.layer.masksToBounds = true
-//            self.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         }
         self.backgroundColor = .getRandomColor()
+    }
+    
+    override public var collisionBoundsType: UIDynamicItemCollisionBoundsType {
+        if type == "circle" {
+            return .ellipse
+        } else {
+            return .rectangle
+        }
     }
 }
 
@@ -36,14 +44,12 @@ extension UIColor {
     }
 }
 
-
 class ViewController: UIViewController {
     
     var animator = UIDynamicAnimator()
     let gravityBehavior = UIGravityBehavior()
     var elasticityBehavior = UIDynamicItemBehavior(items: [])
     var collisionBehavior = UICollisionBehavior(items: [])
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +59,7 @@ class ViewController: UIViewController {
         animator.addBehavior(collisionBehavior)
         animator.addBehavior(elasticityBehavior)
         
-        elasticityBehavior.elasticity = 0.1
+        elasticityBehavior.elasticity = 0.5
         gravityBehavior.gravityDirection = CGVector(dx: 0, dy: 0.7)
         collisionBehavior.translatesReferenceBoundsIntoBoundary = true
     }
@@ -68,9 +74,7 @@ class ViewController: UIViewController {
         
         view.addSubview(figure)
         
-        gravityBehavior.addItem(figure)
-        collisionBehavior.addItem(figure)
-        elasticityBehavior.addItem(figure)
+        animationsOff(toggle: false, target: figure)
         
         figure.addGestureRecognizer(move)
         figure.addGestureRecognizer(zoom)
@@ -82,45 +86,33 @@ class ViewController: UIViewController {
         switch recognizer.state {
             case .began:
                 gravityBehavior.removeItem(figure)
-                collisionBehavior.removeItem(figure)
-                elasticityBehavior.removeItem(figure)
             case .changed:
                 figure.center = recognizer.location(in: figure.superview)
                 animator.updateItem(usingCurrentState: figure)
             case .ended:
                 gravityBehavior.addItem(figure)
-                collisionBehavior.addItem(figure)
-                elasticityBehavior.addItem(figure)
-        default:
-            break
+            default:
+                break
         }
     }
     
     @objc private func zoomHandler(recognizer: UIPinchGestureRecognizer) {
         guard let figure = recognizer.view else { return }
         switch recognizer.state {
-        case .began:
-            gravityBehavior.removeItem(figure)
-            collisionBehavior.removeItem(figure)
-            elasticityBehavior.removeItem(figure)
-        case .changed:
-            guard figure.layer.bounds.size.width + 20 < self.view.frame.width,
-                    figure.layer.bounds.size.height + 20 < self.view.frame.height else { return }
-            figure.layer.bounds.size.height *= recognizer.scale
-            figure.layer.bounds.size.width *= recognizer.scale
-            guard let shape = figure as? Figure else {
-                return
-            }
-            if shape.type == "circle" {
-                shape.layer.cornerRadius *= recognizer.scale
-            }
-            recognizer.scale = 1
-        case .ended:
-            gravityBehavior.addItem(figure)
-            collisionBehavior.addItem(figure)
-            elasticityBehavior.addItem(figure)
-        default:
-            break
+            case .began:
+                animationsOff(toggle: true, target: figure)
+            case .changed:
+                if (figure.layer.bounds.size.width * recognizer.scale) + 40 < self.view.frame.width  {
+                    figure.layer.bounds.size.height *= recognizer.scale
+                    figure.layer.bounds.size.width *= recognizer.scale
+                    guard let shape = figure as? Figure else { return }
+                    if shape.type == "circle" { shape.layer.cornerRadius *= recognizer.scale }
+                }
+                recognizer.scale = 1
+            case .ended:
+                animationsOff(toggle: false, target: figure)
+            default:
+                break
         }
     }
     
@@ -128,19 +120,27 @@ class ViewController: UIViewController {
         guard let figure = recognizer.view else { return }
         switch recognizer.state {
         case .began:
-            gravityBehavior.removeItem(figure)
-            collisionBehavior.removeItem(figure)
-            elasticityBehavior.removeItem(figure)
+            animationsOff(toggle: true, target: figure)
         case .changed:
             figure.transform = figure.transform.rotated(by: recognizer.rotation)
             animator.updateItem(usingCurrentState: figure)
             recognizer.rotation = 0
         case .ended:
-            gravityBehavior.addItem(figure)
-            collisionBehavior.addItem(figure)
-            elasticityBehavior.addItem(figure)
+            animationsOff(toggle: false, target: figure)
         default:
             break
+        }
+    }
+    
+    private func animationsOff(toggle: Bool, target: UIView) {
+        if toggle {
+            gravityBehavior.removeItem(target)
+            collisionBehavior.removeItem(target)
+            elasticityBehavior.removeItem(target)
+        } else {
+            gravityBehavior.addItem(target)
+            collisionBehavior.addItem(target)
+            elasticityBehavior.addItem(target)
         }
     }
 }
