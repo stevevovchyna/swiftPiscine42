@@ -34,26 +34,26 @@ class FirstViewController: UIViewController {
             self.bot.analyseText(request, successHandler: { (response) in
 //                print(response.toJSONString()! as Any)
                 if response.entities?.locations == nil {
-                    self.responseLabel.text = "Error getting weather data with your request"
+                    self.responseLabel.text = "Sorry, couldn't get the data with your request"
+                    blurEffectView.removeFromSuperview()
                 } else if let jsonResponse = response.entities?.locations?[0].toJSON() {
                     self.forecastClient.current(latitude: Double(jsonResponse["lat"] as! Float), longitude: Double(jsonResponse["lng"] as! Float)) { result in
                       switch result {
                         case .success(let forecast):
                             if let current = forecast.currently {
-//                            print(forecast.currently as Any)
-                                blurEffectView.removeFromSuperview()
+                            print(forecast.currently as Any)
+                            blurEffectView.removeFromSuperview()
                             self.responseLabel.text = ("It is \(String(describing: ((current.temperature! - 32) * (5 / 9)).rounded())) ℃ and \(current.icon!) in \(String(describing: jsonResponse["raw"]!))")
-                                
                         }
                         case .failure(let error):
                             print(error)
                       }
                     }
                 }
-                
             }) { (error) in
                 print(error)
-                self.responseLabel.text = error.localizedDescription
+                self.responseLabel.text = "Ooops, there was some error! Please, make sure that your request is correct!"
+                blurEffectView.removeFromSuperview()
             }
         }
     }
