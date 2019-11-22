@@ -26,6 +26,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        myTableView.register(UINib(nibName: "CustomBotTableViewCell", bundle: nil), forCellReuseIdentifier: "customBotMessageCell")
+        
         myTableView.delegate = self
         myTableView.dataSource = self
         myTableView.separatorStyle = .none
@@ -62,12 +64,13 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if messagesArray[indexPath.row].user == .bot {
-            let botCell = tableView.dequeueReusableCell(withIdentifier: "botMessageCell", for: indexPath) as! BotTableViewCell
+            let botCell = tableView.dequeueReusableCell(withIdentifier: "customBotMessageCell", for: indexPath) as! CustomBotTableViewCell
 
-            botCell.messageLabel.text = messagesArray[indexPath.row].message
-            botCell.messageLabel.numberOfLines = 0
-            botCell.messageLabel.layer.backgroundColor = UIColor.lightGray.cgColor
-            botCell.messageLabel.layer.cornerRadius = 10
+            botCell.userMessageLabel.text = messagesArray[indexPath.row].message
+            botCell.userMessageLabel.numberOfLines = 0
+            botCell.userMessageView.layer.backgroundColor = UIColor.lightGray.cgColor
+            botCell.userMessageView.layer.cornerRadius = 10
+            botCell.userPicView.layer.cornerRadius = botCell.userPicView.frame.size.height / 2
             return botCell
         } else {
             let userCell = tableView.dequeueReusableCell(withIdentifier: "userMessageCell", for: indexPath) as! UserTableViewCell
