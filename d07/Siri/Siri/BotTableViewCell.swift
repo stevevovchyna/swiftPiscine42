@@ -16,6 +16,4 @@ class BotTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-
-
 }

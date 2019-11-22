@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		104A1904238878A300C64FAF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A1903238878A300C64FAF /* Message.swift */; };
 		108F17AF2386B5770037B97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108F17AE2386B5770037B97E /* AppDelegate.swift */; };
 		108F17B12386B5770037B97E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108F17B02386B5770037B97E /* SceneDelegate.swift */; };
 		108F17B62386B5770037B97E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 108F17B42386B5770037B97E /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		104A1903238878A300C64FAF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		108F17AB2386B5770037B97E /* Siri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Siri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		108F17AE2386B5770037B97E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		108F17B02386B5770037B97E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				108F17BC2386B57A0037B97E /* Info.plist */,
 				10EBDC052387F57300D083E9 /* BotTableViewCell.swift */,
 				10EBDC072387F58100D083E9 /* UserTableViewCell.swift */,
+				104A1903238878A300C64FAF /* Message.swift */,
 			);
 			path = Siri;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				108F17AF2386B5770037B97E /* AppDelegate.swift in Sources */,
 				10EBDC062387F57300D083E9 /* BotTableViewCell.swift in Sources */,
 				108F17B12386B5770037B97E /* SceneDelegate.swift in Sources */,
+				104A1904238878A300C64FAF /* Message.swift in Sources */,
 				108F17C32386B66A0037B97E /* FirstViewController.swift in Sources */,
 				10EBDC082387F58100D083E9 /* UserTableViewCell.swift in Sources */,
 			);

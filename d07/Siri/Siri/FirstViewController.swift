@@ -14,7 +14,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     var bot = SapcaiClient(token : "0dedc07f4cf04e658b15ad041b2a5feb", language: "en")
     let forecastClient = DarkSkyKit(apiToken: "2b485393cb19279ada9959ed78f14c7a")
-    var messagesArray = ["Bot: Hi there! Don't hesitate to ask me about a weather in different places!"]
+    var messagesArray : [Message] = [Message(user: .bot, text: "Hi there! Will be glad to help you with any of your weather requests! Don't hesitate to message me!")]
     var keyboardHeight : CGFloat = 0
     
 
@@ -23,8 +23,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var myTableView: UITableView!
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,17 +61,17 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row % 2 == 0 {
+        if messagesArray[indexPath.row].user == .bot {
             let botCell = tableView.dequeueReusableCell(withIdentifier: "botMessageCell", for: indexPath) as! BotTableViewCell
 
-            botCell.messageLabel.text = messagesArray[indexPath.row]
+            botCell.messageLabel.text = messagesArray[indexPath.row].message
             botCell.messageLabel.numberOfLines = 0
             botCell.messageLabel.layer.backgroundColor = UIColor.lightGray.cgColor
             botCell.messageLabel.layer.cornerRadius = 10
             return botCell
         } else {
             let userCell = tableView.dequeueReusableCell(withIdentifier: "userMessageCell", for: indexPath) as! UserTableViewCell
-            userCell.messageLabel.text = messagesArray[indexPath.row]
+            userCell.messageLabel.text = messagesArray[indexPath.row].message
             userCell.messageLabel.numberOfLines = 0
             userCell.messageLabel.layer.backgroundColor = UIColor.gray.cgColor
             userCell.messageLabel.layer.cornerRadius = 10
@@ -89,38 +87,38 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func sendButtonPressed(_ sender: Any) {
         if textInput.text?.count == 0 {
-            messagesArray.append("You: * said nothing *")
-            self.messagesArray.append("Bot: Hey, at least type something!")
+            messagesArray.append(Message(user: .user, text: "* said nothing *"))
+            self.messagesArray.append(Message(user: .bot, text: "Hey, at least type something!"))
             myTableView.reloadData()
             scrollTableView()
         } else {
-            messagesArray.append("You: \(textInput.text ?? "* said nothing *")")
+            messagesArray.append(Message(user: .user, text: "\(textInput.text ?? "* said nothing *")"))
             myTableView.reloadData()
             scrollTableView()
             if let request = textInput.text {
                 textInput.text = ""
                 self.bot.analyseText(request, successHandler: { (response) in
                     if response.entities?.locations == nil {
-                        self.messagesArray.append("Bot: Sorry, couldn't get the data with your request")
+                        self.messagesArray.append(Message(user: .bot, text: "Sorry, couldn't get the data with your request"))
                         self.myTableView.reloadData()
                         self.scrollTableView()
                     } else if let jsonResponse = response.entities?.locations?[0].toJSON() {
                         self.forecastClient.current(latitude: Double(jsonResponse["lat"] as! Float), longitude: Double(jsonResponse["lng"] as! Float)) { result in
-                          switch result {
+                            switch result {
                             case .success(let forecast):
                                 if let current = forecast.currently {
-                                    self.messagesArray.append("Bot: It is \(String(describing: ((current.temperature! - 32) * (5 / 9)).rounded())) ℃ and \(current.icon!) in \(String(describing: jsonResponse["raw"]!))")
+                                    self.messagesArray.append(Message(user: .bot, text: "It is \(String(describing: ((current.temperature! - 32) * (5 / 9)).rounded())) ℃ and \(current.icon!) in \(String(describing: jsonResponse["raw"]!))"))
                                     self.myTableView.reloadData()
                                     self.scrollTableView()
                                 }
                             case .failure(let error):
                                 print(error)
-                          }
+                            }
                         }
                     }
                 }) { (error) in
                     print(error)
-                    self.messagesArray.append("Bot: Ooops, there was some error! Please, make sure that your request is correct!")
+                    self.messagesArray.append(Message(user: .bot, text: "Ooops, there was some error! Please, make sure that your request is correct!"))
                     self.myTableView.reloadData()
                     self.scrollTableView()
                 }
@@ -135,14 +133,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @objc func tableViewTapped() {
         textInput.endEditing(true)
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        UIView.animate(withDuration: 0.5){
-//            self.view.layoutIfNeeded()
-            
-        }
-        
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
