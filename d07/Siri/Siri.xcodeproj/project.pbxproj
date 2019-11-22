@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,8 @@
 		108F17B82386B57A0037B97E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 108F17B72386B57A0037B97E /* Assets.xcassets */; };
 		108F17BB2386B57A0037B97E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 108F17B92386B57A0037B97E /* LaunchScreen.storyboard */; };
 		108F17C32386B66A0037B97E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108F17C22386B66A0037B97E /* FirstViewController.swift */; };
+		10EBDC062387F57300D083E9 /* BotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EBDC052387F57300D083E9 /* BotTableViewCell.swift */; };
+		10EBDC082387F58100D083E9 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EBDC072387F58100D083E9 /* UserTableViewCell.swift */; };
 		6E8C774B5537B86B52877073 /* Pods_Siri.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20456F0599E676A7704A203B /* Pods_Siri.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +27,8 @@
 		108F17BA2386B57A0037B97E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		108F17BC2386B57A0037B97E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		108F17C22386B66A0037B97E /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		10EBDC052387F57300D083E9 /* BotTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotTableViewCell.swift; sourceTree = "<group>"; };
+		10EBDC072387F58100D083E9 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		20456F0599E676A7704A203B /* Pods_Siri.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Siri.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80AC1AAB0C0DBDE1AAE2D177 /* Pods-Siri.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siri.debug.xcconfig"; path = "Target Support Files/Pods-Siri/Pods-Siri.debug.xcconfig"; sourceTree = "<group>"; };
 		A02072472D5C110CA0543454 /* Pods-Siri.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siri.release.xcconfig"; path = "Target Support Files/Pods-Siri/Pods-Siri.release.xcconfig"; sourceTree = "<group>"; };
@@ -70,6 +74,8 @@
 				108F17B72386B57A0037B97E /* Assets.xcassets */,
 				108F17B92386B57A0037B97E /* LaunchScreen.storyboard */,
 				108F17BC2386B57A0037B97E /* Info.plist */,
+				10EBDC052387F57300D083E9 /* BotTableViewCell.swift */,
+				10EBDC072387F58100D083E9 /* UserTableViewCell.swift */,
 			);
 			path = Siri;
 			sourceTree = "<group>";
@@ -80,7 +86,6 @@
 				80AC1AAB0C0DBDE1AAE2D177 /* Pods-Siri.debug.xcconfig */,
 				A02072472D5C110CA0543454 /* Pods-Siri.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -208,8 +213,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				108F17AF2386B5770037B97E /* AppDelegate.swift in Sources */,
+				10EBDC062387F57300D083E9 /* BotTableViewCell.swift in Sources */,
 				108F17B12386B5770037B97E /* SceneDelegate.swift in Sources */,
 				108F17C32386B66A0037B97E /* FirstViewController.swift in Sources */,
+				10EBDC082387F58100D083E9 /* UserTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

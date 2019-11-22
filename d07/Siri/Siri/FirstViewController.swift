@@ -55,24 +55,32 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.heightConstraint.constant = self.keyboardHeight
                 self.view.layoutIfNeeded()
             }
+            DispatchQueue.main.async {
+                self.scrollTableView()
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath)
+        
+        if indexPath.row % 2 == 0 {
+            let botCell = tableView.dequeueReusableCell(withIdentifier: "botMessageCell", for: indexPath) as! BotTableViewCell
 
-        cell.textLabel?.text = messagesArray[indexPath.row]
-        cell.textLabel?.numberOfLines = 0
-        if indexPath.row % 2 != 0 {
-            cell.textLabel?.textAlignment = .right
-            cell.backgroundColor = UIColor.darkGray
-            cell.textLabel?.textColor = UIColor.white
+            botCell.messageLabel.text = messagesArray[indexPath.row]
+            botCell.messageLabel.numberOfLines = 0
+            botCell.messageLabel.layer.backgroundColor = UIColor.lightGray.cgColor
+            botCell.messageLabel.layer.cornerRadius = 10
+            return botCell
         } else {
-            cell.backgroundColor = UIColor.lightGray
+            let userCell = tableView.dequeueReusableCell(withIdentifier: "userMessageCell", for: indexPath) as! UserTableViewCell
+            userCell.messageLabel.text = messagesArray[indexPath.row]
+            userCell.messageLabel.numberOfLines = 0
+            userCell.messageLabel.layer.backgroundColor = UIColor.gray.cgColor
+            userCell.messageLabel.layer.cornerRadius = 10
+
+            return userCell
         }
-        cell.layer.cornerRadius = 20
-        cell.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
-        return cell
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,35 +88,49 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func sendButtonPressed(_ sender: Any) {
-        messagesArray.append("You: \(textInput.text ?? "* said nothing *")")
-        myTableView.reloadData()
-        if let request = textInput.text {
-            textInput.text = ""
-            self.bot.analyseText(request, successHandler: { (response) in
-//                print(response.toJSONString()! as Any)
-                if response.entities?.locations == nil {
-                    self.messagesArray.append("Bot: Sorry, couldn't get the data with your request")
-                    self.myTableView.reloadData()
-                } else if let jsonResponse = response.entities?.locations?[0].toJSON() {
-                    self.forecastClient.current(latitude: Double(jsonResponse["lat"] as! Float), longitude: Double(jsonResponse["lng"] as! Float)) { result in
-                      switch result {
-                        case .success(let forecast):
-                            if let current = forecast.currently {
-//                                print(forecast.currently as Any)
-                                self.messagesArray.append("Bot: It is \(String(describing: ((current.temperature! - 32) * (5 / 9)).rounded())) ℃ and \(current.icon!) in \(String(describing: jsonResponse["raw"]!))")
-                                self.myTableView.reloadData()
-                            }
-                        case .failure(let error):
-                            print(error)
-                      }
+        if textInput.text?.count == 0 {
+            messagesArray.append("You: * said nothing *")
+            self.messagesArray.append("Bot: Hey, at least type something!")
+            myTableView.reloadData()
+            scrollTableView()
+        } else {
+            messagesArray.append("You: \(textInput.text ?? "* said nothing *")")
+            myTableView.reloadData()
+            scrollTableView()
+            if let request = textInput.text {
+                textInput.text = ""
+                self.bot.analyseText(request, successHandler: { (response) in
+                    if response.entities?.locations == nil {
+                        self.messagesArray.append("Bot: Sorry, couldn't get the data with your request")
+                        self.myTableView.reloadData()
+                        self.scrollTableView()
+                    } else if let jsonResponse = response.entities?.locations?[0].toJSON() {
+                        self.forecastClient.current(latitude: Double(jsonResponse["lat"] as! Float), longitude: Double(jsonResponse["lng"] as! Float)) { result in
+                          switch result {
+                            case .success(let forecast):
+                                if let current = forecast.currently {
+                                    self.messagesArray.append("Bot: It is \(String(describing: ((current.temperature! - 32) * (5 / 9)).rounded())) ℃ and \(current.icon!) in \(String(describing: jsonResponse["raw"]!))")
+                                    self.myTableView.reloadData()
+                                    self.scrollTableView()
+                                }
+                            case .failure(let error):
+                                print(error)
+                          }
+                        }
                     }
+                }) { (error) in
+                    print(error)
+                    self.messagesArray.append("Bot: Ooops, there was some error! Please, make sure that your request is correct!")
+                    self.myTableView.reloadData()
+                    self.scrollTableView()
                 }
-            }) { (error) in
-                print(error)
-                self.messagesArray.append("Bot: Ooops, there was some error! Please, make sure that your request is correct!")
-                self.myTableView.reloadData()
             }
         }
+    }
+    
+    func scrollTableView() {
+        let indexPath = IndexPath(row: self.messagesArray.count - 1, section: 0)
+        self.myTableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
     @objc func tableViewTapped() {
@@ -117,14 +139,16 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.5){
-            self.heightConstraint.constant = self.keyboardHeight
-            self.view.layoutIfNeeded()
+//            self.view.layoutIfNeeded()
+            
         }
+        
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.5){
             self.heightConstraint.constant = 33
+            self.scrollTableView()
             self.view.layoutIfNeeded()
         }
     }
