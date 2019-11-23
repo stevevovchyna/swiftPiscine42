@@ -97,7 +97,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="60" height="47"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="➤">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="titleColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="sendButtonPressed:" destination="BdW-gS-fPg" eventType="touchUpInside" id="unf-RF-hmV"/>
@@ -173,6 +173,7 @@
                     <connections>
                         <outlet property="heightConstraint" destination="LcC-5O-Gkh" id="Zlb-5L-W0I"/>
                         <outlet property="myTableView" destination="UpQ-fA-gqG" id="vSj-YB-83C"/>
+                        <outlet property="recordButtonView" destination="VkA-hL-Qy1" id="T6M-fy-5N9"/>
                         <outlet property="sendButton" destination="Z3e-g8-ffW" id="XUV-xU-vj1"/>
                         <outlet property="textInput" destination="qVe-lS-OcY" id="vFx-nt-KqX"/>
                         <outlet property="voiceCommandButton" destination="gTa-Pd-0G9" id="Zp9-0Y-TW4"/>

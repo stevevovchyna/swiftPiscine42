@@ -10,6 +10,7 @@ import UIKit
 import sapcai
 import DarkSkyKit
 import Speech
+import AVFoundation
 
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, SFSpeechRecognizerDelegate {
 
@@ -24,9 +25,21 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var voiceCommandButton: UIButton!
+    @IBOutlet weak var recordButtonView: UIView!
+    
+    let audioEngine: AVAudioEngine = AVAudioEngine()
+    let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
+    var request = SFSpeechAudioBufferRecognitionRequest()
+    var recognitionTask: SFSpeechRecognitionTask?
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        checkRecognitionPermission()
+        
+    }
+    
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
         myTableView.register(UINib(nibName: "CustomBotTableViewCell", bundle: nil), forCellReuseIdentifier: "customBotMessageCell")
         myTableView.register(UINib(nibName: "CustomUserTableViewCell", bundle: nil), forCellReuseIdentifier: "customUserMessageCell")
@@ -45,6 +58,11 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
             name: UIResponder.keyboardWillShowNotification, object: nil
         )
+        
+        if !micAccessIsGranted() {
+            self.presentAlert(alertTitle: "Mic access denied", alertMessage: "You can grant access in Settings")
+            self.disableMicButton()
+        }
     }
     
     //MARK:- TableView methods
@@ -74,14 +92,86 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return messagesArray.count
     }
     
+    func scrollTableView() {
+        let indexPath = IndexPath(row: self.messagesArray.count - 1, section: 0)
+        self.myTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
+    
+    @objc func tableViewTapped() {
+        textInput.endEditing(true)
+    }
+    
+    //MARK:- Recognition methods
+    
+    func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
+        if !available {
+            self.presentAlert(alertTitle: "Problem accessing recognizer", alertMessage: "Please try again later")
+        }
+    }
+    
+    func recordAndRecognizeSpeech() {
+        self.request = SFSpeechAudioBufferRecognitionRequest()   // recreates recognitionRequest object.
+        let node = audioEngine.inputNode
+        node.removeTap(onBus: 0)
+        let recordingFormat = node.outputFormat(forBus: 0)
+        node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat){ buffer, _ in
+            self.request.append(buffer)
+        }
+        audioEngine.prepare()
+        do {
+            try audioEngine.start()
+        } catch {
+            return print("ASHIIIIIBKAAAA!!!!1111", error)
+        }
+        guard let myRecognizer = SFSpeechRecognizer() else { return }
+        if !myRecognizer.isAvailable {
+            return
+        }
+        
+        self.recordButtonView.layer.backgroundColor = UIColor.red.cgColor
+        self.recordButtonView.layer.cornerRadius = self.recordButtonView.frame.size.height / 2
+        
+        recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: { (result, error) in
+            if result != nil {
+                if let result = result {
+                    print(result.bestTranscription.formattedString)
+                    let finalString = result.bestTranscription.formattedString
+                    if self.audioEngine.isRunning {
+                        self.textInput.text = finalString
+                    }
+                } else if let error = error {
+                    print("ASHIBKAAAAAAAAAA", error)
+                }
+            }
+        })
+    }
+    
+    func stopRecording() {
+        request.endAudio()
+        audioEngine.stop()
+        audioEngine.inputNode.removeTap(onBus: 0)
+        if let recognitionTask = recognitionTask {
+            recognitionTask.cancel()
+            self.recognitionTask = nil
+        }
+        self.recordButtonView.layer.backgroundColor = UIColor.clear.cgColor
+    }
+    
     //MARK: - IBActions ****************
     
     @IBAction func voiceCommandButtonPressed(_ sender: UIButton) {
-        
+        if audioEngine.isRunning {
+            self.stopRecording()
+        } else {
+            self.recordAndRecognizeSpeech()
+        }
     }
     
     
     @IBAction func sendButtonPressed(_ sender: Any) {
+        if audioEngine.isRunning {
+            self.stopRecording()
+        }
         if textInput.text?.count == 0 {
             messagesArray.append(Message(user: .user, text: "* said nothing *"))
             self.messagesArray.append(Message(user: .bot, text: "Hey, at least type something!"))
@@ -122,15 +212,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func scrollTableView() {
-        let indexPath = IndexPath(row: self.messagesArray.count - 1, section: 0)
-        self.myTableView.scrollToRow(at: indexPath, at: .top, animated: true)
-    }
-    
-    @objc func tableViewTapped() {
-        textInput.endEditing(true)
-    }
-    
     //MARK:- Keyboard Methods
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -145,13 +226,69 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             self.keyboardHeight = keyboardRectangle.size.height
-            UIView.animate(withDuration: 0.5) {
+            UIView.animate(withDuration: 0.5, animations: {
                 self.heightConstraint.constant = (self.keyboardHeight * -1) + self.view.safeAreaInsets.bottom
                 self.view.layoutIfNeeded()
-            }
-            DispatchQueue.main.async {
-                self.scrollTableView()
+            }, completion: { _ in
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: 0.1) {
+                        self.scrollTableView()
+                    }
+                }
+            })
+        }
+    }
+    
+    //MARK:- Permission checks
+    
+    func presentAlert(alertTitle: String, alertMessage: String) {
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func micAccessIsGranted() -> Bool {
+        switch AVAudioSession.sharedInstance().recordPermission {
+        case AVAudioSessionRecordPermission.granted:
+            print("Permission granted")
+            return true
+        case AVAudioSessionRecordPermission.denied:
+            print("Pemission denied")
+            return false
+        default:
+            return false
+        }
+    }
+    
+    func disableMicButton() {
+        self.voiceCommandButton.isEnabled = false
+        self.voiceCommandButton.layer.backgroundColor = UIColor.lightGray.cgColor
+        self.voiceCommandButton.layer.cornerRadius = self.voiceCommandButton.frame.size.height / 2
+    }
+    
+    func checkRecognitionPermission() {
+        SFSpeechRecognizer.requestAuthorization { authStatus in
+            OperationQueue.main.addOperation {
+                switch authStatus {
+                case .authorized:
+                    print("We've got the voice recognition authorization - ready to go")
+                case .denied:
+                    self.presentAlert(alertTitle: "Speech recognizer not allowed", alertMessage: "You can enable the recognizer in Settings")
+                    self.disableMicButton()
+                case .restricted:
+                    self.presentAlert(alertTitle: "Could not start the speech recognizer", alertMessage: "Check your internect connection and try again")
+                    self.disableMicButton()
+                case .notDetermined:
+                    self.presentAlert(alertTitle: "Could not start the speech recognizer", alertMessage: "Check your internect connection and try again")
+                    self.disableMicButton()
+                default:
+                    print("Something strange going on here")
+                }
             }
         }
     }
+    
+    
 }
