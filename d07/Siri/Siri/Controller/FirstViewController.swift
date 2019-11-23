@@ -18,6 +18,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var keyboardHeight : CGFloat = 0
     
 
+    @IBOutlet weak var wholeInputView: UIView!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var textInput: UITextField!
     @IBOutlet weak var sendButton: UIButton!
@@ -27,16 +28,14 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         
         myTableView.register(UINib(nibName: "CustomBotTableViewCell", bundle: nil), forCellReuseIdentifier: "customBotMessageCell")
+        myTableView.register(UINib(nibName: "CustomUserTableViewCell", bundle: nil), forCellReuseIdentifier: "customUserMessageCell")
         
         myTableView.delegate = self
         myTableView.dataSource = self
         myTableView.separatorStyle = .none
         
         textInput.delegate = self
-        textInput.layer.borderColor = UIColor.lightGray.cgColor
-        textInput.layer.borderWidth = 1.0
-        textInput.layer.cornerRadius = 10
-        
+
         sendButton.layer.cornerRadius = 10
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
@@ -50,9 +49,9 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
-            self.keyboardHeight = keyboardRectangle.height
-            UIView.animate(withDuration: 0.5){
-                self.heightConstraint.constant = self.keyboardHeight
+            self.keyboardHeight = keyboardRectangle.size.height
+            UIView.animate(withDuration: 0.5) {
+                self.heightConstraint.constant = (self.keyboardHeight * -1) + self.view.safeAreaInsets.bottom
                 self.view.layoutIfNeeded()
             }
             DispatchQueue.main.async {
@@ -65,23 +64,21 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if messagesArray[indexPath.row].user == .bot {
             let botCell = tableView.dequeueReusableCell(withIdentifier: "customBotMessageCell", for: indexPath) as! CustomBotTableViewCell
-
             botCell.userMessageLabel.text = messagesArray[indexPath.row].message
             botCell.userMessageLabel.numberOfLines = 0
-            botCell.userMessageView.layer.backgroundColor = UIColor.lightGray.cgColor
+            botCell.userMessageView.layer.backgroundColor = #colorLiteral(red: 0.5271991709, green: 0.7516028796, blue: 0.4997833824, alpha: 0.5938570205)
             botCell.userMessageView.layer.cornerRadius = 10
             botCell.userPicView.layer.cornerRadius = botCell.userPicView.frame.size.height / 2
             return botCell
         } else {
-            let userCell = tableView.dequeueReusableCell(withIdentifier: "userMessageCell", for: indexPath) as! UserTableViewCell
-            userCell.messageLabel.text = messagesArray[indexPath.row].message
-            userCell.messageLabel.numberOfLines = 0
-            userCell.messageLabel.layer.backgroundColor = UIColor.gray.cgColor
-            userCell.messageLabel.layer.cornerRadius = 10
-
+            let userCell = tableView.dequeueReusableCell(withIdentifier: "customUserMessageCell", for: indexPath) as! CustomUserTableViewCell
+            userCell.userMessageLabel.text = messagesArray[indexPath.row].message
+            userCell.userMessageLabel.numberOfLines = 0
+            userCell.userMessageView.layer.backgroundColor = #colorLiteral(red: 0.6983060804, green: 0.5963864472, blue: 0.7044952152, alpha: 0.6788848459)
+            userCell.userMessageView.layer.cornerRadius = 10
+            userCell.userImageLabel.layer.cornerRadius = userCell.userImageLabel.frame.size.height / 2
             return userCell
         }
-
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -140,11 +137,9 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.5){
-            self.heightConstraint.constant = 33
+            self.heightConstraint.constant = 0
             self.scrollTableView()
             self.view.layoutIfNeeded()
         }
     }
-    
-
 }

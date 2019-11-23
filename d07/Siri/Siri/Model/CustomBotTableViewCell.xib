@@ -17,13 +17,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lm2-O6-93a">
-                        <rect key="frame" x="45" y="2" width="72" height="40"/>
+                        <rect key="frame" x="45" y="2" width="62" height="40"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fh4-fj-TOV">
-                                <rect key="frame" x="10" y="10" width="52" height="20"/>
+                                <rect key="frame" x="5" y="5" width="52" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ku7-eE-m5s">
-                                        <rect key="frame" x="5" y="5" width="42" height="10"/>
+                                        <rect key="frame" x="5" y="5" width="42" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" id="Q0g-97-qWd"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" id="sMY-m7-0fP"/>
@@ -43,19 +43,29 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="fh4-fj-TOV" secondAttribute="bottom" constant="10" id="1Nh-qv-IPj"/>
-                            <constraint firstItem="fh4-fj-TOV" firstAttribute="leading" secondItem="lm2-O6-93a" secondAttribute="leading" constant="10" id="X30-ng-C1A"/>
-                            <constraint firstItem="fh4-fj-TOV" firstAttribute="top" secondItem="lm2-O6-93a" secondAttribute="top" constant="10" id="dDa-Ul-MPx"/>
-                            <constraint firstAttribute="trailing" secondItem="fh4-fj-TOV" secondAttribute="trailing" constant="10" id="sIh-bY-m8y"/>
+                            <constraint firstAttribute="bottom" secondItem="fh4-fj-TOV" secondAttribute="bottom" constant="5" id="1Nh-qv-IPj"/>
+                            <constraint firstItem="fh4-fj-TOV" firstAttribute="leading" secondItem="lm2-O6-93a" secondAttribute="leading" constant="5" id="X30-ng-C1A"/>
+                            <constraint firstItem="fh4-fj-TOV" firstAttribute="top" secondItem="lm2-O6-93a" secondAttribute="top" constant="5" id="dDa-Ul-MPx"/>
+                            <constraint firstAttribute="trailing" secondItem="fh4-fj-TOV" secondAttribute="trailing" constant="5" id="sIh-bY-m8y"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="y8i-cH-gJ6"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d6e-cV-NKx">
                         <rect key="frame" x="2" y="2" width="40" height="40"/>
-                        <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEV-WH-MQj">
+                                <rect key="frame" x="10" y="11.5" width="20" height="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="EQf-UR-WLP"/>
+                            <constraint firstItem="sEV-WH-MQj" firstAttribute="centerY" secondItem="d6e-cV-NKx" secondAttribute="centerY" id="Vuf-Mf-89R"/>
                             <constraint firstAttribute="width" constant="40" id="bYi-Q8-y4o"/>
+                            <constraint firstItem="sEV-WH-MQj" firstAttribute="centerX" secondItem="d6e-cV-NKx" secondAttribute="centerX" id="gPr-m3-uwL"/>
                         </constraints>
                     </view>
                 </subviews>

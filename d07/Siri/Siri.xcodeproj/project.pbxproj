@@ -10,14 +10,14 @@
 		104A1904238878A300C64FAF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A1903238878A300C64FAF /* Message.swift */; };
 		104A19072388844F00C64FAF /* CustomBotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A19052388844F00C64FAF /* CustomBotTableViewCell.swift */; };
 		104A19082388844F00C64FAF /* CustomBotTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 104A19062388844F00C64FAF /* CustomBotTableViewCell.xib */; };
+		104A190E238892F700C64FAF /* CustomUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A190C238892F600C64FAF /* CustomUserTableViewCell.swift */; };
+		104A190F238892F700C64FAF /* CustomUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 104A190D238892F700C64FAF /* CustomUserTableViewCell.xib */; };
 		108F17AF2386B5770037B97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108F17AE2386B5770037B97E /* AppDelegate.swift */; };
 		108F17B12386B5770037B97E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108F17B02386B5770037B97E /* SceneDelegate.swift */; };
 		108F17B62386B5770037B97E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 108F17B42386B5770037B97E /* Main.storyboard */; };
 		108F17B82386B57A0037B97E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 108F17B72386B57A0037B97E /* Assets.xcassets */; };
 		108F17BB2386B57A0037B97E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 108F17B92386B57A0037B97E /* LaunchScreen.storyboard */; };
 		108F17C32386B66A0037B97E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108F17C22386B66A0037B97E /* FirstViewController.swift */; };
-		10EBDC062387F57300D083E9 /* BotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EBDC052387F57300D083E9 /* BotTableViewCell.swift */; };
-		10EBDC082387F58100D083E9 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EBDC072387F58100D083E9 /* UserTableViewCell.swift */; };
 		6E8C774B5537B86B52877073 /* Pods_Siri.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20456F0599E676A7704A203B /* Pods_Siri.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +25,8 @@
 		104A1903238878A300C64FAF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		104A19052388844F00C64FAF /* CustomBotTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBotTableViewCell.swift; sourceTree = "<group>"; };
 		104A19062388844F00C64FAF /* CustomBotTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomBotTableViewCell.xib; sourceTree = "<group>"; };
+		104A190C238892F600C64FAF /* CustomUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserTableViewCell.swift; sourceTree = "<group>"; };
+		104A190D238892F700C64FAF /* CustomUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomUserTableViewCell.xib; sourceTree = "<group>"; };
 		108F17AB2386B5770037B97E /* Siri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Siri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		108F17AE2386B5770037B97E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		108F17B02386B5770037B97E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,8 +35,6 @@
 		108F17BA2386B57A0037B97E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		108F17BC2386B57A0037B97E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		108F17C22386B66A0037B97E /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		10EBDC052387F57300D083E9 /* BotTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotTableViewCell.swift; sourceTree = "<group>"; };
-		10EBDC072387F58100D083E9 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		20456F0599E676A7704A203B /* Pods_Siri.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Siri.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80AC1AAB0C0DBDE1AAE2D177 /* Pods-Siri.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siri.debug.xcconfig"; path = "Target Support Files/Pods-Siri/Pods-Siri.debug.xcconfig"; sourceTree = "<group>"; };
 		A02072472D5C110CA0543454 /* Pods-Siri.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siri.release.xcconfig"; path = "Target Support Files/Pods-Siri/Pods-Siri.release.xcconfig"; sourceTree = "<group>"; };
@@ -52,6 +52,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		104A19092388928500C64FAF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				104A19052388844F00C64FAF /* CustomBotTableViewCell.swift */,
+				104A19062388844F00C64FAF /* CustomBotTableViewCell.xib */,
+				104A1903238878A300C64FAF /* Message.swift */,
+				104A190C238892F600C64FAF /* CustomUserTableViewCell.swift */,
+				104A190D238892F700C64FAF /* CustomUserTableViewCell.xib */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		104A190A2388929600C64FAF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				108F17B42386B5770037B97E /* Main.storyboard */,
+				108F17B92386B57A0037B97E /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		104A190B238892A000C64FAF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				108F17C22386B66A0037B97E /* FirstViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		108F17A22386B5770037B97E = {
 			isa = PBXGroup;
 			children = (
@@ -75,16 +104,11 @@
 			children = (
 				108F17AE2386B5770037B97E /* AppDelegate.swift */,
 				108F17B02386B5770037B97E /* SceneDelegate.swift */,
-				108F17C22386B66A0037B97E /* FirstViewController.swift */,
-				108F17B42386B5770037B97E /* Main.storyboard */,
+				104A19092388928500C64FAF /* Model */,
+				104A190B238892A000C64FAF /* Controller */,
+				104A190A2388929600C64FAF /* View */,
 				108F17B72386B57A0037B97E /* Assets.xcassets */,
-				108F17B92386B57A0037B97E /* LaunchScreen.storyboard */,
 				108F17BC2386B57A0037B97E /* Info.plist */,
-				10EBDC052387F57300D083E9 /* BotTableViewCell.swift */,
-				10EBDC072387F58100D083E9 /* UserTableViewCell.swift */,
-				104A1903238878A300C64FAF /* Message.swift */,
-				104A19052388844F00C64FAF /* CustomBotTableViewCell.swift */,
-				104A19062388844F00C64FAF /* CustomBotTableViewCell.xib */,
 			);
 			path = Siri;
 			sourceTree = "<group>";
@@ -170,6 +194,7 @@
 				108F17B82386B57A0037B97E /* Assets.xcassets in Resources */,
 				104A19082388844F00C64FAF /* CustomBotTableViewCell.xib in Resources */,
 				108F17B62386B5770037B97E /* Main.storyboard in Resources */,
+				104A190F238892F700C64FAF /* CustomUserTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,11 +248,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				108F17AF2386B5770037B97E /* AppDelegate.swift in Sources */,
-				10EBDC062387F57300D083E9 /* BotTableViewCell.swift in Sources */,
+				104A190E238892F700C64FAF /* CustomUserTableViewCell.swift in Sources */,
 				108F17B12386B5770037B97E /* SceneDelegate.swift in Sources */,
 				104A1904238878A300C64FAF /* Message.swift in Sources */,
 				108F17C32386B66A0037B97E /* FirstViewController.swift in Sources */,
-				10EBDC082387F58100D083E9 /* UserTableViewCell.swift in Sources */,
 				104A19072388844F00C64FAF /* CustomBotTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
