@@ -9,21 +9,22 @@
 import UIKit
 import sapcai
 import DarkSkyKit
+import Speech
 
-class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, SFSpeechRecognizerDelegate {
 
     var bot = SapcaiClient(token : "0dedc07f4cf04e658b15ad041b2a5feb", language: "en")
     let forecastClient = DarkSkyKit(apiToken: "2b485393cb19279ada9959ed78f14c7a")
     var messagesArray : [Message] = [Message(user: .bot, text: "Hi there! Will be glad to help you with any of your weather requests! Don't hesitate to message me!")]
     var keyboardHeight : CGFloat = 0
     
-
     @IBOutlet weak var wholeInputView: UIView!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var textInput: UITextField!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var myTableView: UITableView!
-
+    @IBOutlet weak var voiceCommandButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,20 +46,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             name: UIResponder.keyboardWillShowNotification, object: nil
         )
     }
-
-    @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            self.keyboardHeight = keyboardRectangle.size.height
-            UIView.animate(withDuration: 0.5) {
-                self.heightConstraint.constant = (self.keyboardHeight * -1) + self.view.safeAreaInsets.bottom
-                self.view.layoutIfNeeded()
-            }
-            DispatchQueue.main.async {
-                self.scrollTableView()
-            }
-        }
-    }
+    
+    //MARK:- TableView methods
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -84,6 +73,13 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messagesArray.count
     }
+    
+    //MARK: - IBActions ****************
+    
+    @IBAction func voiceCommandButtonPressed(_ sender: UIButton) {
+        
+    }
+    
     
     @IBAction func sendButtonPressed(_ sender: Any) {
         if textInput.text?.count == 0 {
@@ -135,11 +131,27 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         textInput.endEditing(true)
     }
     
+    //MARK:- Keyboard Methods
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.5){
             self.heightConstraint.constant = 0
             self.scrollTableView()
             self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            self.keyboardHeight = keyboardRectangle.size.height
+            UIView.animate(withDuration: 0.5) {
+                self.heightConstraint.constant = (self.keyboardHeight * -1) + self.view.safeAreaInsets.bottom
+                self.view.layoutIfNeeded()
+            }
+            DispatchQueue.main.async {
+                self.scrollTableView()
+            }
         }
     }
 }
