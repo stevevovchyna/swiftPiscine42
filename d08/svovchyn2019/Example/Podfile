@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'svovchyn2019_Example' do
+  pod 'svovchyn2019', :path => '../'
+
+  target 'svovchyn2019_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

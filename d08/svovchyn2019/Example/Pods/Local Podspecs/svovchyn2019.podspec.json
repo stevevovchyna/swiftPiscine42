@@ -1,0 +1,22 @@
+{
+  "name": "svovchyn2019",
+  "version": "0.1.0",
+  "summary": "A short description of svovchyn2019.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/stevevovchyna/svovchyn2019",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "stevevovchyna": "steve.vovchyna@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/stevevovchyna/svovchyn2019.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "svovchyn2019/Classes/**/*"
+}

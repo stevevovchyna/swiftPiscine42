@@ -1,0 +1,6 @@
+framework module Pods_svovchyn2019_Tests {
+  umbrella header "Pods-svovchyn2019_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
