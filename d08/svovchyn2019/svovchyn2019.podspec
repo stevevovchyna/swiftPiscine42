@@ -9,7 +9,8 @@
 Pod::Spec.new do |s|
   s.name             = 'svovchyn2019'
   s.version          = '0.1.0'
-  s.summary          = 'Pod created to complete a task in Unit Factory Swift Piscine'
+  s.summary          = 'Educational project for the Unit Factory Swift Piscine'
+  s.swift_version = '5.1'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,18 +18,16 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = 'This is a pod created as a part of the educational task in Unit Factory School as a framewok for the next task with a creation of a personal diary app'
+  s.description      = 'Pod is created for the educational purposes and will be a platform for creating an app which is capable of creating articles for a personal notebook'
 
-
-  s.homepage         = 'https://github.com/stevevovchyna/svovchyn2019'
+  s.homepage         = 'https://github.com/stevevovchyna'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'stevevovchyna' => 'steve.vovchyna@gmail.com' }
   s.source           = { :git => 'https://github.com/stevevovchyna/svovchyn2019.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '9.3'
-  s.swift_version = '5.1'
+  s.ios.deployment_target = '12.0'
 
   s.source_files = 'svovchyn2019/Classes/**/*'
   
@@ -37,6 +36,6 @@ Pod::Spec.new do |s|
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-   s.frameworks = 'UIKit', 'MapKit', 'CoreData'
+   s.frameworks = 'CoreData'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

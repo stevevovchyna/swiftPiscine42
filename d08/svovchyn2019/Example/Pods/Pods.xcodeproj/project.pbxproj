@@ -7,12 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		104A1912238AFFAA00C64FAF /* Article.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 104A1910238AFFAA00C64FAF /* Article.xcdatamodeld */; };
-		104A1914238B00F600C64FAF /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A1913238B00F600C64FAF /* Article.swift */; };
-		10E1FAC2238B026600C4336E /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A1913238B00F600C64FAF /* Article.swift */; };
-		10E1FAC3238B026700C4336E /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A1913238B00F600C64FAF /* Article.swift */; };
-		10E1FAC4238B027700C4336E /* Article.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 104A1910238AFFAA00C64FAF /* Article.xcdatamodeld */; };
-		10E1FAC5238B027800C4336E /* Article.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 104A1910238AFFAA00C64FAF /* Article.xcdatamodeld */; };
+		10E1FAD7238B2FA400C4336E /* article.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 10E1FAD5238B2FA400C4336E /* article.xcdatamodeld */; };
+		10E1FAD9238B301100C4336E /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E1FAD8238B301100C4336E /* Article.swift */; };
+		10E1FADB238B30A700C4336E /* ArticleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E1FADA238B30A700C4336E /* ArticleManager.swift */; };
 		3077C21CB974D8C1B9BBA187AB0D54EE /* Pods-svovchyn2019_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6FEAB66A2861F6A05F3E6076ABAF2788 /* Pods-svovchyn2019_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48564B53A5354129F3BDDBE5644F5622 /* Pods-svovchyn2019_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD7EFB57204223C7A046A1D880D8EB6 /* Pods-svovchyn2019_Example-dummy.m */; };
 		6D2AB002D274FEE340D601FDA71B7E5F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
@@ -45,8 +42,9 @@
 /* Begin PBXFileReference section */
 		0A2791C17C073DAC118D64ECA6151289 /* svovchyn2019.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = svovchyn2019.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EF2BED25972EF65CAA2865871A15BD9 /* Pods-svovchyn2019_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-svovchyn2019_Example-umbrella.h"; sourceTree = "<group>"; };
-		104A1911238AFFAA00C64FAF /* Article.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Article.xcdatamodel; sourceTree = "<group>"; };
-		104A1913238B00F600C64FAF /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		10E1FAD6238B2FA400C4336E /* article.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = article.xcdatamodel; sourceTree = "<group>"; };
+		10E1FAD8238B301100C4336E /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		10E1FADA238B30A700C4336E /* ArticleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleManager.swift; sourceTree = "<group>"; };
 		13E63DF589BE90208FCC991D4268242A /* Pods-svovchyn2019_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-svovchyn2019_Example.modulemap"; sourceTree = "<group>"; };
 		14550E2AAC61D1F02452DE584743CE30 /* Pods-svovchyn2019_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-svovchyn2019_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		1E07133152044590E4712026499EBDF8 /* Pods_svovchyn2019_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_svovchyn2019_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,11 +135,12 @@
 		313A4DEC9BF2D7A720C64C038A5DDDFB /* svovchyn2019 */ = {
 			isa = PBXGroup;
 			children = (
+				10E1FAD8238B301100C4336E /* Article.swift */,
+				10E1FADA238B30A700C4336E /* ArticleManager.swift */,
+				10E1FAD5238B2FA400C4336E /* article.xcdatamodeld */,
 				A80230199253977D55300DD09D59C033 /* ReplaceMe.swift */,
 				F85769BCA93F61D963382AF7AC5B6386 /* Pod */,
 				775EC2BECF5858222A729352A26B87A8 /* Support Files */,
-				104A1910238AFFAA00C64FAF /* Article.xcdatamodeld */,
-				104A1913238B00F600C64FAF /* Article.swift */,
 			);
 			name = svovchyn2019;
 			path = ../..;
@@ -329,6 +328,9 @@
 					2976F1110D26DBE50E3EC1EB1C0E041C = {
 						LastSwiftMigration = 1110;
 					};
+					51D6657F6FCB1BFD8244C5D20F14A086 = {
+						LastSwiftMigration = 1110;
+					};
 				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
@@ -380,9 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10E1FAC2238B026600C4336E /* Article.swift in Sources */,
 				A08F9287ADE8823B3BB3C020D467E1FF /* Pods-svovchyn2019_Tests-dummy.m in Sources */,
-				10E1FAC4238B027700C4336E /* Article.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,9 +390,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10E1FAC3238B026700C4336E /* Article.swift in Sources */,
+				10E1FAD7238B2FA400C4336E /* article.xcdatamodeld in Sources */,
 				48564B53A5354129F3BDDBE5644F5622 /* Pods-svovchyn2019_Example-dummy.m in Sources */,
-				10E1FAC5238B027800C4336E /* Article.xcdatamodeld in Sources */,
+				10E1FADB238B30A700C4336E /* ArticleManager.swift in Sources */,
+				10E1FAD9238B301100C4336E /* Article.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,10 +401,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				104A1914238B00F600C64FAF /* Article.swift in Sources */,
 				E22F72F53124FDB067773597181EF4F2 /* ReplaceMe.swift in Sources */,
 				9A1E12AD70E2C2436AD2F2F4D5C3DD27 /* svovchyn2019-dummy.m in Sources */,
-				104A1912238AFFAA00C64FAF /* Article.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +429,7 @@
 			baseConfigurationReference = 14550E2AAC61D1F02452DE584743CE30 /* Pods-svovchyn2019_Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -452,6 +452,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -562,6 +564,7 @@
 			baseConfigurationReference = 65C65999BF9F53B9391D32C3B85714A6 /* Pods-svovchyn2019_Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -584,6 +587,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -787,13 +791,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		104A1910238AFFAA00C64FAF /* Article.xcdatamodeld */ = {
+		10E1FAD5238B2FA400C4336E /* article.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				104A1911238AFFAA00C64FAF /* Article.xcdatamodel */,
+				10E1FAD6238B2FA400C4336E /* article.xcdatamodel */,
 			);
-			currentVersion = 104A1911238AFFAA00C64FAF /* Article.xcdatamodel */;
-			path = Article.xcdatamodeld;
+			currentVersion = 10E1FAD6238B2FA400C4336E /* article.xcdatamodel */;
+			path = article.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
