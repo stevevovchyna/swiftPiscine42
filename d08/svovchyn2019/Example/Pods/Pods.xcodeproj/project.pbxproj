@@ -7,19 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		10E1FAD7238B2FA400C4336E /* article.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 10E1FAD5238B2FA400C4336E /* article.xcdatamodeld */; };
-		10E1FAD9238B301100C4336E /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E1FAD8238B301100C4336E /* Article.swift */; };
-		10E1FADB238B30A700C4336E /* ArticleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E1FADA238B30A700C4336E /* ArticleManager.swift */; };
+		028C9C4E95A1DDBD1AFDF5B898CFDC41 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4DF0F60DD192D73274D522F4ED1E98 /* ReplaceMe.swift */; };
+		07BBB119D9535AFAD8956D3C720862AC /* article.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2515E954EC88FDCC69A88FB541D95C4B /* article.xcdatamodeld */; };
+		0DB955CD4F37DF2DC3DF80BC17F222CB /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1F2A715ADA5727D9B1B4728B82CD8A /* Article.swift */; };
+		10E1FAE5238BCE7A00C4336E /* article.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 10E1FAE3238BCE7A00C4336E /* article.xcdatamodeld */; };
+		19D3391A99352FA5888B1B436931D446 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E52A6C3B1B94B8C68F11070716C2E0A7 /* Foundation.framework */; };
 		3077C21CB974D8C1B9BBA187AB0D54EE /* Pods-svovchyn2019_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6FEAB66A2861F6A05F3E6076ABAF2788 /* Pods-svovchyn2019_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48564B53A5354129F3BDDBE5644F5622 /* Pods-svovchyn2019_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD7EFB57204223C7A046A1D880D8EB6 /* Pods-svovchyn2019_Example-dummy.m */; };
-		6D2AB002D274FEE340D601FDA71B7E5F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		9A1E12AD70E2C2436AD2F2F4D5C3DD27 /* svovchyn2019-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD5A1BDBEC41ED66AD14543060166FA /* svovchyn2019-dummy.m */; };
+		50D30715B5CC9F4085D5641917AF2E22 /* svovchyn2019-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AB72CD5E01D22ECF8AAE0DD682F7240B /* svovchyn2019-dummy.m */; };
+		5233BA8477510428EB670F5F17AF3C76 /* svovchyn2019-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 059358A56B8F25FAF30133EFE0A78A29 /* svovchyn2019-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5D836662F6AA457A868BC05CB3D00803 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A13E37530B47F5DA0E598490887362E7 /* CoreData.framework */; };
+		6DA33AB2DBF0C90C3495E04FAB6D7C13 /* ArticleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF15416E12583C4FCCB98E0C7432A074 /* ArticleManager.swift */; };
 		A08F9287ADE8823B3BB3C020D467E1FF /* Pods-svovchyn2019_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E89632DC6CBBAE1AB892AC63C4BBAB5 /* Pods-svovchyn2019_Tests-dummy.m */; };
 		A4025E7FB68C4A9593964B5857D0C75B /* Pods-svovchyn2019_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EF2BED25972EF65CAA2865871A15BD9 /* Pods-svovchyn2019_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AEB26E438631FC77E8692627B153E0E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		D4F3CE586E85E98207D30EF7D19E50D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		E22F72F53124FDB067773597181EF4F2 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80230199253977D55300DD09D59C033 /* ReplaceMe.swift */; };
-		EBA5CAD0A31F6078E27D70A2CF8B1825 /* svovchyn2019-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A0A06C034A5605FF99E4C2A97D775A71 /* svovchyn2019-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AEB26E438631FC77E8692627B153E0E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E52A6C3B1B94B8C68F11070716C2E0A7 /* Foundation.framework */; };
+		D4F3CE586E85E98207D30EF7D19E50D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E52A6C3B1B94B8C68F11070716C2E0A7 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,41 +42,43 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		059358A56B8F25FAF30133EFE0A78A29 /* svovchyn2019-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "svovchyn2019-umbrella.h"; sourceTree = "<group>"; };
 		0A2791C17C073DAC118D64ECA6151289 /* svovchyn2019.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = svovchyn2019.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EF2BED25972EF65CAA2865871A15BD9 /* Pods-svovchyn2019_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-svovchyn2019_Example-umbrella.h"; sourceTree = "<group>"; };
-		10E1FAD6238B2FA400C4336E /* article.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = article.xcdatamodel; sourceTree = "<group>"; };
-		10E1FAD8238B301100C4336E /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
-		10E1FADA238B30A700C4336E /* ArticleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleManager.swift; sourceTree = "<group>"; };
+		10E1FAE4238BCE7A00C4336E /* article.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = article.xcdatamodel; sourceTree = "<group>"; };
 		13E63DF589BE90208FCC991D4268242A /* Pods-svovchyn2019_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-svovchyn2019_Example.modulemap"; sourceTree = "<group>"; };
 		14550E2AAC61D1F02452DE584743CE30 /* Pods-svovchyn2019_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-svovchyn2019_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		1E07133152044590E4712026499EBDF8 /* Pods_svovchyn2019_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_svovchyn2019_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21661241B8F0B55E6EAEE25E06A0F5FC /* Pods-svovchyn2019_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-svovchyn2019_Example-Info.plist"; sourceTree = "<group>"; };
-		26AF3E456199BC9D054C21B67ED11F4E /* svovchyn2019-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "svovchyn2019-Info.plist"; sourceTree = "<group>"; };
-		2B39391B808010605BC0A4B6223FD732 /* svovchyn2019.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = svovchyn2019.modulemap; sourceTree = "<group>"; };
-		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		2F1F2A715ADA5727D9B1B4728B82CD8A /* Article.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Article.swift; path = svovchyn2019/Classes/Article.swift; sourceTree = "<group>"; };
+		3289AC2876B71ED47A549A760A65EF60 /* article.xcdatamodel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcdatamodel; path = article.xcdatamodel; sourceTree = "<group>"; };
 		336459C38B79EF59F43BDAD0DB50223D /* Pods-svovchyn2019_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-svovchyn2019_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		4FD7EFB57204223C7A046A1D880D8EB6 /* Pods-svovchyn2019_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-svovchyn2019_Example-dummy.m"; sourceTree = "<group>"; };
-		5DF94595430295C651F4BBB601D70C6A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		58BD2942237ACD229C20099F5E603349 /* svovchyn2019.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = svovchyn2019.xcconfig; sourceTree = "<group>"; };
 		5F57A05A9F11C89828A20C2343AD2390 /* Pods-svovchyn2019_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-svovchyn2019_Tests-Info.plist"; sourceTree = "<group>"; };
-		5FD5A1BDBEC41ED66AD14543060166FA /* svovchyn2019-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "svovchyn2019-dummy.m"; sourceTree = "<group>"; };
 		65C65999BF9F53B9391D32C3B85714A6 /* Pods-svovchyn2019_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-svovchyn2019_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6DEC2F37ED6D685D7F973F1561AD5DBB /* Pods-svovchyn2019_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-svovchyn2019_Example-frameworks.sh"; sourceTree = "<group>"; };
 		6E89632DC6CBBAE1AB892AC63C4BBAB5 /* Pods-svovchyn2019_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-svovchyn2019_Tests-dummy.m"; sourceTree = "<group>"; };
 		6FEAB66A2861F6A05F3E6076ABAF2788 /* Pods-svovchyn2019_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-svovchyn2019_Tests-umbrella.h"; sourceTree = "<group>"; };
+		82743EED75EC32156D3318DE10738ED0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		86A20403A3B5937D93501ACBE7850CCF /* Pods-svovchyn2019_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-svovchyn2019_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		961E96D21316CBDA7F94DCDEA689FC91 /* svovchyn2019.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = svovchyn2019.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A0A06C034A5605FF99E4C2A97D775A71 /* svovchyn2019-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "svovchyn2019-umbrella.h"; sourceTree = "<group>"; };
-		A78C3ED5BDC8D80EA784095E49FEE32F /* svovchyn2019.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = svovchyn2019.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A80230199253977D55300DD09D59C033 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = svovchyn2019/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
-		A82B0F5A3699DA970BA7F61B71A9D36F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		A13E37530B47F5DA0E598490887362E7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		A9526CF58F0EA579F341D3614F7012AD /* Pods-svovchyn2019_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-svovchyn2019_Tests.modulemap"; sourceTree = "<group>"; };
+		AB72CD5E01D22ECF8AAE0DD682F7240B /* svovchyn2019-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "svovchyn2019-dummy.m"; sourceTree = "<group>"; };
+		CA4DF0F60DD192D73274D522F4ED1E98 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = svovchyn2019/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		D5AEA2A82EDEA9C293725548F702A967 /* Pods-svovchyn2019_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-svovchyn2019_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		D983DA476BB2CA3095B5052A527353D4 /* svovchyn2019-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "svovchyn2019-Info.plist"; sourceTree = "<group>"; };
 		DD161883A77488ECB10B70AC79242FF6 /* Pods-svovchyn2019_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-svovchyn2019_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		DF15416E12583C4FCCB98E0C7432A074 /* ArticleManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ArticleManager.swift; path = svovchyn2019/Classes/ArticleManager.swift; sourceTree = "<group>"; };
+		DF7A92E817D4D05D4374B1A0ADCED8B3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DFC7DA8BB42D5956A15E50609750936A /* Pods_svovchyn2019_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_svovchyn2019_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E264D4153524516521158B81E14CA342 /* Pods-svovchyn2019_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-svovchyn2019_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		E52A6C3B1B94B8C68F11070716C2E0A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		EDE26DC2D7FEA71C6A492027B50D7B10 /* Pods-svovchyn2019_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-svovchyn2019_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		FC1F0625C458D3339CAE58B1768F2D69 /* svovchyn2019.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = svovchyn2019.xcconfig; sourceTree = "<group>"; };
-		FEE49AA2CF1CD5E57A5C900AD9043ED2 /* svovchyn2019-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "svovchyn2019-prefix.pch"; sourceTree = "<group>"; };
+		F32765F36BD1EB8412B741DA5BA58F9B /* svovchyn2019-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "svovchyn2019-prefix.pch"; sourceTree = "<group>"; };
+		F889892AEA83BD181F83631F2D7CDD3B /* svovchyn2019.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = svovchyn2019.modulemap; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,11 +98,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BDC8BAA4AA8A39B89E347324938AFD66 /* Frameworks */ = {
+		77F6C3412E89C0275BA6FC7461329129 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D2AB002D274FEE340D601FDA71B7E5F /* Foundation.framework in Frameworks */,
+				5D836662F6AA457A868BC05CB3D00803 /* CoreData.framework in Frameworks */,
+				19D3391A99352FA5888B1B436931D446 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +118,29 @@
 				0A2791C17C073DAC118D64ECA6151289 /* svovchyn2019.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		110E96EC0458CD1A0FBA7739B40B5F48 /* svovchyn2019 */ = {
+			isa = PBXGroup;
+			children = (
+				10E1FAE3238BCE7A00C4336E /* article.xcdatamodeld */,
+				2F1F2A715ADA5727D9B1B4728B82CD8A /* Article.swift */,
+				DF15416E12583C4FCCB98E0C7432A074 /* ArticleManager.swift */,
+				CA4DF0F60DD192D73274D522F4ED1E98 /* ReplaceMe.swift */,
+				94DEB56B6F5DF6C10D94471413E23C2B /* Pod */,
+				8613EACBDC4C61B3BE4B31840FFD8042 /* Resources */,
+				40ABFE4A9E762062F54CCA693F0608E5 /* Support Files */,
+			);
+			name = svovchyn2019;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				429055C9436D20C513F0D334460D56BB /* iOS */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		18CC04B7C2194F866E500773FA6C5989 /* Pods-svovchyn2019_Example */ = {
@@ -132,18 +160,35 @@
 			path = "Target Support Files/Pods-svovchyn2019_Example";
 			sourceTree = "<group>";
 		};
-		313A4DEC9BF2D7A720C64C038A5DDDFB /* svovchyn2019 */ = {
+		33CF68B3B93E3C7CED29A48CB7390C53 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				10E1FAD8238B301100C4336E /* Article.swift */,
-				10E1FADA238B30A700C4336E /* ArticleManager.swift */,
-				10E1FAD5238B2FA400C4336E /* article.xcdatamodeld */,
-				A80230199253977D55300DD09D59C033 /* ReplaceMe.swift */,
-				F85769BCA93F61D963382AF7AC5B6386 /* Pod */,
-				775EC2BECF5858222A729352A26B87A8 /* Support Files */,
+				110E96EC0458CD1A0FBA7739B40B5F48 /* svovchyn2019 */,
 			);
-			name = svovchyn2019;
-			path = ../..;
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		40ABFE4A9E762062F54CCA693F0608E5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F889892AEA83BD181F83631F2D7CDD3B /* svovchyn2019.modulemap */,
+				58BD2942237ACD229C20099F5E603349 /* svovchyn2019.xcconfig */,
+				AB72CD5E01D22ECF8AAE0DD682F7240B /* svovchyn2019-dummy.m */,
+				D983DA476BB2CA3095B5052A527353D4 /* svovchyn2019-Info.plist */,
+				F32765F36BD1EB8412B741DA5BA58F9B /* svovchyn2019-prefix.pch */,
+				059358A56B8F25FAF30133EFE0A78A29 /* svovchyn2019-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/svovchyn2019";
+			sourceTree = "<group>";
+		};
+		429055C9436D20C513F0D334460D56BB /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				A13E37530B47F5DA0E598490887362E7 /* CoreData.framework */,
+				E52A6C3B1B94B8C68F11070716C2E0A7 /* Foundation.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 		46E0449125B9307F8CA4F85EB6626CAF /* Pods-svovchyn2019_Tests */ = {
@@ -162,14 +207,6 @@
 			path = "Target Support Files/Pods-svovchyn2019_Tests";
 			sourceTree = "<group>";
 		};
-		514E8B1D3B53B0F8871D5F2C6DB651BD /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				313A4DEC9BF2D7A720C64C038A5DDDFB /* svovchyn2019 */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
 		74DBFADD9F2964135CA5F9A2419EE59C /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,55 +216,33 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		775EC2BECF5858222A729352A26B87A8 /* Support Files */ = {
+		8613EACBDC4C61B3BE4B31840FFD8042 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2B39391B808010605BC0A4B6223FD732 /* svovchyn2019.modulemap */,
-				FC1F0625C458D3339CAE58B1768F2D69 /* svovchyn2019.xcconfig */,
-				5FD5A1BDBEC41ED66AD14543060166FA /* svovchyn2019-dummy.m */,
-				26AF3E456199BC9D054C21B67ED11F4E /* svovchyn2019-Info.plist */,
-				FEE49AA2CF1CD5E57A5C900AD9043ED2 /* svovchyn2019-prefix.pch */,
-				A0A06C034A5605FF99E4C2A97D775A71 /* svovchyn2019-umbrella.h */,
+				2515E954EC88FDCC69A88FB541D95C4B /* article.xcdatamodeld */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/svovchyn2019";
+			name = Resources;
 			sourceTree = "<group>";
 		};
-		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
+		94DEB56B6F5DF6C10D94471413E23C2B /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */,
+				82743EED75EC32156D3318DE10738ED0 /* LICENSE */,
+				DF7A92E817D4D05D4374B1A0ADCED8B3 /* README.md */,
+				961E96D21316CBDA7F94DCDEA689FC91 /* svovchyn2019.podspec */,
 			);
-			name = iOS;
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				514E8B1D3B53B0F8871D5F2C6DB651BD /* Development Pods */,
-				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				33CF68B3B93E3C7CED29A48CB7390C53 /* Development Pods */,
+				1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */,
 				07C56D632AD9B0146D7A642BA6A1348D /* Products */,
 				74DBFADD9F2964135CA5F9A2419EE59C /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C0834CEBB1379A84116EF29F93051C60 /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		F85769BCA93F61D963382AF7AC5B6386 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				A82B0F5A3699DA970BA7F61B71A9D36F /* LICENSE */,
-				5DF94595430295C651F4BBB601D70C6A /* README.md */,
-				A78C3ED5BDC8D80EA784095E49FEE32F /* svovchyn2019.podspec */,
-			);
-			name = Pod;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,11 +256,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		153471D7DD9A1483C0A1068CF60DC4A5 /* Headers */ = {
+		2A0461D452527BC08DA46C68D921D83E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBA5CAD0A31F6078E27D70A2CF8B1825 /* svovchyn2019-umbrella.h in Headers */,
+				5233BA8477510428EB670F5F17AF3C76 /* svovchyn2019-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,12 +277,12 @@
 /* Begin PBXNativeTarget section */
 		2976F1110D26DBE50E3EC1EB1C0E041C /* svovchyn2019 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DBD35D08CB7463B68A77CBFF1D85D1F0 /* Build configuration list for PBXNativeTarget "svovchyn2019" */;
+			buildConfigurationList = 83174EE11C3599BD381FC21EA385BED7 /* Build configuration list for PBXNativeTarget "svovchyn2019" */;
 			buildPhases = (
-				153471D7DD9A1483C0A1068CF60DC4A5 /* Headers */,
-				E11E32616FD0815712D9CA3FCCA804A3 /* Sources */,
-				BDC8BAA4AA8A39B89E347324938AFD66 /* Frameworks */,
-				BAD272C6E3D48E8E6A1238425256D13C /* Resources */,
+				2A0461D452527BC08DA46C68D921D83E /* Headers */,
+				D64855F8972DB8B5FA167BB4A658ABB2 /* Sources */,
+				77F6C3412E89C0275BA6FC7461329129 /* Frameworks */,
+				955488E4CF170775DEBDF11F748AA421 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -324,14 +339,6 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1100;
-				TargetAttributes = {
-					2976F1110D26DBE50E3EC1EB1C0E041C = {
-						LastSwiftMigration = 1110;
-					};
-					51D6657F6FCB1BFD8244C5D20F14A086 = {
-						LastSwiftMigration = 1110;
-					};
-				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -354,7 +361,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		BAD272C6E3D48E8E6A1238425256D13C /* Resources */ = {
+		955488E4CF170775DEBDF11F748AA421 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -390,19 +397,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10E1FAD7238B2FA400C4336E /* article.xcdatamodeld in Sources */,
+				10E1FAE5238BCE7A00C4336E /* article.xcdatamodeld in Sources */,
 				48564B53A5354129F3BDDBE5644F5622 /* Pods-svovchyn2019_Example-dummy.m in Sources */,
-				10E1FADB238B30A700C4336E /* ArticleManager.swift in Sources */,
-				10E1FAD9238B301100C4336E /* Article.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E11E32616FD0815712D9CA3FCCA804A3 /* Sources */ = {
+		D64855F8972DB8B5FA167BB4A658ABB2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E22F72F53124FDB067773597181EF4F2 /* ReplaceMe.swift in Sources */,
-				9A1E12AD70E2C2436AD2F2F4D5C3DD27 /* svovchyn2019-dummy.m in Sources */,
+				0DB955CD4F37DF2DC3DF80BC17F222CB /* Article.swift in Sources */,
+				07BBB119D9535AFAD8956D3C720862AC /* article.xcdatamodeld in Sources */,
+				6DA33AB2DBF0C90C3495E04FAB6D7C13 /* ArticleManager.swift in Sources */,
+				028C9C4E95A1DDBD1AFDF5B898CFDC41 /* ReplaceMe.swift in Sources */,
+				50D30715B5CC9F4085D5641917AF2E22 /* svovchyn2019-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,12 +432,43 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		03FCA6AA0F819A851D2D0CDAACC4CD46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58BD2942237ACD229C20099F5E603349 /* svovchyn2019.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/svovchyn2019/svovchyn2019-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/svovchyn2019/svovchyn2019-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/svovchyn2019/svovchyn2019.modulemap";
+				PRODUCT_MODULE_NAME = svovchyn2019;
+				PRODUCT_NAME = svovchyn2019;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		2496D2568F0349A6A35503EE03AB85E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 14550E2AAC61D1F02452DE584743CE30 /* Pods-svovchyn2019_Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -452,8 +491,37 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5CA53385AA0803F2B9E71955D83BACE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58BD2942237ACD229C20099F5E603349 /* svovchyn2019.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/svovchyn2019/svovchyn2019-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/svovchyn2019/svovchyn2019-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/svovchyn2019/svovchyn2019.modulemap";
+				PRODUCT_MODULE_NAME = svovchyn2019;
+				PRODUCT_NAME = svovchyn2019;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -527,44 +595,11 @@
 			};
 			name = Debug;
 		};
-		86AE50502753E0994D8639455C384D04 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FC1F0625C458D3339CAE58B1768F2D69 /* svovchyn2019.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/svovchyn2019/svovchyn2019-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/svovchyn2019/svovchyn2019-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/svovchyn2019/svovchyn2019.modulemap";
-				PRODUCT_MODULE_NAME = svovchyn2019;
-				PRODUCT_NAME = svovchyn2019;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		9097FA6C5368DF17B5732FDEAB80F0B6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 65C65999BF9F53B9391D32C3B85714A6 /* Pods-svovchyn2019_Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -587,44 +622,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		AACF793122FF8D4D0C21CAA9D35542FF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FC1F0625C458D3339CAE58B1768F2D69 /* svovchyn2019.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/svovchyn2019/svovchyn2019-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/svovchyn2019/svovchyn2019-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/svovchyn2019/svovchyn2019.modulemap";
-				PRODUCT_MODULE_NAME = svovchyn2019;
-				PRODUCT_NAME = svovchyn2019;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		B0087CB4594321EF41619F3181FE120E /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -761,6 +764,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		83174EE11C3599BD381FC21EA385BED7 /* Build configuration list for PBXNativeTarget "svovchyn2019" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5CA53385AA0803F2B9E71955D83BACE8 /* Debug */,
+				03FCA6AA0F819A851D2D0CDAACC4CD46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A183A3D7E99F85112672F7338B99050C /* Build configuration list for PBXNativeTarget "Pods-svovchyn2019_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -779,25 +791,27 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DBD35D08CB7463B68A77CBFF1D85D1F0 /* Build configuration list for PBXNativeTarget "svovchyn2019" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AACF793122FF8D4D0C21CAA9D35542FF /* Debug */,
-				86AE50502753E0994D8639455C384D04 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		10E1FAD5238B2FA400C4336E /* article.xcdatamodeld */ = {
+		10E1FAE3238BCE7A00C4336E /* article.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				10E1FAD6238B2FA400C4336E /* article.xcdatamodel */,
+				10E1FAE4238BCE7A00C4336E /* article.xcdatamodel */,
 			);
-			currentVersion = 10E1FAD6238B2FA400C4336E /* article.xcdatamodel */;
+			currentVersion = 10E1FAE4238BCE7A00C4336E /* article.xcdatamodel */;
 			path = article.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		2515E954EC88FDCC69A88FB541D95C4B /* article.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3289AC2876B71ED47A549A760A65EF60 /* article.xcdatamodel */,
+			);
+			currentVersion = 3289AC2876B71ED47A549A760A65EF60 /* article.xcdatamodel */;
+			name = article.xcdatamodeld;
+			path = svovchyn2019/Assets/article.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

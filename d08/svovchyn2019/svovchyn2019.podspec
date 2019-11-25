@@ -27,9 +27,10 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/stevevovchyna/svovchyn2019.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '12.0'
+  s.ios.deployment_target = '9.3'
 
   s.source_files = 'svovchyn2019/Classes/**/*'
+  s.resource = 'svovchyn2019/Assets/*'
   
   # s.resource_bundles = {
   #   'svovchyn2019' => ['svovchyn2019/Assets/*.png']
