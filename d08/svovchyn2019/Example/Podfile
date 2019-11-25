@@ -1,7 +1,7 @@
 use_frameworks!
 
 target 'svovchyn2019_Example' do
-  pod 'svovchyn2019', :path => '../'
+  pod 'svovchyn2019', :path => '../svovchyn2019'
 
   target 'svovchyn2019_Tests' do
     inherit! :search_paths

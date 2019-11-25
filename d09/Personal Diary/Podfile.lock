@@ -1,0 +1,16 @@
+PODS:
+  - svovchyn2019 (0.1.0)
+
+DEPENDENCIES:
+  - svovchyn2019 (from `../svovchyn2019`)
+
+EXTERNAL SOURCES:
+  svovchyn2019:
+    :path: "../svovchyn2019"
+
+SPEC CHECKSUMS:
+  svovchyn2019: 07366cbd1a516cc5e6639ccfd7df774ce1302479
+
+PODFILE CHECKSUM: ec342b33331f7ca31c79363fb16825b223e997cb
+
+COCOAPODS: 1.8.4

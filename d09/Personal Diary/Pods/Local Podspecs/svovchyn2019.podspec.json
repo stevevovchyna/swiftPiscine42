@@ -1,0 +1,26 @@
+{
+  "name": "svovchyn2019",
+  "version": "0.1.0",
+  "summary": "Educational project for the Unit Factory Swift Piscine",
+  "swift_versions": "5.1",
+  "description": "Pod is created for the educational purposes and will be a platform for creating an app which is capable of creating articles for a personal notebook",
+  "homepage": "https://github.com/stevevovchyna",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "stevevovchyna": "steve.vovchyna@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/stevevovchyna/svovchyn2019.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.3"
+  },
+  "source_files": "svovchyn2019/Classes/**/*",
+  "resources": "svovchyn2019/Assets/*",
+  "frameworks": "CoreData",
+  "swift_version": "5.1"
+}
