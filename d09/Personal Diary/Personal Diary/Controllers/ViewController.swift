@@ -16,7 +16,10 @@ class ViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        authenticationWithTouchID()
+//        authenticationWithTouchID()
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "goToDiary", sender: self)
+        }
     }
 }
 
