@@ -21,12 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: UISceneSession Lifecycle
 
+    @available(iOS 13.0, *)
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+            return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+        
     }
 
+    @available(iOS 13.0, *)
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
@@ -35,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data stack
 
+    @available(iOS 10.0, *)
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
@@ -65,16 +69,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data Saving support
 
     func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        if #available(iOS 10.0, *) {
+            let context = persistentContainer.viewContext
+            if context.hasChanges {
+                do {
+                    try context.save()
+                } catch {
+                    // Replace this implementation with code to handle the error appropriately.
+                    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    let nserror = error as NSError
+                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                }
             }
+        } else {
+            // Fallback on earlier versions
         }
     }
 
