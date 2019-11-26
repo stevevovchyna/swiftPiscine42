@@ -9,13 +9,7 @@
 import UIKit
 import svovchyn2019
 
-//protocol EditArticleDelegate {
-//    func atricleToEditWasChosen(article : Article)
-//}
-
 class DiaryTableViewController: UITableViewController {
-    
-//    var delegate : EditArticleDelegate?
     
     let articleManager = ArticleManager()
     let dateFormatter = DateFormatter()

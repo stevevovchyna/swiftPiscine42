@@ -46,7 +46,6 @@ class CreateOrEditViewController: UIViewController, UIImagePickerControllerDeleg
             articleToEdit?.content = self.contentField.text
             articleToEdit?.image = fixOrientation(img: imagePreview.image!).pngData() as NSData?
             articleToEdit?.modificationdate = NSDate()
-//            articleManager.save()
             self.navigationController?.popViewController(animated: true)
         } else {
             let title = titleField.text!
@@ -123,23 +122,5 @@ class CreateOrEditViewController: UIViewController, UIImagePickerControllerDeleg
         UIGraphicsEndImageContext()
             
        return normalizedImage
-    }
-
-    
-//    func atricleToEditWasChosen(article: Article) {
-//        print(article)
-//        print("darova!!!")
-//        self.titleField.text = article.title
-//        self.contentField.text = article.content
-//        self.imagePreview.image = UIImage(data: (article.image)! as Data)
-//    }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "articleChosen" {
-//            print("Privetiki!!!")
-//            let destinationVC = segue.destination as! DiaryTableViewController
-//            destinationVC.delegate = self
-//        }
-//    }
-    
+    }    
 }
