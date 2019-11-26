@@ -73,9 +73,9 @@ class DiaryTableViewController: UITableViewController {
 //        cell.articleImage.image = UIImage(data: currentCellData.image! as Data)
         cell.dateCreated.text = dateFormatter.string(from: currentCellData.creationdate! as Date)
         if currentCellData.creationdate == currentCellData.modificationdate {
-            cell.dateModified.text = dateFormatter.string(from: currentCellData.modificationdate! as Date)
-        } else {
             cell.dateModified.text = ""
+        } else {
+            cell.dateModified.text = dateFormatter.string(from: currentCellData.modificationdate! as Date)
         }
         return cell
     }
