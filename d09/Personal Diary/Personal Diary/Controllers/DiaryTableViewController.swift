@@ -34,9 +34,11 @@ class DiaryTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        articleManager.save()
         allArticles = articleManager.getAllArticles()
         picturesForArticles = transformPicturesInArticleArray(array: allArticles)
         tableView.reloadData()
+        
     }
     
     func transformPicturesInArticleArray(array: [Article]) -> [UIImage?] {

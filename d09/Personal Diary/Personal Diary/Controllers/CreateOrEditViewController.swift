@@ -46,7 +46,7 @@ class CreateOrEditViewController: UIViewController, UIImagePickerControllerDeleg
             articleToEdit?.content = self.contentField.text
             articleToEdit?.image = fixOrientation(img: imagePreview.image!).pngData() as NSData?
             articleToEdit?.modificationdate = NSDate()
-            articleManager.save()
+//            articleManager.save()
             self.navigationController?.popViewController(animated: true)
         } else {
             let title = titleField.text!
