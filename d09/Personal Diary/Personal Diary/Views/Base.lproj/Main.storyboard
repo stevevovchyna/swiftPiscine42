@@ -44,11 +44,14 @@
                     <navigationItem key="navigationItem" title="Diary" id="KAU-7g-rwj">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ImI-DU-CaS">
                             <connections>
-                                <segue destination="gXM-xw-e0B" kind="show" id="3hQ-hk-edH"/>
+                                <segue destination="gXM-xw-e0B" kind="show" identifier="createOrEdit" id="3hQ-hk-edH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <segue destination="gXM-xw-e0B" kind="show" identifier="articleChosen" id="rAB-62-Hu3"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o1b-Zu-dHk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -234,4 +237,7 @@
     <resources>
         <image name="cloud.sun.fill" catalog="system" width="64" height="44"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="rAB-62-Hu3"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -9,7 +9,13 @@
 import UIKit
 import svovchyn2019
 
+//protocol EditArticleDelegate {
+//    func atricleToEditWasChosen(article : Article)
+//}
+
 class DiaryTableViewController: UITableViewController {
+    
+//    var delegate : EditArticleDelegate?
     
     let articleManager = ArticleManager()
     let dateFormatter = DateFormatter()
@@ -47,6 +53,18 @@ class DiaryTableViewController: UITableViewController {
         return allArticles.count
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "articleChosen", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "articleChosen" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let controller = segue.destination as! CreateOrEditViewController
+                controller.articleToEdit = allArticles[indexPath.row]
+            }
+        }
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! DiaryTableViewCell
@@ -64,10 +82,5 @@ class DiaryTableViewController: UITableViewController {
             cell.dateModified.text = ""
         }
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    
-        
     }
 }

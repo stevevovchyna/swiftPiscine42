@@ -9,39 +9,61 @@
 import UIKit
 import svovchyn2019
 
+
+
 class CreateOrEditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
     let imagePicker = UIImagePickerController()
     let articleManager = ArticleManager()
     var pictureIsSelected : Bool = false
+    var articleToEdit : Article?
+    var editMode : Bool = false
     
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var contentField: UITextView!
     @IBOutlet weak var imagePreview: UIImageView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
-
-    
     override func viewDidLoad() {
+        super.viewDidLoad()
         imagePicker.delegate = self
         contentField.delegate = self
         titleField.addTarget(self, action: #selector(fieldChanged(_:)), for: .editingChanged)
         saveButton.isEnabled = false
+        if let article = articleToEdit {
+            titleField.text = article.title
+            contentField.text = article.content
+            imagePreview.image = UIImage(data: article.image! as Data)
+            saveButton.isEnabled = true
+            editMode = true
+            pictureIsSelected = true
+        }
     }
     
     @IBAction func saveArticle(_ sender: UIBarButtonItem) {
-        let title = titleField.text!
-        let content = contentField.text!
-        let image = fixOrientation(img: imagePreview.image!).pngData()
-        let date = NSDate()
-        
-        let newArticle = articleManager.newArticle()
-        newArticle.title = title
-        newArticle.content = content
-        newArticle.image = image as NSData?
-        newArticle.creationdate = date
-        articleManager.save()
-        self.navigationController?.popViewController(animated: true)
+        if editMode {
+            articleToEdit?.title = self.titleField.text
+            articleToEdit?.content = self.contentField.text
+            articleToEdit?.image = fixOrientation(img: imagePreview.image!).pngData() as NSData?
+            articleToEdit?.modificationdate = NSDate()
+            articleManager.save()
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            let title = titleField.text!
+            let content = contentField.text!
+            let image = fixOrientation(img: imagePreview.image!).pngData()
+            let date = NSDate()
+            
+            let newArticle = articleManager.newArticle()
+            newArticle.title = title
+            newArticle.content = content
+            newArticle.image = image as NSData?
+            newArticle.creationdate = date
+            newArticle.modificationdate = date
+            newArticle.language = Locale.current.languageCode
+            articleManager.save()
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func takePicture(_ sender: UIButton) {
@@ -102,5 +124,22 @@ class CreateOrEditViewController: UIViewController, UIImagePickerControllerDeleg
             
        return normalizedImage
     }
+
+    
+//    func atricleToEditWasChosen(article: Article) {
+//        print(article)
+//        print("darova!!!")
+//        self.titleField.text = article.title
+//        self.contentField.text = article.content
+//        self.imagePreview.image = UIImage(data: (article.image)! as Data)
+//    }
+//
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "articleChosen" {
+//            print("Privetiki!!!")
+//            let destinationVC = segue.destination as! DiaryTableViewController
+//            destinationVC.delegate = self
+//        }
+//    }
     
 }
