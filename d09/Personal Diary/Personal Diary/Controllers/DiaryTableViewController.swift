@@ -7,30 +7,67 @@
 //
 
 import UIKit
+import svovchyn2019
 
 class DiaryTableViewController: UITableViewController {
-
+    
+    let articleManager = ArticleManager()
+    let dateFormatter = DateFormatter()
+    
+    var allArticles : [Article] = []
+    var picturesForArticles : [UIImage?] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        allArticles = articleManager.getAllArticles()
+        picturesForArticles = transformPicturesInArticleArray(array: allArticles)
+        dateFormatter.dateFormat = "dd MMM yyyy HH:mm"
+
         tableView.register(UINib(nibName: "DiaryTableViewCell", bundle: nil), forCellReuseIdentifier: "articleCell")
- 
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        allArticles = articleManager.getAllArticles()
+        picturesForArticles = transformPicturesInArticleArray(array: allArticles)
+        tableView.reloadData()
+    }
+    
+    func transformPicturesInArticleArray(array: [Article]) -> [UIImage?] {
+        var pictures : [UIImage?] = []
+        for article in array {
+            pictures.append(UIImage(data: article.image! as Data))
+        }
+        return pictures
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return allArticles.count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! DiaryTableViewCell
-        cell.title.text = "Darova, Pios!"
+        let currentCellData = allArticles[indexPath.row]
+        cell.title.text = currentCellData.title
         cell.title.numberOfLines = 0
-        cell.content.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        cell.content.text = currentCellData.content
         cell.content.numberOfLines = 0
-        cell.dateCreated.text = String(NSTimeIntervalSince1970)
-        cell.dateModified.text = String(NSTimeIntervalSince1970)
+        cell.articleImage.image = picturesForArticles[indexPath.row]
+//        cell.articleImage.image = UIImage(data: currentCellData.image! as Data)
+        cell.dateCreated.text = dateFormatter.string(from: currentCellData.creationdate! as Date)
+        if currentCellData.creationdate == currentCellData.modificationdate {
+            cell.dateModified.text = dateFormatter.string(from: currentCellData.modificationdate! as Date)
+        } else {
+            cell.dateModified.text = ""
+        }
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    
+        
     }
 }

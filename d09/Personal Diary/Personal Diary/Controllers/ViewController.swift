@@ -16,6 +16,13 @@ class ViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        let articleManager = ArticleManager()
+//        let allArticles = articleManager.getAllArticles()
+//        for article in allArticles {
+//            articleManager.removeArticle(article: article)
+//        }
+//        articleManager.save()
+        
 //        authenticationWithTouchID()
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "goToDiary", sender: self)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10D8DE98238D328C0025293A /* CreateOrEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D8DE97238D328B0025293A /* CreateOrEditViewController.swift */; };
 		10E1FAF3238BEC1700C4336E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E1FAF2238BEC1700C4336E /* AppDelegate.swift */; };
 		10E1FAF5238BEC1700C4336E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E1FAF4238BEC1700C4336E /* SceneDelegate.swift */; };
 		10E1FAF7238BEC1700C4336E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E1FAF6238BEC1700C4336E /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10D8DE97238D328B0025293A /* CreateOrEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditViewController.swift; sourceTree = "<group>"; };
 		10E1FAEF238BEC1700C4336E /* Personal Diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Personal Diary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		10E1FAF2238BEC1700C4336E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10E1FAF4238BEC1700C4336E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			children = (
 				10E1FAF6238BEC1700C4336E /* ViewController.swift */,
 				10E1FB09238C492D00C4336E /* DiaryTableViewController.swift */,
+				10D8DE97238D328B0025293A /* CreateOrEditViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				10E1FAF7238BEC1700C4336E /* ViewController.swift in Sources */,
 				10E1FAF3238BEC1700C4336E /* AppDelegate.swift in Sources */,
 				10E1FAF5238BEC1700C4336E /* SceneDelegate.swift in Sources */,
+				10D8DE98238D328C0025293A /* CreateOrEditViewController.swift in Sources */,
 				10E1FAFD238BEC1700C4336E /* Personal_Diary.xcdatamodeld in Sources */,
 				10E1FB0A238C492D00C4336E /* DiaryTableViewController.swift in Sources */,
 				10E1FB11238C6EBB00C4336E /* DiaryTableViewCell.swift in Sources */,
