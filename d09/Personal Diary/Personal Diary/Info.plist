@@ -64,5 +64,7 @@
 	<string>We need your camera so you are able to add your own pictures!</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need an access to yoru photo library so you could a picture of your choice</string>
+	<key>UIApplicationExitsOnSuspend</key>
+	<true/>
 </dict>
 </plist>

@@ -43,7 +43,7 @@ class CreateOrEditViewController: UIViewController, UIImagePickerControllerDeleg
     @IBAction func saveArticle(_ sender: UIBarButtonItem) {
         let title = titleField.text!
         let content = contentField.text!
-        let image = normalizeImageOrientation(img: imagePreview.image!).pngData() as NSData?
+        let image = imagePreview.image!.pngData() as NSData?
         let date = NSDate()
         let language = Locale.current.languageCode
 
@@ -67,10 +67,16 @@ class CreateOrEditViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     @IBAction func takePicture(_ sender: UIButton) {
-        imagePicker.sourceType = .camera
-        imagePicker.allowsEditing = false
-        imagePicker.view.layoutIfNeeded()
-        self.present(imagePicker, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+            imagePicker.allowsEditing = false
+            imagePicker.view.layoutIfNeeded()
+            self.present(imagePicker, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Camera Unavailable", message: "Unfortunately, camera is not available on this device.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
         
     }
     
@@ -101,7 +107,7 @@ class CreateOrEditViewController: UIViewController, UIImagePickerControllerDeleg
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
-            imagePreview.image = image
+            imagePreview.image = normalizeImageOrientation(img: image)
             if !titleField.text!.isEmpty && !contentField.text!.isEmpty {
                 saveButton.isEnabled = true
             }

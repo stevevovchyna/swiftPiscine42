@@ -42,8 +42,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5yw-6a-RxB">
                         <rect key="frame" x="0.0" y="44" width="320" height="173"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud.sun.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="SnF-N8-KaI">
-                                <rect key="frame" x="0.0" y="-2" width="320" height="173"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_picture" translatesAutoresizingMaskIntoConstraints="NO" id="SnF-N8-KaI">
+                                <rect key="frame" x="0.0" y="-0.5" width="320" height="174"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                         </subviews>
@@ -152,6 +152,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="cloud.sun.fill" catalog="system" width="64" height="44"/>
+        <image name="no_picture" width="256" height="256"/>
     </resources>
 </document>

@@ -83,6 +83,7 @@ class DiaryTableViewController: UITableViewController {
     
     func getArticles() {
         allArticles = articleManager.getAllArticles().filter{ $0.language == Locale.current.languageCode }
+        allArticles.reverse()
         picturesForArticles = transformPicturesInArticleArray(array: allArticles)
     }
     

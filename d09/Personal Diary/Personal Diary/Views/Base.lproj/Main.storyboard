@@ -164,8 +164,8 @@
                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="IeR-KF-ikG">
                                 <rect key="frame" x="0.0" y="311" width="414" height="200"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud.sun.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pci-Oa-PbC">
-                                        <rect key="frame" x="0.0" y="-2.8421709430404007e-14" width="414" height="197"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_picture" translatesAutoresizingMaskIntoConstraints="NO" id="pci-Oa-PbC">
+                                        <rect key="frame" x="0.0" y="1.3333333333333144" width="414" height="198.33333333333334"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -235,7 +235,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cloud.sun.fill" catalog="system" width="64" height="44"/>
+        <image name="no_picture" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="rAB-62-Hu3"/>
