@@ -13,6 +13,7 @@
 		10D8DEAF238EC2F50025293A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10D8DEAD238EC2F50025293A /* Main.storyboard */; };
 		10D8DEB1238EC2F80025293A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10D8DEB0238EC2F80025293A /* Assets.xcassets */; };
 		10D8DEB4238EC2F80025293A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10D8DEB2238EC2F80025293A /* LaunchScreen.storyboard */; };
+		10D8DEBC238EC8A30025293A /* LocationSearchTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D8DEBB238EC8A30025293A /* LocationSearchTableTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		10D8DEB0238EC2F80025293A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10D8DEB3238EC2F80025293A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		10D8DEB5238EC2F80025293A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10D8DEBB238EC8A30025293A /* LocationSearchTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTableTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				10D8DEA7238EC2F50025293A /* AppDelegate.swift */,
 				10D8DEA9238EC2F50025293A /* SceneDelegate.swift */,
 				10D8DEAB238EC2F50025293A /* ViewController.swift */,
+				10D8DEBB238EC8A30025293A /* LocationSearchTableTableViewController.swift */,
 				10D8DEAD238EC2F50025293A /* Main.storyboard */,
 				10D8DEB0238EC2F80025293A /* Assets.xcassets */,
 				10D8DEB2238EC2F80025293A /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10D8DEAC238EC2F50025293A /* ViewController.swift in Sources */,
+				10D8DEBC238EC8A30025293A /* LocationSearchTableTableViewController.swift in Sources */,
 				10D8DEA8238EC2F50025293A /* AppDelegate.swift in Sources */,
 				10D8DEAA238EC2F50025293A /* SceneDelegate.swift in Sources */,
 			);
