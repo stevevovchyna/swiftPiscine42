@@ -23,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		10D8DE97238D328B0025293A /* CreateOrEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditViewController.swift; sourceTree = "<group>"; };
+		10D8DE99238EAF750025293A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		10D8DE9A238EAF760025293A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		10E1FAEF238BEC1700C4336E /* Personal Diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Personal Diary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		10E1FAF2238BEC1700C4336E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10E1FAF4238BEC1700C4336E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 10E1FAE6238BEC1700C4336E;
 			productRefGroup = 10E1FAF0238BEC1700C4336E /* Products */;
@@ -282,6 +285,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				10E1FAF9238BEC1700C4336E /* Base */,
+				10D8DE99238EAF750025293A /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -290,6 +294,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				10E1FB01238BEC1A00C4336E /* Base */,
+				10D8DE9A238EAF760025293A /* fr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -301,6 +306,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -361,6 +367,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

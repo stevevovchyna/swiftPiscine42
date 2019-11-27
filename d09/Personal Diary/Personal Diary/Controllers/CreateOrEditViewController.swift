@@ -41,25 +41,26 @@ class CreateOrEditViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     @IBAction func saveArticle(_ sender: UIBarButtonItem) {
+        let title = titleField.text!
+        let content = contentField.text!
+        let image = normalizeImageOrientation(img: imagePreview.image!).pngData() as NSData?
+        let date = NSDate()
+        let language = Locale.current.languageCode
+
         if editMode {
-            articleToEdit?.title = self.titleField.text
-            articleToEdit?.content = self.contentField.text
-            articleToEdit?.image = fixOrientation(img: imagePreview.image!).pngData() as NSData?
-            articleToEdit?.modificationdate = NSDate()
+            articleToEdit?.title = title
+            articleToEdit?.content = content
+            articleToEdit?.image = image
+            articleToEdit?.modificationdate = date
             self.navigationController?.popViewController(animated: true)
         } else {
-            let title = titleField.text!
-            let content = contentField.text!
-            let image = fixOrientation(img: imagePreview.image!).pngData()
-            let date = NSDate()
-            
             let newArticle = articleManager.newArticle()
             newArticle.title = title
             newArticle.content = content
-            newArticle.image = image as NSData?
+            newArticle.image = image
             newArticle.creationdate = date
             newArticle.modificationdate = date
-            newArticle.language = Locale.current.languageCode
+            newArticle.language = language
             articleManager.save()
             self.navigationController?.popViewController(animated: true)
         }
@@ -109,18 +110,13 @@ class CreateOrEditViewController: UIViewController, UIImagePickerControllerDeleg
         }
     }
     
-    func fixOrientation(img: UIImage) -> UIImage {
-        if (img.imageOrientation == .up) {
-            return img
-        }
-            
+    func normalizeImageOrientation(img: UIImage) -> UIImage {
+        if (img.imageOrientation == .up) { return img }
         UIGraphicsBeginImageContextWithOptions(img.size, false, img.scale)
         let rect = CGRect(x: 0, y: 0, width: img.size.width, height: img.size.height)
         img.draw(in: rect)
-            
         let normalizedImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-            
-       return normalizedImage
+        return normalizedImage
     }    
 }

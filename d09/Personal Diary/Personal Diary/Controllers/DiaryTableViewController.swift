@@ -19,28 +19,15 @@ class DiaryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        allArticles = articleManager.getAllArticles()
-        picturesForArticles = transformPicturesInArticleArray(array: allArticles)
+        getArticles()
         dateFormatter.dateFormat = "dd MMM yyyy HH:mm"
-
         tableView.register(UINib(nibName: "DiaryTableViewCell", bundle: nil), forCellReuseIdentifier: "articleCell")
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         articleManager.save()
-        allArticles = articleManager.getAllArticles()
-        picturesForArticles = transformPicturesInArticleArray(array: allArticles)
+        getArticles()
         tableView.reloadData()
-        
-    }
-    
-    func transformPicturesInArticleArray(array: [Article]) -> [UIImage?] {
-        var pictures : [UIImage?] = []
-        for article in array {
-            pictures.append(UIImage(data: article.image! as Data))
-        }
-        return pictures
     }
 
     // MARK: - Table view data source
@@ -92,5 +79,18 @@ class DiaryTableViewController: UITableViewController {
             cell.dateModified.text = dateFormatter.string(from: currentCellData.modificationdate! as Date)
         }
         return cell
+    }
+    
+    func getArticles() {
+        allArticles = articleManager.getAllArticles().filter{ $0.language == Locale.current.languageCode }
+        picturesForArticles = transformPicturesInArticleArray(array: allArticles)
+    }
+    
+    func transformPicturesInArticleArray(array: [Article]) -> [UIImage?] {
+        var pictures : [UIImage?] = []
+        for article in array {
+            pictures.append(UIImage(data: article.image! as Data))
+        }
+        return pictures
     }
 }

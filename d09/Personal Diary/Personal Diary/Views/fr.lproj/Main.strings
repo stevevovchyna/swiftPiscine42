@@ -1,0 +1,15 @@
+
+/* Class = "UIButton"; normalTitle = "Choose Picture"; ObjectID = "13a-7k-2ck"; */
+"13a-7k-2ck.normalTitle" = "Choisissez une photo";
+
+/* Class = "UITextField"; placeholder = "Title of your Article..."; ObjectID = "E5t-Pv-7ma"; */
+"E5t-Pv-7ma.placeholder" = "Titre de votre article ...";
+
+/* Class = "UINavigationItem"; title = "Diary"; ObjectID = "KAU-7g-rwj"; */
+"KAU-7g-rwj.title" = "Journal intime";
+
+/* Class = "UINavigationItem"; title = "New Article"; ObjectID = "Qfe-5f-1wd"; */
+"Qfe-5f-1wd.title" = "Nouvel article";
+
+/* Class = "UIButton"; normalTitle = "Take Picture"; ObjectID = "bLe-hz-USH"; */
+"bLe-hz-USH.normalTitle" = "Prendre une photo";
