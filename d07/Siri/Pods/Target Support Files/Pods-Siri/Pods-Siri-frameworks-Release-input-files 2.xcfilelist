@@ -1,0 +1,5 @@
+${PODS_ROOT}/Target Support Files/Pods-Siri/Pods-Siri-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/DarkSkyKit/DarkSkyKit.framework
+${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework
+${BUILT_PRODUCTS_DIR}/sapcai/sapcai.framework

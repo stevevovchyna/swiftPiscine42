@@ -1,0 +1,6 @@
+framework module sapcai {
+  umbrella header "sapcai-umbrella.h"
+
+  export *
+  module * { export * }
+}
