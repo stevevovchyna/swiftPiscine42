@@ -87,7 +87,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         )
                 
         if !micAccessIsGranted() {
-            self.presentAlert(alertTitle: "Mic access denied", alertMessage: "You can grant access in Settings")
             self.disableMicButton()
         }
     }
