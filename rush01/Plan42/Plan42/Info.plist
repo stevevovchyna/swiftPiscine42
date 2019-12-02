@@ -50,8 +50,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -61,8 +59,8 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We need your location to show it on the map to you</string>
-	<key>NSLocationUsageDescription</key>
-	<string>We need your location to show it on the map to you</string>
+	<string>We&apos;ll need your location for showing it on the map</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We&apos;ll need your location for showing it on the map</string>
 </dict>
 </plist>

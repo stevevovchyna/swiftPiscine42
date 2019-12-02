@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  Plan42
 //
-//  Created by Steve Vovchyna on 27.11.2019.
+//  Created by Steve Vovchyna on 02.12.2019.
 //  Copyright © 2019 Steve Vovchyna. All rights reserved.
 //
 

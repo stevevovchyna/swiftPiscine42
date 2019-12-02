@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "10D8DEA3238EC2F50025293A"
+               BlueprintIdentifier = "10C1ECE9239534AC00FD8C62"
                BuildableName = "Plan42.app"
                BlueprintName = "Plan42"
                ReferencedContainer = "container:Plan42.xcodeproj">
@@ -44,7 +44,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "10D8DEA3238EC2F50025293A"
+            BlueprintIdentifier = "10C1ECE9239534AC00FD8C62"
             BuildableName = "Plan42.app"
             BlueprintName = "Plan42"
             ReferencedContainer = "container:Plan42.xcodeproj">
@@ -61,7 +61,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "10D8DEA3238EC2F50025293A"
+            BlueprintIdentifier = "10C1ECE9239534AC00FD8C62"
             BuildableName = "Plan42.app"
             BlueprintName = "Plan42"
             ReferencedContainer = "container:Plan42.xcodeproj">
