@@ -21,7 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nf4-wI-zGg">
                                 <rect key="frame" x="0.0" y="44" width="414" height="176"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="From:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wEG-2M-S2J">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="From:" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="wEG-2M-S2J">
                                         <rect key="frame" x="8" y="0.0" width="398" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="9lC-e9-b3e"/>
@@ -34,7 +34,7 @@
                                             <action selector="startPointEditingDidEnd:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="hEo-01-MbE"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="To:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SZ5-6l-srQ">
+                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="To:" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="SZ5-6l-srQ">
                                         <rect key="frame" x="8" y="42" width="398" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="8Jo-yx-lMl"/>
@@ -47,40 +47,46 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNN-Fw-Pc0">
-                                        <rect key="frame" x="8" y="84" width="398" height="30"/>
-                                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="My current location!">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="8" y="84" width="30" height="30"/>
+                                        <color key="backgroundColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="685-3v-P7W"/>
+                                            <constraint firstAttribute="width" constant="30" id="Kb9-ni-IW3"/>
+                                        </constraints>
+                                        <state key="normal" title="⦿">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="showUserLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kl6-1T-GBL"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="An8-zJ-q99">
-                                        <rect key="frame" x="8" y="122" width="398" height="34"/>
-                                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="46" y="84" width="360" height="30"/>
+                                        <color key="backgroundColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="81r-WE-1fC"/>
+                                            <constraint firstAttribute="height" constant="30" id="und-hq-gGl"/>
                                         </constraints>
                                         <state key="normal" title="Build route!">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="buildRouteButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="64y-rk-hRX"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="176" id="1Ih-rW-VYZ"/>
+                                    <constraint firstItem="An8-zJ-q99" firstAttribute="leading" secondItem="jNN-Fw-Pc0" secondAttribute="trailing" constant="8" id="46N-mF-HvR"/>
                                     <constraint firstItem="wEG-2M-S2J" firstAttribute="leading" secondItem="Nf4-wI-zGg" secondAttribute="leading" constant="8" id="639-zg-f9h"/>
-                                    <constraint firstAttribute="trailing" secondItem="An8-zJ-q99" secondAttribute="trailing" constant="8" id="7rx-D8-CP8"/>
-                                    <constraint firstItem="An8-zJ-q99" firstAttribute="leading" secondItem="Nf4-wI-zGg" secondAttribute="leading" constant="8" id="91g-Bl-UsD"/>
-                                    <constraint firstItem="jNN-Fw-Pc0" firstAttribute="leading" secondItem="Nf4-wI-zGg" secondAttribute="leading" constant="8" id="9VV-dB-qza"/>
+                                    <constraint firstItem="An8-zJ-q99" firstAttribute="top" secondItem="SZ5-6l-srQ" secondAttribute="bottom" constant="8" id="G0G-wd-vch"/>
                                     <constraint firstItem="SZ5-6l-srQ" firstAttribute="top" secondItem="wEG-2M-S2J" secondAttribute="bottom" constant="8" id="Mtj-qu-mFF"/>
                                     <constraint firstItem="wEG-2M-S2J" firstAttribute="top" secondItem="Nf4-wI-zGg" secondAttribute="top" id="Wcq-eQ-gVB"/>
-                                    <constraint firstItem="jNN-Fw-Pc0" firstAttribute="top" secondItem="SZ5-6l-srQ" secondAttribute="bottom" constant="8" id="aaw-8b-jw6"/>
+                                    <constraint firstItem="jNN-Fw-Pc0" firstAttribute="leading" secondItem="Nf4-wI-zGg" secondAttribute="leading" constant="8" id="acZ-kZ-Qjc"/>
+                                    <constraint firstItem="jNN-Fw-Pc0" firstAttribute="top" secondItem="SZ5-6l-srQ" secondAttribute="bottom" constant="8" id="afG-vJ-LNy"/>
                                     <constraint firstAttribute="trailing" secondItem="wEG-2M-S2J" secondAttribute="trailing" constant="8" id="gpj-QW-rQj"/>
                                     <constraint firstItem="SZ5-6l-srQ" firstAttribute="leading" secondItem="Nf4-wI-zGg" secondAttribute="leading" constant="8" id="msJ-Jt-6P5"/>
-                                    <constraint firstItem="An8-zJ-q99" firstAttribute="top" secondItem="jNN-Fw-Pc0" secondAttribute="bottom" constant="8" id="sCg-5F-JJ8"/>
+                                    <constraint firstAttribute="trailing" secondItem="An8-zJ-q99" secondAttribute="trailing" constant="8" id="p23-DN-MTD"/>
                                     <constraint firstAttribute="trailing" secondItem="SZ5-6l-srQ" secondAttribute="trailing" constant="8" id="wzl-Eo-oaw"/>
-                                    <constraint firstAttribute="trailing" secondItem="jNN-Fw-Pc0" secondAttribute="trailing" constant="8" id="yyD-tB-BhH"/>
                                 </constraints>
                             </view>
                         </subviews>

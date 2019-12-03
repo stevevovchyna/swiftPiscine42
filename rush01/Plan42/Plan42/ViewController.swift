@@ -11,7 +11,6 @@ import MapKit
 import CoreLocation
 import GoogleMaps
 import GooglePlaces
-//import GoogleMapsCore
 
 class ViewController: UIViewController, MKMapViewDelegate, GMSAutocompleteFetcherDelegate {
     
@@ -39,24 +38,29 @@ class ViewController: UIViewController, MKMapViewDelegate, GMSAutocompleteFetche
     @IBOutlet weak var bottomStartTextFieldCOnstraint: NSLayoutConstraint!
     @IBOutlet weak var navigationLabelsView: UIView!
     
+    var accessoryDoneButton: UIBarButtonItem!
+    let accessoryToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Create a new session token.
+//        overrideUserInterfaceStyle = .dark
         token = GMSAutocompleteSessionToken.init()
-
-        // Create the fetcher.
         fetcher = GMSAutocompleteFetcher()
         fetcher?.delegate = self
         fetcher?.provide(token)
-        
         placesClient = GMSPlacesClient()
 
+        accessoryDoneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(self.donePressed))
+        accessoryToolBar.items = [self.accessoryDoneButton]
+        startPointText.inputAccessoryView = self.accessoryToolBar
+        endPointText.inputAccessoryView = self.accessoryToolBar
+        
+        buildRouteButton.layer.cornerRadius = 5
+        currentLocationButton.layer.cornerRadius = 5
+
         buildRouteButton.isHidden = true
-        
-        startPointText.clearButtonMode = UITextField.ViewMode.whileEditing
-        endPointText.clearButtonMode = UITextField.ViewMode.whileEditing
-        
+
         addressTableView = AddressTableView(frame: CGRect(), style: UITableView.Style.plain)
 
         map.delegate = self
@@ -68,8 +72,50 @@ class ViewController: UIViewController, MKMapViewDelegate, GMSAutocompleteFetche
 
     }
     
+    @objc func donePressed() {
+        view.endEditing(true)
+    }
+    
+    @IBAction func buildRouteButtonPressed(_ sender: UIButton) {
+        
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: chosenStartLocation!.coordinate, addressDictionary: nil))
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: chosenEndLocation!.coordinate, addressDictionary: nil))
+        request.requestsAlternateRoutes = true
+        request.transportType = .automobile
+
+        let directions = MKDirections(request: request)
+
+        directions.calculate { [unowned self] response, error in
+            guard let unwrappedResponse = response else { return }
+            for route in unwrappedResponse.routes {
+                self.map.addOverlay(route.polyline)
+                self.map.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+            }
+        }
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
+        renderer.strokeColor = UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1.0)
+        return renderer
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        } else {
+            let annotationView = MKMarkerAnnotationView()
+            annotationView.animatesWhenAdded = true
+            annotationView.markerTintColor = UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1.0)
+            annotationView.glyphImage = UIImage(named: "cybertruck")
+            annotationView.selectedGlyphImage = UIImage(named: "cybertruck")
+            return annotationView
+        }
+    }
+    
     @IBAction func startPointEditingDidEnd(_ sender: UITextField) {
-        print("EditingDidEnd", startPointText.text!)
         startIsCurrentActiveTextField = nil
     }
     
@@ -82,17 +128,18 @@ class ViewController: UIViewController, MKMapViewDelegate, GMSAutocompleteFetche
                 map.removeAnnotation(annotaionToDelete)
                 startAnnotation = nil
             }
+            map.removeOverlays(map.overlays)
+            
+            buildRouteButton.isHidden = true
             startIsCurrentActiveTextField = nil
             addressTableView?.removeFromSuperview()
         }
     }
     
     @IBAction func startPointEdidtingDidBegin(_ sender: UITextField) {
-        print("editingDidbegin", startPointText.text!)
     }
     
     @IBAction func endPointEditingDidEnd(_ sender: UITextField) {
-        print("EditingDidEnd", startPointText.text!)
         startIsCurrentActiveTextField = nil
     }
     
@@ -105,6 +152,9 @@ class ViewController: UIViewController, MKMapViewDelegate, GMSAutocompleteFetche
                 map.removeAnnotation(annotaionToDelete)
                 endAnnotation = nil
             }
+            map.removeOverlays(map.overlays)
+            
+            buildRouteButton.isHidden = true
             startIsCurrentActiveTextField = nil
             addressTableView?.removeFromSuperview()
         }
@@ -186,6 +236,11 @@ class ViewController: UIViewController, MKMapViewDelegate, GMSAutocompleteFetche
                 } else {
                     self.endPointText.resignFirstResponder()
                 }
+                if let _ = self.startAnnotation, let _ = self.endAnnotation {
+                    self.buildRouteButton.isHidden = false
+                } else {
+                    self.buildRouteButton.isHidden = true
+                }
             }
         }
     }
@@ -251,12 +306,6 @@ extension ViewController : CLLocationManagerDelegate {
             map.setRegion(region, animated: true)
             locationManager.stopUpdatingLocation()
         }
-        CLGeocoder().reverseGeocodeLocation(locations.last!, completionHandler: {(placemarks: Array<CLPlacemark>?, error:Optional<Error>?) -> () in
-            if let placemarks = placemarks {
-                let placemark = placemarks[0]
-                print(placemark.country!)
-            }
-        })
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
