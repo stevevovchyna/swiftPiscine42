@@ -21,7 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nf4-wI-zGg">
                                 <rect key="frame" x="0.0" y="44" width="414" height="176"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wEG-2M-S2J">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="From:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wEG-2M-S2J">
                                         <rect key="frame" x="8" y="0.0" width="398" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="9lC-e9-b3e"/>
@@ -34,13 +34,17 @@
                                             <action selector="startPointEditingDidEnd:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="hEo-01-MbE"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SZ5-6l-srQ">
+                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="To:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SZ5-6l-srQ">
                                         <rect key="frame" x="8" y="42" width="398" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="8Jo-yx-lMl"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="endPointEditingDidChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="Eam-12-LsM"/>
+                                            <action selector="endPointEditingDidEnd:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="Xmw-qM-wqQ"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNN-Fw-Pc0">
                                         <rect key="frame" x="8" y="84" width="398" height="30"/>

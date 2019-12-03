@@ -8,13 +8,14 @@
 
 import UIKit
 import MapKit
+import GooglePlaces
 
 class AddressTableView: UITableView {
 
-    var addresses: Array<CLPlacemark> = []
+    var addresses: [GMSAutocompletePrediction] = []
     var textField: UITextField!
-    var chosenPointPlacemark: CLPlacemark!
     var delegator: ViewController!
+    var isStartLocation: Bool!
     
     override init(frame: CGRect, style: UITableView.Style) {
       super.init(frame: frame, style: style)
@@ -33,7 +34,7 @@ extension AddressTableView: UITableViewDelegate, UITableViewDataSource {
         
         if addresses.count > indexPath.row {
             let address = addresses[indexPath.row]
-            cell.textLabel?.text = "\(address.name ?? ""), \(address.administrativeArea ?? ""), \(address.country ?? "")"
+            cell.textLabel?.text = address.attributedPrimaryText.string
         } else {
             cell.textLabel?.text = "None of the above"
         }
@@ -47,9 +48,8 @@ extension AddressTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if addresses.count > indexPath.row {
             let address = addresses[indexPath.row]
-            textField.text = "\(address.name ?? ""), \(address.administrativeArea ?? ""), \(address.country ?? "")"
-            chosenPointPlacemark = address
-            delegator.focusMapViewAndSetPin(placemark: address)
+            textField.text = address.attributedPrimaryText.string
+            delegator.focusMapViewAndSetPin(placemark: address, textField: textField, isStartLocation: isStartLocation)
         }
         tableView.removeFromSuperview()
     }

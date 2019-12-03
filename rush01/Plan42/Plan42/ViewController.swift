@@ -9,13 +9,23 @@
 import UIKit
 import MapKit
 import CoreLocation
+import GoogleMaps
+import GooglePlaces
+//import GoogleMapsCore
 
-class ViewController: UIViewController, MKMapViewDelegate {
+class ViewController: UIViewController, MKMapViewDelegate, GMSAutocompleteFetcherDelegate {
+    
+    var fetcher: GMSAutocompleteFetcher?
+    var placesClient: GMSPlacesClient?
+    var token: GMSAutocompleteSessionToken?
     
     let locationManager = CLLocationManager()
-    var chosenStartLocation: CLPlacemark?
-    var startAnnotaion: MKAnnotation?
-    var chosenEndLocation: CLPlacemark?
+    var chosenStartLocation: GMSPlace?
+    var chosenEndLocation: GMSPlace?
+    var startAnnotation: MKAnnotation?
+    var endAnnotation: MKAnnotation?
+    
+    var startIsCurrentActiveTextField: Bool?
 
     @IBOutlet weak var map: MKMapView!
     
@@ -31,18 +41,23 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Create a new session token.
+        token = GMSAutocompleteSessionToken.init()
+
+        // Create the fetcher.
+        fetcher = GMSAutocompleteFetcher()
+        fetcher?.delegate = self
+        fetcher?.provide(token)
+        
+        placesClient = GMSPlacesClient()
 
         buildRouteButton.isHidden = true
         
         startPointText.clearButtonMode = UITextField.ViewMode.whileEditing
+        endPointText.clearButtonMode = UITextField.ViewMode.whileEditing
         
-        let x = sideStartTextFieldConstraint.constant
-        let y = endPointText.frame.origin.y + navigationLabelsView.frame.origin.y
-        let width = startPointText.bounds.width
-        let height = view.frame.size.height / 2
-        let boundRect = CGRect(x: x, y: y, width: width, height: height)
-        
-        addressTableView = AddressTableView(frame: boundRect, style: UITableView.Style.plain)
+        addressTableView = AddressTableView(frame: CGRect(), style: UITableView.Style.plain)
 
         map.delegate = self
         map.showsUserLocation = true
@@ -50,14 +65,74 @@ class ViewController: UIViewController, MKMapViewDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        // Do any additional setup after loading the view.
+
     }
     
-    func showAddressTable(addresses: Array<CLPlacemark>, textField: UITextField, locationPointPlacemark: CLPlacemark?) {
+    @IBAction func startPointEditingDidEnd(_ sender: UITextField) {
+        print("EditingDidEnd", startPointText.text!)
+        startIsCurrentActiveTextField = nil
+    }
+    
+    @IBAction func startPointEditingDidChange(_ sender: UITextField) {
+        if startPointText.text! != "" {
+            startIsCurrentActiveTextField = true
+            fetcher?.sourceTextHasChanged(startPointText.text!)
+        } else {
+            if let annotaionToDelete = startAnnotation {
+                map.removeAnnotation(annotaionToDelete)
+                startAnnotation = nil
+            }
+            startIsCurrentActiveTextField = nil
+            addressTableView?.removeFromSuperview()
+        }
+    }
+    
+    @IBAction func startPointEdidtingDidBegin(_ sender: UITextField) {
+        print("editingDidbegin", startPointText.text!)
+    }
+    
+    @IBAction func endPointEditingDidEnd(_ sender: UITextField) {
+        print("EditingDidEnd", startPointText.text!)
+        startIsCurrentActiveTextField = nil
+    }
+    
+    @IBAction func endPointEditingDidChange(_ sender: UITextField) {
+        if endPointText.text! != "" {
+            startIsCurrentActiveTextField = false
+            fetcher?.sourceTextHasChanged(endPointText.text!)
+        } else {
+            if let annotaionToDelete = endAnnotation {
+                map.removeAnnotation(annotaionToDelete)
+                endAnnotation = nil
+            }
+            startIsCurrentActiveTextField = nil
+            addressTableView?.removeFromSuperview()
+        }
+    }
+    
+    func didAutocomplete(with predictions: [GMSAutocompletePrediction]) {
+        if let booleanCheck = startIsCurrentActiveTextField {
+            let textField = booleanCheck ? startPointText! : endPointText!
+            showAddressTable(addresses: predictions, textField: textField, isStartLocation: booleanCheck)
+        }
+    }
+    
+    func didFailAutocompleteWithError(_ error: Error) {
+        print(error.localizedDescription)
+    }
+    
+    func showAddressTable(addresses: [GMSAutocompletePrediction], textField: UITextField, isStartLocation: Bool) {
+        
         let x = sideStartTextFieldConstraint.constant
-        let y = endPointText.frame.origin.y + navigationLabelsView.frame.origin.y
+        var y = endPointText.frame.origin.y + navigationLabelsView.frame.origin.y
         let width = startPointText.bounds.width
-        let height = view.frame.size.height / 2
+        var height = view.frame.size.height / 2
+        
+        if !isStartLocation {
+            y = endPointText.frame.origin.y + navigationLabelsView.frame.origin.y + endPointText.frame.size.height
+            height -= endPointText.frame.size.height
+        }
+        
         let boundRect = CGRect(x: x, y: y, width: width, height: height)
         
         addressTableView?.removeFromSuperview()
@@ -66,57 +141,71 @@ class ViewController: UIViewController, MKMapViewDelegate {
         addressTableView!.delegate = addressTableView
         addressTableView!.dataSource = addressTableView
         addressTableView!.textField = textField
-        addressTableView!.chosenPointPlacemark = locationPointPlacemark
+        addressTableView!.isStartLocation = isStartLocation ? true : false
         addressTableView?.delegator = self
         view.addSubview(addressTableView!)
     }
     
-    func focusMapViewAndSetPin(placemark: CLPlacemark) {
-        let latitude = placemark.location?.coordinate.latitude
-        let longitude = placemark.location?.coordinate.longitude
-        
-        if let annotaionToDelete = startAnnotaion {
-            map.removeAnnotation(annotaionToDelete)
+    func focusMapViewAndSetPin(placemark: GMSAutocompletePrediction, textField: UITextField, isStartLocation: Bool) {
+        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.all.rawValue))!
+        placesClient!.fetchPlace(fromPlaceID: placemark.placeID, placeFields: fields, sessionToken: nil) { (fetchedPlacemark, error) in
+            if let error = error {
+              print("An error occurred: \(error.localizedDescription)")
+              return
+            }
+            if let currentPlacemark = fetchedPlacemark {
+                let latitude = currentPlacemark.coordinate.latitude
+                let longitude = currentPlacemark.coordinate.longitude
+                if isStartLocation {
+                    if let annotaionToDelete = self.startAnnotation {
+                        self.map.removeAnnotation(annotaionToDelete)
+                    }
+                } else {
+                    if let annotaionToDelete = self.endAnnotation {
+                        self.map.removeAnnotation(annotaionToDelete)
+                    }
+                }
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                annotation.title = currentPlacemark.name
+                annotation.subtitle = currentPlacemark.formattedAddress
+                self.map.addAnnotation(annotation)
+                if isStartLocation {
+                    self.startAnnotation = annotation
+                    self.chosenStartLocation = currentPlacemark
+                } else {
+                    self.endAnnotation = annotation
+                    self.chosenEndLocation = currentPlacemark
+                }
+                let mapCenter = CLLocationCoordinate2DMake(latitude, longitude)
+                let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+                let region = MKCoordinateRegion(center: mapCenter, span: span)
+                self.map.setRegion(region, animated: true)
+                if isStartLocation {
+                    self.startPointText.resignFirstResponder()
+                } else {
+                    self.endPointText.resignFirstResponder()
+                }
+            }
         }
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
-        annotation.title = placemark.name
-        annotation.subtitle = "\(placemark.administrativeArea ?? ""), \(placemark.country ?? "")"
-        map.addAnnotation(annotation)
-        startAnnotaion = annotation
-        
-        let mapCenter = CLLocationCoordinate2DMake(latitude!, longitude!)
+    }
+    
+    func focusMapView(latitude: Double, longitude: Double) {
+        let mapCenter = CLLocationCoordinate2DMake(latitude, longitude)
         let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let region = MKCoordinateRegion(center: mapCenter, span: span)
         map.setRegion(region, animated: true)
-        
+        locationManager.stopUpdatingLocation()
     }
     
-    @IBAction func startPointEditingDidEnd(_ sender: UITextField) {
-        print("EditingDidEnd", startPointText.text!)
-    }
-    
-    @IBAction func startPointEditingDidChange(_ sender: UITextField) {
-//        print("editingDidChange", startPointText.text!)
-        if startPointText.text! != "" {
-            CLGeocoder().geocodeAddressString(startPointText.text!, completionHandler: {(placemarks: Array<CLPlacemark>?, error: Optional<Error>?) -> Void in
-                if let placemarks = placemarks {
-                    self.showAddressTable(addresses: placemarks, textField: self.startPointText, locationPointPlacemark: self.chosenStartLocation)
-                } else {
-                    self.showAddressTable(addresses: [], textField: self.startPointText, locationPointPlacemark: self.chosenStartLocation)
-                }
-            })
-        } else {
-            if let annotaionToDelete = startAnnotaion {
-                map.removeAnnotation(annotaionToDelete)
-                startAnnotaion = nil
-            }
-            addressTableView?.removeFromSuperview()
-        }
-    }
-    
-    @IBAction func startPointEdidtingDidBegin(_ sender: UITextField) {
-        print("editingDidbegin", startPointText.text!)
+    func showLocationUnavailableAlert() {
+        let alert = UIAlertController(title: "Alert", message: "Please provide the app access to your location", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Go to Settings", style: UIAlertAction.Style.default, handler: { (alert: UIAlertAction!) in
+            let url = NSURL(string:UIApplication.openSettingsURLString)! as URL
+            UIApplication.shared.open(url)
+        }))
+        alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func showUserLocation(_ sender: UIButton) {
@@ -143,24 +232,6 @@ class ViewController: UIViewController, MKMapViewDelegate {
         default:
             break
         }
-    }
-    
-    func focusMapView(latitude: Double, longitude: Double) {
-        let mapCenter = CLLocationCoordinate2DMake(latitude, longitude)
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-        let region = MKCoordinateRegion(center: mapCenter, span: span)
-        map.setRegion(region, animated: true)
-        locationManager.stopUpdatingLocation()
-    }
-    
-    func showLocationUnavailableAlert() {
-        let alert = UIAlertController(title: "Alert", message: "Please provide the app access to your location", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Go to Settings", style: UIAlertAction.Style.default, handler: { (alert: UIAlertAction!) in
-            let url = NSURL(string:UIApplication.openSettingsURLString)! as URL
-            UIApplication.shared.open(url)
-        }))
-        alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
 
 }
