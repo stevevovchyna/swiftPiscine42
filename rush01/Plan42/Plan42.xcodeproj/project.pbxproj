@@ -13,6 +13,7 @@
 		10C1ECF5239534AC00FD8C62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10C1ECF3239534AC00FD8C62 /* Main.storyboard */; };
 		10C1ECF7239534AF00FD8C62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10C1ECF6239534AF00FD8C62 /* Assets.xcassets */; };
 		10C1ECFA239534AF00FD8C62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10C1ECF8239534AF00FD8C62 /* LaunchScreen.storyboard */; };
+		10FCDC802395C6B300D48707 /* AdressTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCDC7F2395C6B300D48707 /* AdressTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		10C1ECF6239534AF00FD8C62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10C1ECF9239534AF00FD8C62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		10C1ECFB239534AF00FD8C62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10FCDC7F2395C6B300D48707 /* AdressTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				10C1ECED239534AC00FD8C62 /* AppDelegate.swift */,
 				10C1ECEF239534AC00FD8C62 /* SceneDelegate.swift */,
 				10C1ECF1239534AC00FD8C62 /* ViewController.swift */,
+				10FCDC7F2395C6B300D48707 /* AdressTableView.swift */,
 				10C1ECF3239534AC00FD8C62 /* Main.storyboard */,
 				10C1ECF6239534AF00FD8C62 /* Assets.xcassets */,
 				10C1ECF8239534AF00FD8C62 /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10C1ECF2239534AC00FD8C62 /* ViewController.swift in Sources */,
+				10FCDC802395C6B300D48707 /* AdressTableView.swift in Sources */,
 				10C1ECEE239534AC00FD8C62 /* AppDelegate.swift in Sources */,
 				10C1ECF0239534AC00FD8C62 /* SceneDelegate.swift in Sources */,
 			);

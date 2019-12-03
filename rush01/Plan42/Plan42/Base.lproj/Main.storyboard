@@ -28,6 +28,11 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="startPointEdidtingDidBegin:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="0ny-uT-FdT"/>
+                                            <action selector="startPointEditingDidChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="aOQ-Co-WU4"/>
+                                            <action selector="startPointEditingDidEnd:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="hEo-01-MbE"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SZ5-6l-srQ">
                                         <rect key="frame" x="8" y="42" width="398" height="34"/>
@@ -88,10 +93,13 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="bottomStartTextFieldCOnstraint" destination="Mtj-qu-mFF" id="fM2-6P-G0h"/>
                         <outlet property="buildRouteButton" destination="An8-zJ-q99" id="bbj-kD-A5R"/>
                         <outlet property="currentLocationButton" destination="jNN-Fw-Pc0" id="uwY-zi-E8l"/>
                         <outlet property="endPointText" destination="SZ5-6l-srQ" id="sgS-G2-kjO"/>
                         <outlet property="map" destination="vNS-Dz-pPC" id="V8Y-u7-TI1"/>
+                        <outlet property="navigationLabelsView" destination="Nf4-wI-zGg" id="cQE-4D-9xp"/>
+                        <outlet property="sideStartTextFieldConstraint" destination="639-zg-f9h" id="S7T-TG-Ct3"/>
                         <outlet property="startPointText" destination="wEG-2M-S2J" id="gli-X6-gLR"/>
                     </connections>
                 </viewController>
