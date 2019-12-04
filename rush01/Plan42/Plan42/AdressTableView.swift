@@ -21,7 +21,8 @@ class AddressTableView: UITableView {
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
-        self.register(UITableViewCell.self, forCellReuseIdentifier: "AddressCell")
+//        self.register(UITableViewCell.self, forCellReuseIdentifier: "AddressCell")
+        self.register(UINib(nibName: "SearchResultsTableViewCell", bundle: nil), forCellReuseIdentifier: "AddressCell")
     }
     
     required init?(coder: NSCoder) {
@@ -31,7 +32,7 @@ class AddressTableView: UITableView {
 
 extension AddressTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AddressCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AddressCell", for: indexPath) as! SearchResultsTableViewCell
 
         cell.textLabel?.numberOfLines = 0
         
@@ -42,18 +43,21 @@ extension AddressTableView: UITableViewDelegate, UITableViewDataSource {
                 self.placesClient!.fetchPlace(fromPlaceID: address.placeID, placeFields: fields, sessionToken: nil) {
                     (fetchedPlacemark, error) in
                     if let place = fetchedPlacemark {
-                        cell.textLabel?.text = (place.name ?? "Unknown") + " | " + (place.formattedAddress ?? "Unknown")
-
-                        
-                        
+                        print(place)
+                        cell.titleCellLabel?.text = place.name ?? "Unknown"
+                        cell.detailCellLabel?.text = place.formattedAddress ?? "Unknown"
                     }
                 }
             }
         } else {
             if indexPath.row == addresses.count + 1 {
-                cell.textLabel?.text = "Current location"
+                cell.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+                cell.titleCellLabel?.text = "Current location"
+                cell.titleCellLabel?.text = "Tap here to choose your location"
             } else {
-                cell.textLabel?.text = "None of the above"
+                cell.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+                cell.titleCellLabel?.text = "None of the above"
+                cell.detailCellLabel?.text = "Tap here to discard search results"
             }
         }
         return cell

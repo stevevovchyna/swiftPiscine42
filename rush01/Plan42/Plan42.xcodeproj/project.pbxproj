@@ -14,6 +14,8 @@
 		10C1ECF7239534AF00FD8C62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10C1ECF6239534AF00FD8C62 /* Assets.xcassets */; };
 		10C1ECFA239534AF00FD8C62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10C1ECF8239534AF00FD8C62 /* LaunchScreen.storyboard */; };
 		10FCDC802395C6B300D48707 /* AdressTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCDC7F2395C6B300D48707 /* AdressTableView.swift */; };
+		10FCDC8D2397D4EA00D48707 /* SearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCDC8B2397D4EA00D48707 /* SearchResultsTableViewCell.swift */; };
+		10FCDC8E2397D4EA00D48707 /* SearchResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10FCDC8C2397D4EA00D48707 /* SearchResultsTableViewCell.xib */; };
 		AF3CA5CDBE4BA548FA83CAB3 /* Pods_Plan42.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED72C6180728C75E3C10DF67 /* Pods_Plan42.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +29,8 @@
 		10C1ECF9239534AF00FD8C62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		10C1ECFB239534AF00FD8C62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10FCDC7F2395C6B300D48707 /* AdressTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressTableView.swift; sourceTree = "<group>"; };
+		10FCDC8B2397D4EA00D48707 /* SearchResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewCell.swift; sourceTree = "<group>"; };
+		10FCDC8C2397D4EA00D48707 /* SearchResultsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultsTableViewCell.xib; sourceTree = "<group>"; };
 		408320F6A9A93609AC9F0DB0 /* Pods-Plan42.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plan42.release.xcconfig"; path = "Target Support Files/Pods-Plan42/Pods-Plan42.release.xcconfig"; sourceTree = "<group>"; };
 		BF15CBE50930EB9704893C8D /* Pods-Plan42.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plan42.debug.xcconfig"; path = "Target Support Files/Pods-Plan42/Pods-Plan42.debug.xcconfig"; sourceTree = "<group>"; };
 		ED72C6180728C75E3C10DF67 /* Pods_Plan42.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plan42.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +77,8 @@
 				10C1ECF6239534AF00FD8C62 /* Assets.xcassets */,
 				10C1ECF8239534AF00FD8C62 /* LaunchScreen.storyboard */,
 				10C1ECFB239534AF00FD8C62 /* Info.plist */,
+				10FCDC8B2397D4EA00D48707 /* SearchResultsTableViewCell.swift */,
+				10FCDC8C2397D4EA00D48707 /* SearchResultsTableViewCell.xib */,
 			);
 			path = Plan42;
 			sourceTree = "<group>";
@@ -156,6 +162,7 @@
 			files = (
 				10C1ECFA239534AF00FD8C62 /* LaunchScreen.storyboard in Resources */,
 				10C1ECF7239534AF00FD8C62 /* Assets.xcassets in Resources */,
+				10FCDC8E2397D4EA00D48707 /* SearchResultsTableViewCell.xib in Resources */,
 				10C1ECF5239534AC00FD8C62 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,6 +220,7 @@
 				10FCDC802395C6B300D48707 /* AdressTableView.swift in Sources */,
 				10C1ECEE239534AC00FD8C62 /* AppDelegate.swift in Sources */,
 				10C1ECF0239534AC00FD8C62 /* SceneDelegate.swift in Sources */,
+				10FCDC8D2397D4EA00D48707 /* SearchResultsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
