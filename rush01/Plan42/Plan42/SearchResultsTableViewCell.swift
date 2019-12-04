@@ -12,10 +12,12 @@ class SearchResultsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleCellLabel: UILabel!
     @IBOutlet weak var detailCellLabel: UILabel!
+    @IBOutlet weak var myImageLabel: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.layer.cornerRadius = 5
+        self.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 0.9)
     }
 
     

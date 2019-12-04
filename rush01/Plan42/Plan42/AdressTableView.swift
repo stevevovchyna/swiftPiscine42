@@ -21,7 +21,6 @@ class AddressTableView: UITableView {
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
-//        self.register(UITableViewCell.self, forCellReuseIdentifier: "AddressCell")
         self.register(UINib(nibName: "SearchResultsTableViewCell", bundle: nil), forCellReuseIdentifier: "AddressCell")
     }
     
@@ -32,10 +31,9 @@ class AddressTableView: UITableView {
 
 extension AddressTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        tableView.backgroundColor = UIColor.clear
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddressCell", for: indexPath) as! SearchResultsTableViewCell
-
         cell.textLabel?.numberOfLines = 0
-        
         if addresses.count > indexPath.row {
             let address = addresses[indexPath.row]
             DispatchQueue.main.async {
@@ -43,21 +41,23 @@ extension AddressTableView: UITableViewDelegate, UITableViewDataSource {
                 self.placesClient!.fetchPlace(fromPlaceID: address.placeID, placeFields: fields, sessionToken: nil) {
                     (fetchedPlacemark, error) in
                     if let place = fetchedPlacemark {
-                        print(place)
                         cell.titleCellLabel?.text = place.name ?? "Unknown"
                         cell.detailCellLabel?.text = place.formattedAddress ?? "Unknown"
+                        cell.myImageLabel?.image = UIImage(named: "location")
                     }
                 }
             }
         } else {
             if indexPath.row == addresses.count + 1 {
-                cell.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+                cell.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 0.8012628424)
                 cell.titleCellLabel?.text = "Current location"
-                cell.titleCellLabel?.text = "Tap here to choose your location"
+                cell.detailCellLabel?.text = "Tap here to choose your location"
+                cell.myImageLabel?.image = UIImage(named: "target")
             } else {
-                cell.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+                cell.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 0.7950556507)
                 cell.titleCellLabel?.text = "None of the above"
                 cell.detailCellLabel?.text = "Tap here to discard search results"
+                cell.myImageLabel?.image = UIImage(named: "cross")
             }
         }
         return cell
@@ -91,5 +91,9 @@ extension AddressTableView: UITableViewDelegate, UITableViewDataSource {
             }
         }
         tableView.removeFromSuperview()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55
     }
 }

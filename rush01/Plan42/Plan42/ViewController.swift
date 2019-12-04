@@ -58,13 +58,16 @@ class ViewController: UIViewController, MKMapViewDelegate, GMSAutocompleteFetche
         startPointText.inputAccessoryView = self.accessoryToolBar
         endPointText.inputAccessoryView = self.accessoryToolBar
         
+        startPointText.backgroundColor = #colorLiteral(red: 0.8191205538, green: 0.8191205538, blue: 0.8191205538, alpha: 0.8)
+        endPointText.backgroundColor = #colorLiteral(red: 0.8191205538, green: 0.8191205538, blue: 0.8191205538, alpha: 0.8)
+        
         buildRouteButton.layer.cornerRadius = 5
         currentLocationButton.layer.cornerRadius = 5
 
         buildRouteButton.isHidden = true
 
         addressTableView = AddressTableView(frame: CGRect(), style: UITableView.Style.plain)
-
+        
         map.delegate = self
         map.showsUserLocation = true
         locationManager.delegate = self
@@ -79,26 +82,36 @@ class ViewController: UIViewController, MKMapViewDelegate, GMSAutocompleteFetche
     }
     
     @IBAction func buildRouteButtonPressed(_ sender: UIButton) {
-        
-        let request = MKDirections.Request()
-        request.source = MKMapItem(placemark: MKPlacemark(coordinate: chosenStartLocation!.coordinate, addressDictionary: nil))
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: chosenEndLocation!.coordinate, addressDictionary: nil))
-        request.requestsAlternateRoutes = false
-        request.transportType = .automobile
+        if chosenStartLocation == chosenEndLocation {
+            let alert = UIAlertController(title: "Error", message: "Please fill in two different locations", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Got it", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            let request = MKDirections.Request()
+            request.source = MKMapItem(placemark: MKPlacemark(coordinate: chosenStartLocation!.coordinate, addressDictionary: nil))
+            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: chosenEndLocation!.coordinate, addressDictionary: nil))
+            request.requestsAlternateRoutes = false
+            request.transportType = .automobile
 
-        let directions = MKDirections(request: request)
+            let directions = MKDirections(request: request)
 
-        directions.calculate { [unowned self] response, error in
-            guard let unwrappedResponse = response else { return }
-            for route in unwrappedResponse.routes {
-                self.map.addOverlay(route.polyline)
-                for step in route.steps {
-                    print(step.instructions)
+            directions.calculate { [unowned self] response, error in
+                guard let unwrappedResponse = response else { return }
+                for route in unwrappedResponse.routes {
+                    self.map.addOverlay(route.polyline)
+                    for step in route.steps {
+                        
+                        
+                        
+//                        print(step.instructions)
+                        
+                        
+                        
+                    }
+                    self.map.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
                 }
-                self.map.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
             }
         }
-        
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -187,11 +200,14 @@ class ViewController: UIViewController, MKMapViewDelegate, GMSAutocompleteFetche
         let x = sideStartTextFieldConstraint.constant
         var y = endPointText.frame.origin.y + navigationLabelsView.frame.origin.y
         let width = startPointText.bounds.width
-        var height = view.frame.size.height / 2
+        var height = CGFloat((55 * addresses.count) + 110)
         
         if !isStartLocation {
-            y = endPointText.frame.origin.y + navigationLabelsView.frame.origin.y + endPointText.frame.size.height
-            height -= endPointText.frame.size.height
+            y = endPointText.frame.origin.y + navigationLabelsView.frame.origin.y + endPointText.frame.size.height + 8
+        }
+        
+        if addresses.count == 0 {
+            height = 110
         }
         
         let boundRect = CGRect(x: x, y: y, width: width, height: height)
@@ -283,19 +299,15 @@ class ViewController: UIViewController, MKMapViewDelegate, GMSAutocompleteFetche
         case .authorizedWhenInUse:
             map.showsUserLocation = true
             focusMapView(latitude: currentLocation?.latitude ?? 30.0, longitude: currentLocation?.longitude ?? 50.0)
-            
             break
         case .authorizedAlways:
             map.showsUserLocation = true
             focusMapView(latitude: currentLocation?.latitude ?? 30.0, longitude: currentLocation?.longitude ?? 50.0)
-            
             break
         case .denied:
-            
             showLocationUnavailableAlert()
             break
         case .restricted:
-            
             showLocationUnavailableAlert()
             break
         case .notDetermined:
