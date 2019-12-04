@@ -42,6 +42,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
+                                            <action selector="endPointEditingDidBegin:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="G0I-pM-A84"/>
                                             <action selector="endPointEditingDidChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="Eam-12-LsM"/>
                                             <action selector="endPointEditingDidEnd:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="Xmw-qM-wqQ"/>
                                         </connections>

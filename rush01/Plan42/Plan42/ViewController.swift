@@ -24,6 +24,8 @@ class ViewController: UIViewController, MKMapViewDelegate, GMSAutocompleteFetche
     var startAnnotation: MKAnnotation?
     var endAnnotation: MKAnnotation?
     
+    var currentUserLocation : CLLocationCoordinate2D?
+    
     var startIsCurrentActiveTextField: Bool?
 
     @IBOutlet weak var map: MKMapView!
@@ -81,7 +83,7 @@ class ViewController: UIViewController, MKMapViewDelegate, GMSAutocompleteFetche
         let request = MKDirections.Request()
         request.source = MKMapItem(placemark: MKPlacemark(coordinate: chosenStartLocation!.coordinate, addressDictionary: nil))
         request.destination = MKMapItem(placemark: MKPlacemark(coordinate: chosenEndLocation!.coordinate, addressDictionary: nil))
-        request.requestsAlternateRoutes = true
+        request.requestsAlternateRoutes = false
         request.transportType = .automobile
 
         let directions = MKDirections(request: request)
@@ -90,6 +92,9 @@ class ViewController: UIViewController, MKMapViewDelegate, GMSAutocompleteFetche
             guard let unwrappedResponse = response else { return }
             for route in unwrappedResponse.routes {
                 self.map.addOverlay(route.polyline)
+                for step in route.steps {
+                    print(step.instructions)
+                }
                 self.map.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
             }
         }
@@ -137,7 +142,13 @@ class ViewController: UIViewController, MKMapViewDelegate, GMSAutocompleteFetche
     }
     
     @IBAction func startPointEdidtingDidBegin(_ sender: UITextField) {
+        showAddressTable(addresses: [], textField: startPointText, isStartLocation: true)
     }
+    
+    @IBAction func endPointEditingDidBegin(_ sender: UITextField) {
+        showAddressTable(addresses: [], textField: endPointText, isStartLocation: false)
+    }
+    
     
     @IBAction func endPointEditingDidEnd(_ sender: UITextField) {
         startIsCurrentActiveTextField = nil
@@ -188,17 +199,19 @@ class ViewController: UIViewController, MKMapViewDelegate, GMSAutocompleteFetche
         addressTableView?.removeFromSuperview()
         addressTableView = AddressTableView(frame: boundRect, style: UITableView.Style.plain)
         addressTableView!.addresses = addresses
+        addressTableView!.placesClient = placesClient
         addressTableView!.delegate = addressTableView
         addressTableView!.dataSource = addressTableView
+        addressTableView!.currentUserLocation = currentUserLocation
         addressTableView!.textField = textField
         addressTableView!.isStartLocation = isStartLocation ? true : false
         addressTableView?.delegator = self
         view.addSubview(addressTableView!)
     }
     
-    func focusMapViewAndSetPin(placemark: GMSAutocompletePrediction, textField: UITextField, isStartLocation: Bool) {
+    func focusMapViewAndSetPin(placemarkID: String, textField: UITextField, isStartLocation: Bool) {
         let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.all.rawValue))!
-        placesClient!.fetchPlace(fromPlaceID: placemark.placeID, placeFields: fields, sessionToken: nil) { (fetchedPlacemark, error) in
+        placesClient!.fetchPlace(fromPlaceID: placemarkID, placeFields: fields, sessionToken: nil) { (fetchedPlacemark, error) in
             if let error = error {
               print("An error occurred: \(error.localizedDescription)")
               return
@@ -270,15 +283,19 @@ class ViewController: UIViewController, MKMapViewDelegate, GMSAutocompleteFetche
         case .authorizedWhenInUse:
             map.showsUserLocation = true
             focusMapView(latitude: currentLocation?.latitude ?? 30.0, longitude: currentLocation?.longitude ?? 50.0)
+            
             break
         case .authorizedAlways:
             map.showsUserLocation = true
             focusMapView(latitude: currentLocation?.latitude ?? 30.0, longitude: currentLocation?.longitude ?? 50.0)
+            
             break
         case .denied:
+            
             showLocationUnavailableAlert()
             break
         case .restricted:
+            
             showLocationUnavailableAlert()
             break
         case .notDetermined:
@@ -304,6 +321,9 @@ extension ViewController : CLLocationManagerDelegate {
             let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
             let region = MKCoordinateRegion(center: location.coordinate, span: span)
             map.setRegion(region, animated: true)
+            
+            currentUserLocation = location.coordinate
+            
             locationManager.stopUpdatingLocation()
         }
     }

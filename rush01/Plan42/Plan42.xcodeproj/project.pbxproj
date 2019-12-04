@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,7 +14,7 @@
 		10C1ECF7239534AF00FD8C62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10C1ECF6239534AF00FD8C62 /* Assets.xcassets */; };
 		10C1ECFA239534AF00FD8C62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10C1ECF8239534AF00FD8C62 /* LaunchScreen.storyboard */; };
 		10FCDC802395C6B300D48707 /* AdressTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCDC7F2395C6B300D48707 /* AdressTableView.swift */; };
-		9291F40DF316E992B049A55A /* Pods_Plan42.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C10485487F6AB15F3F238AB /* Pods_Plan42.framework */; };
+		AF3CA5CDBE4BA548FA83CAB3 /* Pods_Plan42.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED72C6180728C75E3C10DF67 /* Pods_Plan42.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,9 +27,9 @@
 		10C1ECF9239534AF00FD8C62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		10C1ECFB239534AF00FD8C62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10FCDC7F2395C6B300D48707 /* AdressTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressTableView.swift; sourceTree = "<group>"; };
-		5C10485487F6AB15F3F238AB /* Pods_Plan42.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plan42.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C1C79C73CAF637A09A2F50E /* Pods-Plan42.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plan42.release.xcconfig"; path = "Target Support Files/Pods-Plan42/Pods-Plan42.release.xcconfig"; sourceTree = "<group>"; };
-		A44107FE205D21F062115E8D /* Pods-Plan42.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plan42.debug.xcconfig"; path = "Target Support Files/Pods-Plan42/Pods-Plan42.debug.xcconfig"; sourceTree = "<group>"; };
+		408320F6A9A93609AC9F0DB0 /* Pods-Plan42.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plan42.release.xcconfig"; path = "Target Support Files/Pods-Plan42/Pods-Plan42.release.xcconfig"; sourceTree = "<group>"; };
+		BF15CBE50930EB9704893C8D /* Pods-Plan42.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plan42.debug.xcconfig"; path = "Target Support Files/Pods-Plan42/Pods-Plan42.debug.xcconfig"; sourceTree = "<group>"; };
+		ED72C6180728C75E3C10DF67 /* Pods_Plan42.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plan42.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9291F40DF316E992B049A55A /* Pods_Plan42.framework in Frameworks */,
+				AF3CA5CDBE4BA548FA83CAB3 /* Pods_Plan42.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,7 +50,7 @@
 				10C1ECEC239534AC00FD8C62 /* Plan42 */,
 				10C1ECEB239534AC00FD8C62 /* Products */,
 				250DA25D7448D496F6D60E56 /* Pods */,
-				C6DE810B7A699BCC176D3830 /* Frameworks */,
+				FBEC05298D63215C75059FE0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,17 +80,16 @@
 		250DA25D7448D496F6D60E56 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A44107FE205D21F062115E8D /* Pods-Plan42.debug.xcconfig */,
-				9C1C79C73CAF637A09A2F50E /* Pods-Plan42.release.xcconfig */,
+				BF15CBE50930EB9704893C8D /* Pods-Plan42.debug.xcconfig */,
+				408320F6A9A93609AC9F0DB0 /* Pods-Plan42.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		C6DE810B7A699BCC176D3830 /* Frameworks */ = {
+		FBEC05298D63215C75059FE0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5C10485487F6AB15F3F238AB /* Pods_Plan42.framework */,
+				ED72C6180728C75E3C10DF67 /* Pods_Plan42.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -102,11 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 10C1ECFE239534AF00FD8C62 /* Build configuration list for PBXNativeTarget "Plan42" */;
 			buildPhases = (
-				5A617AF1FBA9BA4B0424854A /* [CP] Check Pods Manifest.lock */,
+				E1D6C9D7ED3B3E61F5E83381 /* [CP] Check Pods Manifest.lock */,
 				10C1ECE6239534AC00FD8C62 /* Sources */,
 				10C1ECE7239534AC00FD8C62 /* Frameworks */,
 				10C1ECE8239534AC00FD8C62 /* Resources */,
-				BDA8373B3F9AE5B9EC8B322D /* [CP] Copy Pods Resources */,
+				6F341062C32B941BAD94F88B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -164,7 +163,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5A617AF1FBA9BA4B0424854A /* [CP] Check Pods Manifest.lock */ = {
+		6F341062C32B941BAD94F88B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Plan42/Pods-Plan42-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Plan42/Pods-Plan42-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Plan42/Pods-Plan42-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E1D6C9D7ED3B3E61F5E83381 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -184,23 +200,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BDA8373B3F9AE5B9EC8B322D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Plan42/Pods-Plan42-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Plan42/Pods-Plan42-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Plan42/Pods-Plan42-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -355,7 +354,7 @@
 		};
 		10C1ECFF239534AF00FD8C62 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A44107FE205D21F062115E8D /* Pods-Plan42.debug.xcconfig */;
+			baseConfigurationReference = BF15CBE50930EB9704893C8D /* Pods-Plan42.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -375,7 +374,7 @@
 		};
 		10C1ED00239534AF00FD8C62 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C1C79C73CAF637A09A2F50E /* Pods-Plan42.release.xcconfig */;
+			baseConfigurationReference = 408320F6A9A93609AC9F0DB0 /* Pods-Plan42.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

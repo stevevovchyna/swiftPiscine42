@@ -16,9 +16,11 @@ class AddressTableView: UITableView {
     var textField: UITextField!
     var delegator: ViewController!
     var isStartLocation: Bool!
+    var currentUserLocation : CLLocationCoordinate2D?
+    var placesClient: GMSPlacesClient?
     
     override init(frame: CGRect, style: UITableView.Style) {
-      super.init(frame: frame, style: style)
+        super.init(frame: frame, style: style)
         self.register(UITableViewCell.self, forCellReuseIdentifier: "AddressCell")
     }
     
@@ -30,26 +32,59 @@ class AddressTableView: UITableView {
 extension AddressTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddressCell", for: indexPath)
-        cell.textLabel?.numberOfLines = 3
+
+        cell.textLabel?.numberOfLines = 0
         
         if addresses.count > indexPath.row {
             let address = addresses[indexPath.row]
-            cell.textLabel?.text = address.attributedPrimaryText.string
+            DispatchQueue.main.async {
+                let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.all.rawValue))!
+                self.placesClient!.fetchPlace(fromPlaceID: address.placeID, placeFields: fields, sessionToken: nil) {
+                    (fetchedPlacemark, error) in
+                    if let place = fetchedPlacemark {
+                        cell.textLabel?.text = (place.name ?? "Unknown") + " | " + (place.formattedAddress ?? "Unknown")
+
+                        
+                        
+                    }
+                }
+            }
         } else {
-            cell.textLabel?.text = "None of the above"
+            if indexPath.row == addresses.count + 1 {
+                cell.textLabel?.text = "Current location"
+            } else {
+                cell.textLabel?.text = "None of the above"
+            }
         }
         return cell
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return addresses.count + 1
+        return addresses.count + 2
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if addresses.count > indexPath.row {
             let address = addresses[indexPath.row]
-            textField.text = address.attributedPrimaryText.string
-            delegator.focusMapViewAndSetPin(placemark: address, textField: textField, isStartLocation: isStartLocation)
+            let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.all.rawValue))!
+            placesClient!.fetchPlace(fromPlaceID: address.placeID, placeFields: fields, sessionToken: nil) {
+                (fetchedPlacemark, error) in
+                if let place = fetchedPlacemark {
+                    guard let placeID = place.placeID else { return }
+                    self.textField.text = (place.name ?? "Unknown") + " | " + (place.formattedAddress ?? "Unknown")
+                    self.delegator.focusMapViewAndSetPin(placemarkID: placeID, textField: self.textField, isStartLocation: self.isStartLocation)
+                }
+            }
+        } else if indexPath.row == addresses.count + 1 {
+            let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.all.rawValue))!
+            placesClient!.findPlaceLikelihoodsFromCurrentLocation(withPlaceFields: fields) {
+                (fetchedPlacemark, error) in
+                if let place = fetchedPlacemark {
+                    guard let placeID = place[0].place.placeID else { return }
+                    self.textField.text = (place[0].place.name ?? "Unknown") + " | " +  (place[0].place.formattedAddress ?? "Unknown")
+                    self.delegator.focusMapViewAndSetPin(placemarkID: placeID, textField: self.textField, isStartLocation: self.isStartLocation)
+                }
+            }
         }
         tableView.removeFromSuperview()
     }
