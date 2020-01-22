@@ -6,8 +6,9 @@ Projects completed so far:
 
 <h1>d00 : Calculator</h1>
 simple int calculator
-
-<p align="center"><img src="https://cdn-std.droplr.net/files/acc_158506/UccREA" width="300"></p>
+<p display="inline" align="center">
+<img src="https://imgur.com/c5dlc6W.png" width="30%">
+</p>
 
 <h1>d02 : DeathNote</h1>
 Death Note Is a manga in which Light Yagami is the owner of a notebook of death. The person whose name is written in this book dies inevitably.
@@ -15,30 +16,29 @@ Today you will learn how to create a very simple Death Note simulation applicati
 This day will allow you to understand how the table views, that are used extensively in iOS applications, works. It is a way of presenting similar data.
 This day will also teach you how to change the view on an application and how to go back to an old view.
 
-<p align="center"><img src="https://cdn-std.droplr.net/files/acc_158506/7PzueC" width="300"></p>
-<p align="center"><img src="https://cdn-std.droplr.net/files/acc_158506/Q40Yq6" width="300"></p>
+<p align="center" display="inline">
+  <img src="https://imgur.com/6NAoX9h.png" width="30%"><img src="https://imgur.com/hdAiIDB.png" width="30%">
+</p>
 
 <h1>d03 : APM</h1>
 
-The threads allow you to perform the instructions of a process by following their own call stack. Initially a process is started on a single thread, the main thread.
-Using multiple threads allows you to parallelize the processing of multiple functions to run code in background. This point is extremely important on iOS to avoid blocking the user interface (UI) while the application is making calculations or waiting for a server to respond.
-Today you will see several notions :
+This application taught me :
 • How to use a collection view
 • How to do a multithread on iOS • How to create alerts
 • How to use a scroll view
 All ths application do, is to download images from the internet.
 
-<p align="center"><img src="https://cdn-std.droplr.net/files/acc_158506/9eS8O0" width="300"></p>
-<p align="center"><img src="https://cdn-std.droplr.net/files/acc_158506/zFf2U5" width="300"></p>
+<p align="center" display="inline">
+  <img src="https://imgur.com/GPPw9Np.png" width="30%"><img src="https://imgur.com/kseHv5n.png" width="30%">
+</p>
 
 <h1>d04 : Tweets</h1>
 
-Nowadays, the Internet is omnipresent in our daily life. It’s even more true for people with a smartphone.
-A lot of apps require an internet connection to send or receive data.
-Developpers now require to think about designing API capable of communicating with several devices to centralise data. Some of these API are open to any developper, like the one from Twitter which we will use today.
 Today you will learn to do HTTP requests to the Twitters’s API on iOS with the goal of creating a client application for Twitter. It will have to display tweets in a table view.
 
-<p align="center"><img src="https://cdn-std.droplr.net/files/acc_158506/RI5J5V" width="300"></p>
+<p align="center" display="inline">
+  <img src="https://imgur.com/rWEAqGp.png" width="30%">
+</p>
 
 <h1>d05 : Kanto</h1>
 
