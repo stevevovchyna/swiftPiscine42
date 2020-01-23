@@ -73,47 +73,4 @@ class Calculator {
             }
         }
     }
-    
-    
-    
-//    public func reset() {
-//        result = .success(0)
-//        left = 0
-//        right = 0
-//        operation = .none
-//        newNumber = true
-//    }
-//
-//    public func count() -> String {
-//        switch self.operation {
-//        case .plus:
-//            let res = left.addingReportingOverflow(right)
-//            result = res.overflow ? .failure("overflow") : .success(res.partialValue)
-//        case .minus:
-//            result = .success(left - right)
-//            let res = left.subtractingReportingOverflow(right)
-//            result = res.overflow ? .failure("overflow") : .success(res.partialValue)
-//        case .multiply:
-//            let res = left.multipliedReportingOverflow(by: right)
-//            result = res.overflow ? .failure("overflow") : .success(res.partialValue)
-//        case .divide:
-//            if right != 0 {
-//                let res = left.dividedReportingOverflow(by: right)
-//                result = res.overflow ? .failure("overflow") : .success(res.partialValue)
-//            } else {
-//                result = .failure("zero division")
-//            }
-//        case .none:
-//            result = .failure("no operation")
-//        }
-//        switch result {
-//        case .success(let res):
-//            left = res
-//            return formatOutput(res)
-//        case .failure(let err):
-//            reset()
-//            return err
-//        }
-//    }
-    
 }
