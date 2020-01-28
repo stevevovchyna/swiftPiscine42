@@ -57,11 +57,7 @@
 		104A19092388928500C64FAF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				104A19052388844F00C64FAF /* CustomBotTableViewCell.swift */,
-				104A19062388844F00C64FAF /* CustomBotTableViewCell.xib */,
 				104A1903238878A300C64FAF /* Message.swift */,
-				104A190C238892F600C64FAF /* CustomUserTableViewCell.swift */,
-				104A190D238892F700C64FAF /* CustomUserTableViewCell.xib */,
 				106F5FC723DF6FBB0085AE61 /* Reachability.swift */,
 			);
 			path = Model;
@@ -70,6 +66,10 @@
 		104A190A2388929600C64FAF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				104A19052388844F00C64FAF /* CustomBotTableViewCell.swift */,
+				104A19062388844F00C64FAF /* CustomBotTableViewCell.xib */,
+				104A190C238892F600C64FAF /* CustomUserTableViewCell.swift */,
+				104A190D238892F700C64FAF /* CustomUserTableViewCell.xib */,
 				108F17B42386B5770037B97E /* Main.storyboard */,
 				108F17B92386B57A0037B97E /* LaunchScreen.storyboard */,
 			);
