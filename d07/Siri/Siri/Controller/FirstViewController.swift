@@ -27,16 +27,18 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var voiceCommandButton: UIButton!
     @IBOutlet weak var recordButtonView: UIView!
     
+    var recordingSession: AVAudioSession!
     var audioEngine: AVAudioEngine = AVAudioEngine()
     let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
     var request = SFSpeechAudioBufferRecognitionRequest()
     var recognitionTask: SFSpeechRecognitionTask?
     
     override func viewDidAppear(_ animated: Bool) {
-        checkRecognitionPermission()
     }
     
     override func viewDidLoad() {
+        recordingSession = AVAudioSession.sharedInstance()
+        checkRecognitionPermission()
         myTableView.register(UINib(nibName: "CustomBotTableViewCell", bundle: nil), forCellReuseIdentifier: "customBotMessageCell")
         myTableView.register(UINib(nibName: "CustomUserTableViewCell", bundle: nil), forCellReuseIdentifier: "customUserMessageCell")
         myTableView.delegate = self
@@ -49,46 +51,41 @@ class FirstViewController: UIViewController {
     }
     
     @IBAction func sendButtonPressed(_ sender: Any) {
-        if audioEngine.isRunning {
-            self.stopRecording()
-        }
-        if textInput.text?.count == 0 {
-            messagesArray.append(Message(user: .user, text: "* said nothing *"))
-            self.messagesArray.append(Message(user: .bot, text: "Hey, at least type something!"))
-            myTableView.reloadData()
-            scrollTableView()
+        sendButton.isEnabled = false
+        if audioEngine.isRunning { self.stopRecording() }
+        guard let text = textInput.text else { return }
+        if text.count == 0 {
+            let userMessage = Message(user: .user, text: "* said nothing *")
+            let botMessage = Message(user: .bot, text: "Hey, at least type something!")
+            addToTable(messages: [userMessage, botMessage])
         } else {
-            messagesArray.append(Message(user: .user, text: "\(textInput.text ?? "* said nothing *")"))
+            let userMessage = Message(user: .user, text: text)
+            messagesArray.append(userMessage)
             myTableView.reloadData()
             scrollTableView()
-            if let request = textInput.text {
-                textInput.text = ""
-                self.bot.analyseText(request, successHandler: { (response) in
-                    if response.entities?.locations == nil {
-                        self.messagesArray.append(Message(user: .bot, text: "Sorry, couldn't get the data with your request"))
-                        self.myTableView.reloadData()
-                        self.scrollTableView()
-                    } else if let jsonResponse = response.entities?.locations?[0].toJSON() {
-                        self.forecastClient.current(latitude: Double(jsonResponse["lat"] as! Float), longitude: Double(jsonResponse["lng"] as! Float)) { result in
-                            switch result {
-                            case .success(let forecast):
-                                if let current = forecast.currently {
-                                    self.messagesArray.append(Message(user: .bot, text: "It is \(String(describing: ((current.temperature! - 32) * (5 / 9)).rounded())) ℃ and \(current.icon!) in \(String(describing: jsonResponse["raw"]!))"))
-                                    self.myTableView.reloadData()
-                                    self.scrollTableView()
-                                }
-                            case .failure(let error):
-                                print(error)
-                            }
+            textInput.text = ""
+            var botMessage = Message(user: .bot, text: "Sorry, couldn't get the data with your request")
+            self.bot.analyseText(text, successHandler: { response in
+                if response.entities?.locations == nil {
+                    self.addToTable(messages: [botMessage])
+                } else if let json = response.entities?.locations?[0].toJSON() {
+                    let lat = Double(json["lat"] as! Float)
+                    let lon = Double(json["lng"] as! Float)
+                    self.forecastClient.current(latitude: lat, longitude: lon) { result in
+                        switch result {
+                        case .success(let forecast):
+                            guard let current = forecast.currently else { return }
+                            let temperature = fToC(current.temperature ?? 0)
+                            let city = String(describing: json["raw"] ?? "Middle of Nowhere").capitalizingFirstLetter()
+                            let conditions = current.icon ?? "raining frogs"
+                            botMessage.message = "It is \(temperature) ℃ and \(conditions) in \(city)"
+                        case .failure(let error):
+                            botMessage.message = "Sorry, couldn't get the data with your request. Error is: \(error)"
                         }
+                        self.addToTable(messages: [botMessage])
                     }
-                }) { (error) in
-                    print(error)
-                    self.messagesArray.append(Message(user: .bot, text: "Ooops, there was some error! Please, make sure that your request is correct!"))
-                    self.myTableView.reloadData()
-                    self.scrollTableView()
                 }
-            }
+            }) { error in self.addToTable(messages: [botMessage]) }
         }
     }
     
@@ -162,7 +159,6 @@ extension FirstViewController: SFSpeechRecognizerDelegate {
         recognitionTask = speechRecognizer?.recognitionTask(with: request) { result, error in
             if result != nil {
                 if let result = result {
-                    print(result.bestTranscription.formattedString)
                     let finalString = result.bestTranscription.formattedString
                     if self.audioEngine.isRunning {
                         self.textInput.text = finalString
@@ -211,9 +207,9 @@ extension FirstViewController {
     }
     
     private func checkRecognitionPermission() {
-        SFSpeechRecognizer.requestAuthorization { authStatus in
-            AVAudioSession.sharedInstance().requestRecordPermission { micAuthStatus in
-                OperationQueue.main.addOperation {
+        recordingSession.requestRecordPermission { [unowned self] micAuthStatus in
+            SFSpeechRecognizer.requestAuthorization { authStatus in
+                DispatchQueue.main.async {
                     if authStatus == .authorized, micAuthStatus {
                         self.setMicButton(to: true)
                     } else {
@@ -250,5 +246,12 @@ extension FirstViewController {
                 }
             })
         }
+    }
+    
+    private func addToTable(messages: [Message]) {
+        messagesArray.append(contentsOf: messages)
+        myTableView.reloadData()
+        scrollTableView()
+        sendButton.isEnabled = true
     }
 }
