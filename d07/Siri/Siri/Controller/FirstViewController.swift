@@ -16,8 +16,9 @@ class FirstViewController: UIViewController {
 
     var bot = SapcaiClient(token : "0dedc07f4cf04e658b15ad041b2a5feb", language: "en")
     let forecastClient = DarkSkyKit(apiToken: "2b485393cb19279ada9959ed78f14c7a")
-    var messagesArray : [Message] = [Message(user: .bot, text: "Hi there! Will be glad to help you with any of your weather requests! Don't hesitate to message me!")]
     var keyboardHeight : CGFloat = 0
+    
+    private let tableViewDataSource = TableViewDataSource()
     
     @IBOutlet weak var wholeInputView: UIView!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
@@ -41,8 +42,8 @@ class FirstViewController: UIViewController {
         checkRecognitionPermission()
         myTableView.register(UINib(nibName: "CustomBotTableViewCell", bundle: nil), forCellReuseIdentifier: "customBotMessageCell")
         myTableView.register(UINib(nibName: "CustomUserTableViewCell", bundle: nil), forCellReuseIdentifier: "customUserMessageCell")
-        myTableView.delegate = self
-        myTableView.dataSource = self
+        myTableView.delegate = tableViewDataSource
+        myTableView.dataSource = tableViewDataSource
         textInput.delegate = self
         myTableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tableViewTapped)))
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
@@ -60,7 +61,7 @@ class FirstViewController: UIViewController {
             addToTable(messages: [userMessage, botMessage])
         } else {
             let userMessage = Message(user: .user, text: text)
-            messagesArray.append(userMessage)
+            tableViewDataSource.messagesArray.append(userMessage)
             myTableView.reloadData()
             scrollTableView()
             textInput.text = ""
@@ -87,36 +88,6 @@ class FirstViewController: UIViewController {
                 }
             }) { error in self.addToTable(messages: [botMessage]) }
         }
-    }
-    
-    //MARK:- TableView methods
-}
-
-extension FirstViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch messagesArray[indexPath.row].user {
-        case .bot:
-            let botCell = tableView.dequeueReusableCell(withIdentifier: "customBotMessageCell", for: indexPath) as! CustomBotTableViewCell
-            botCell.userMessageLabel.text = messagesArray[indexPath.row].message
-            return botCell
-        case .user:
-            let userCell = tableView.dequeueReusableCell(withIdentifier: "customUserMessageCell", for: indexPath) as! CustomUserTableViewCell
-            userCell.userMessageLabel.text = messagesArray[indexPath.row].message
-            return userCell
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messagesArray.count
-    }
-    
-    func scrollTableView() {
-        let indexPath = IndexPath(row: self.messagesArray.count - 1, section: 0)
-        self.myTableView.scrollToRow(at: indexPath, at: .top, animated: true)
-    }
-    
-    @objc func tableViewTapped() {
-        textInput.endEditing(true)
     }
 }
 
@@ -249,9 +220,18 @@ extension FirstViewController {
     }
     
     private func addToTable(messages: [Message]) {
-        messagesArray.append(contentsOf: messages)
+        tableViewDataSource.messagesArray.append(contentsOf: messages)
         myTableView.reloadData()
         scrollTableView()
         sendButton.isEnabled = true
+    }
+    
+    func scrollTableView() {
+        let indexPath = IndexPath(row: tableViewDataSource.messagesArray.count - 1, section: 0)
+        self.myTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
+    
+    @objc func tableViewTapped() {
+        textInput.endEditing(true)
     }
 }
