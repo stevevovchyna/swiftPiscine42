@@ -16,6 +16,7 @@
 		106F5FCA23E1A9AE0085AE61 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106F5FC923E1A9AE0085AE61 /* Extensions.swift */; };
 		106F5FCD23E1AAA10085AE61 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106F5FCC23E1AAA10085AE61 /* Utils.swift */; };
 		106F5FCF23E1ACB30085AE61 /* TableViewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106F5FCE23E1ACB30085AE61 /* TableViewDataModel.swift */; };
+		106F5FD123E1AF1E0085AE61 /* SpeechRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106F5FD023E1AF1E0085AE61 /* SpeechRecognition.swift */; };
 		108F17AF2386B5770037B97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108F17AE2386B5770037B97E /* AppDelegate.swift */; };
 		108F17B12386B5770037B97E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108F17B02386B5770037B97E /* SceneDelegate.swift */; };
 		108F17B62386B5770037B97E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 108F17B42386B5770037B97E /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 		106F5FC923E1A9AE0085AE61 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		106F5FCC23E1AAA10085AE61 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		106F5FCE23E1ACB30085AE61 /* TableViewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataModel.swift; sourceTree = "<group>"; };
+		106F5FD023E1AF1E0085AE61 /* SpeechRecognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognition.swift; sourceTree = "<group>"; };
 		108F17AB2386B5770037B97E /* Siri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Siri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		108F17AE2386B5770037B97E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		108F17B02386B5770037B97E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				104A1903238878A300C64FAF /* Message.swift */,
 				106F5FC723DF6FBB0085AE61 /* Reachability.swift */,
 				106F5FCC23E1AAA10085AE61 /* Utils.swift */,
+				106F5FD023E1AF1E0085AE61 /* SpeechRecognition.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				106F5FC823DF6FBB0085AE61 /* Reachability.swift in Sources */,
 				108F17AF2386B5770037B97E /* AppDelegate.swift in Sources */,
 				106F5FCD23E1AAA10085AE61 /* Utils.swift in Sources */,
+				106F5FD123E1AF1E0085AE61 /* SpeechRecognition.swift in Sources */,
 				104A190E238892F700C64FAF /* CustomUserTableViewCell.swift in Sources */,
 				106F5FCA23E1A9AE0085AE61 /* Extensions.swift in Sources */,
 				106F5FCF23E1ACB30085AE61 /* TableViewDataModel.swift in Sources */,

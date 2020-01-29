@@ -14,11 +14,13 @@ import AVFoundation
 
 class FirstViewController: UIViewController {
 
-    var bot = SapcaiClient(token : "0dedc07f4cf04e658b15ad041b2a5feb", language: "en")
-    let forecastClient = DarkSkyKit(apiToken: "2b485393cb19279ada9959ed78f14c7a")
-    var keyboardHeight : CGFloat = 0
-    
+    var bot = SapcaiClient(token : sapcaiToken, language: "en")
+    let forecastClient = DarkSkyKit(apiToken: darkSkyToken)
+    var speech = SpeechRecognizer()
     private let tableViewDataSource = TableViewDataSource()
+    
+    var keyboardHeight : CGFloat = 0
+    var recordingSession: AVAudioSession!
     
     @IBOutlet weak var wholeInputView: UIView!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
@@ -27,15 +29,8 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var voiceCommandButton: UIButton!
     @IBOutlet weak var recordButtonView: UIView!
-    
-    var recordingSession: AVAudioSession!
-    var audioEngine: AVAudioEngine = AVAudioEngine()
-    let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
-    var request = SFSpeechAudioBufferRecognitionRequest()
-    var recognitionTask: SFSpeechRecognitionTask?
-    
-    override func viewDidAppear(_ animated: Bool) {
-    }
+   
+// MARK:- view lifecycle
     
     override func viewDidLoad() {
         recordingSession = AVAudioSession.sharedInstance()
@@ -51,9 +46,113 @@ class FirstViewController: UIViewController {
         )
     }
     
+//MARK: - IBActions ****************
+    
     @IBAction func sendButtonPressed(_ sender: Any) {
+        processUserRequest()
+    }
+    
+    @IBAction func voiceCommandButtonPressed(_ sender: UIButton) {
+        switch internetIsAvailable() {
+        case true:
+            speech.audioEngine.isRunning ? speech.stopRecording(with: recordButtonView) : speech.recordAndRecognizeSpeech(in: textInput, with: recordButtonView, for: self)
+        case false:
+            presentAlert(alertTitle: "No internet connection", alertMessage: "Seems like your internet connection is down", in: self)
+        }
+    }
+}
+
+//MARK:- textField delegate methods
+extension FirstViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.5){
+            self.heightConstraint.constant = 0
+            self.scrollTableView()
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == textInput {
+            processUserRequest()
+            textField.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+}
+
+//MARK:- Recognition methods
+extension FirstViewController: SFSpeechRecognizerDelegate {
+    func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
+        if !available {
+            presentAlert(alertTitle: "Problem accessing recognizer", alertMessage: "Please try again later", in: self)
+        }
+    }
+}
+
+//MARK:- private methods
+extension FirstViewController {
+    private func checkRecognitionPermission() {
+        recordingSession.requestRecordPermission { [unowned self] micAuthStatus in
+            SFSpeechRecognizer.requestAuthorization { authStatus in
+                DispatchQueue.main.async {
+                    if authStatus == .authorized, micAuthStatus {
+                        self.setMicButton(to: true)
+                    } else {
+                        presentAlert(alertTitle: "Speech recognition or microfone are not allowed", alertMessage: "You can enable the recognizer or microfone in Settings", in: self)
+                        self.setMicButton(to: false)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func setMicButton(to isEnabled: Bool) {
+        DispatchQueue.main.async {
+            self.voiceCommandButton.isEnabled = isEnabled
+            let color : UIColor = isEnabled ? .clear : .lightGray
+            self.voiceCommandButton.layer.backgroundColor = color.cgColor
+            self.voiceCommandButton.layer.cornerRadius = self.voiceCommandButton.frame.size.height / 2
+        }
+    }
+    
+    private func internetIsAvailable() -> Bool { return Reachability.isConnectedToNetwork() ? true : false }
+    
+    private func addToTable(messages: [Message]) {
+        tableViewDataSource.messagesArray.append(contentsOf: messages)
+        myTableView.reloadData()
+        scrollTableView()
+        sendButton.isEnabled = true
+    }
+    
+    private func scrollTableView() {
+        let indexPath = IndexPath(row: tableViewDataSource.messagesArray.count - 1, section: 0)
+        self.myTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
+    
+    @objc func tableViewTapped() {
+        textInput.endEditing(true)
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            self.keyboardHeight = keyboardRectangle.size.height
+            UIView.animate(withDuration: 0.5, animations: {
+                self.heightConstraint.constant = (self.keyboardHeight * -1) + self.view.safeAreaInsets.bottom
+                self.view.layoutIfNeeded()
+            }, completion: { _ in
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: 0.1) { self.scrollTableView() }
+                }
+            })
+        }
+    }
+    
+    private func processUserRequest() {
         sendButton.isEnabled = false
-        if audioEngine.isRunning { self.stopRecording() }
+        if speech.audioEngine.isRunning { speech.stopRecording(with: recordButtonView) }
         guard let text = textInput.text else { return }
         if text.count == 0 {
             let userMessage = Message(user: .user, text: "* said nothing *")
@@ -88,150 +187,5 @@ class FirstViewController: UIViewController {
                 }
             }) { error in self.addToTable(messages: [botMessage]) }
         }
-    }
-}
-
-extension FirstViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        UIView.animate(withDuration: 0.5){
-            self.heightConstraint.constant = 0
-            self.scrollTableView()
-            self.view.layoutIfNeeded()
-        }
-    }
-}
-
-//MARK:- Recognition methods
-extension FirstViewController: SFSpeechRecognizerDelegate {
-    func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
-        if !available {
-            self.presentAlert(alertTitle: "Problem accessing recognizer", alertMessage: "Please try again later")
-        }
-    }
-    
-    func recordAndRecognizeSpeech() {
-        request = SFSpeechAudioBufferRecognitionRequest()
-        let node = audioEngine.inputNode
-        node.removeTap(onBus: 0)
-        let recordingFormat = node.outputFormat(forBus: 0)
-        node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
-            self.request.append(buffer)
-        }
-        audioEngine.prepare()
-        do {
-            try audioEngine.start()
-        } catch {
-            recordButtonView.layer.backgroundColor = UIColor.lightGray.cgColor
-            presentAlert(alertTitle: "Problem recognizing the speech", alertMessage: "Please try again later")
-        }
-        guard let myRecognizer = SFSpeechRecognizer(), myRecognizer.isAvailable else { return }
-        recordButtonView.layer.backgroundColor = UIColor.red.cgColor
-        recordButtonView.layer.cornerRadius = self.recordButtonView.frame.size.height / 2
-        recognitionTask = speechRecognizer?.recognitionTask(with: request) { result, error in
-            if result != nil {
-                if let result = result {
-                    let finalString = result.bestTranscription.formattedString
-                    if self.audioEngine.isRunning {
-                        self.textInput.text = finalString
-                    }
-                } else if let error = error {
-                    self.recordButtonView.layer.backgroundColor = UIColor.lightGray.cgColor
-                    self.presentAlert(alertTitle: "Problem recognizing the speech", alertMessage: error.localizedDescription)
-                }
-            }
-        }
-    }
-    
-    func stopRecording() {
-        request.endAudio()
-        audioEngine.stop()
-        audioEngine.inputNode.removeTap(onBus: 0)
-        if let recognitionTask = recognitionTask {
-            recognitionTask.cancel()
-            recognitionTask.finish()
-            self.recognitionTask = nil
-        }
-        self.recordButtonView.layer.backgroundColor = UIColor.clear.cgColor
-    }
-    
-    //MARK: - IBActions ****************
-    
-    @IBAction func voiceCommandButtonPressed(_ sender: UIButton) {
-        switch internetIsAvailable() {
-        case true:
-            audioEngine.isRunning ? stopRecording() : recordAndRecognizeSpeech()
-        case false:
-            presentAlert(alertTitle: "No internet connection", alertMessage: "Seems like your internet connection is down")
-        }
-    }
-}
-
-//MARK:- private methods
-extension FirstViewController {
-    private func setMicButton(to isEnabled: Bool) {
-        DispatchQueue.main.async {
-            self.voiceCommandButton.isEnabled = isEnabled
-            let color : UIColor = isEnabled ? .clear : .lightGray
-            self.voiceCommandButton.layer.backgroundColor = color.cgColor
-            self.voiceCommandButton.layer.cornerRadius = self.voiceCommandButton.frame.size.height / 2
-        }
-    }
-    
-    private func checkRecognitionPermission() {
-        recordingSession.requestRecordPermission { [unowned self] micAuthStatus in
-            SFSpeechRecognizer.requestAuthorization { authStatus in
-                DispatchQueue.main.async {
-                    if authStatus == .authorized, micAuthStatus {
-                        self.setMicButton(to: true)
-                    } else {
-                        self.presentAlert(alertTitle: "Speech recognition or microfone are not allowed", alertMessage: "You can enable the recognizer or microfone in Settings")
-                        self.setMicButton(to: false)
-                    }
-                }
-            }
-        }
-    }
-    
-    private func presentAlert(alertTitle: String, alertMessage: String) {
-        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
-            self.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    private func internetIsAvailable() -> Bool { return Reachability.isConnectedToNetwork() ? true : false }
-    
-    @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            self.keyboardHeight = keyboardRectangle.size.height
-            UIView.animate(withDuration: 0.5, animations: {
-                self.heightConstraint.constant = (self.keyboardHeight * -1) + self.view.safeAreaInsets.bottom
-                self.view.layoutIfNeeded()
-            }, completion: { _ in
-                DispatchQueue.main.async {
-                    UIView.animate(withDuration: 0.1) {
-                        self.scrollTableView()
-                    }
-                }
-            })
-        }
-    }
-    
-    private func addToTable(messages: [Message]) {
-        tableViewDataSource.messagesArray.append(contentsOf: messages)
-        myTableView.reloadData()
-        scrollTableView()
-        sendButton.isEnabled = true
-    }
-    
-    func scrollTableView() {
-        let indexPath = IndexPath(row: tableViewDataSource.messagesArray.count - 1, section: 0)
-        self.myTableView.scrollToRow(at: indexPath, at: .top, animated: true)
-    }
-    
-    @objc func tableViewTapped() {
-        textInput.endEditing(true)
     }
 }
