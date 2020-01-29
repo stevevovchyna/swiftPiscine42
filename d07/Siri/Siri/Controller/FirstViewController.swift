@@ -153,7 +153,7 @@ extension FirstViewController {
     private func processUserRequest() {
         sendButton.isEnabled = false
         if speech.audioEngine.isRunning { speech.stopRecording(with: recordButtonView) }
-        guard let text = textInput.temxt else { return }
+        guard let text = textInput.text else { return }
         if text.count == 0 {
             let userMessage = Message(user: .user, text: "* said nothing *")
             let botMessage = Message(user: .bot, text: "Hey, at least type something!")
